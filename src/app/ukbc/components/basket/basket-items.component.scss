@@ -1,0 +1,89 @@
+@import '../../../../styles/core-variables-and-helpers';
+
+$basket-items-vertical-padding: 20px;
+$basket-item-vertical-padding: 0.65em;
+$basket-icon-size: 1.25em;
+
+.BasketItems {
+	@include list-reset;
+	font-size: px-to-rem(18px);
+
+	padding-top: calc(#{$basket-items-vertical-padding} - #{$basket-item-vertical-padding});
+	padding-bottom: $basket-items-vertical-padding;
+}
+
+.BasketItem {
+	@include medium-weight;
+
+	display: flex;
+	align-items: center;
+	position: relative;
+	padding: $basket-item-vertical-padding 0 $basket-item-vertical-padding ($basket-icon-size + 0.5em);
+
+	&:not(:first-child) {
+		border-top: 1px solid $grey-5;
+	}
+
+	&:last-child:not(&--basis) {
+		border-bottom: 1px solid $grey-5;
+	}
+
+	&__icon svg {
+		position: absolute;
+
+		top: 50%;
+		left: 0;
+		transform: translateY(-50%);
+
+		width: $basket-icon-size;
+		height: $basket-icon-size;
+	}
+
+	&__free {
+		color: $orange-2;
+	}
+
+	&__switch {
+		margin: 0 0 0 auto;
+		font-size: 1.4em;
+	}
+
+	&__number-picker {
+		margin: 0 0 0 1em;
+		font-size: 0.9em;
+	}
+
+	&--deselected {
+		color: #b3b3b3;
+	}
+
+	&--basis {
+		padding: 1em 0 0;
+		border-top: 2px solid $grey-9;
+
+		&:before {
+			display: none;
+		}
+	}
+
+	&--editable-basis {
+		justify-content: flex-end;
+	}
+
+	&__basis-icon {
+		margin-right: 1em;
+
+		&--editable {
+			margin-right: 0;
+			flex: 1 0 auto;
+		}
+
+		svg {
+			fill: $grey-3;
+		}
+	}
+
+	&--dummy {
+		padding-bottom: 0;
+	}
+}

@@ -1,0 +1,195 @@
+$Trustpilot-padding-horizontal-small: 20px;
+$Trustpilot-padding-horizontal-large: 50px;
+
+$Trustpilot-padding-vertical-small: 20px;
+$Trustpilot-padding-vertical-large: 50px;
+
+$Trustpilot-reviews-max-width: 340px;
+$Trustpilot-reviews-max-height: 450px;
+$Trustpilot-patrol-man-width: 240px;
+
+.Trustpilot {
+	display: flex;
+	justify-content: center;
+	position: relative;
+	background: #fdfdfc;
+	overflow-x: hidden;
+	overflow-y: visible;
+
+	&__background {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background-size: cover;
+		background-position: center;
+
+		opacity: 0;
+		transition: opacity 1s ease;
+
+		&--loaded {
+			opacity: 1;
+		}
+	}
+
+	&__outer {
+		@include fluid-property(padding-left, $Trustpilot-padding-horizontal-small, $Trustpilot-padding-horizontal-large);
+		@include fluid-property(padding-right, $Trustpilot-padding-horizontal-small, $Trustpilot-padding-horizontal-large);
+
+		max-width: 1200px;
+	}
+
+	&__inner {
+		@include fluid-property(padding-top, $Trustpilot-padding-vertical-small, $Trustpilot-padding-vertical-large);
+		@include fluid-property(padding-bottom, $Trustpilot-padding-vertical-small, $Trustpilot-padding-vertical-large);
+		@include fluid-property(padding-right, 0px, $Trustpilot-patrol-man-width + 40px);
+
+		position: relative;
+	}
+
+	&__logo {
+		width: 180px;
+		@include fluid-property(padding-bottom, 14px, 20px);
+	}
+
+	&__description {
+		@include fluid-property(padding-right, 20px, 130px, $tablet-landscape);
+		@include fluid-property(font-size, 16px, 18px);
+		margin: auto 0;
+	}
+
+	&__reviews {
+		width: 80%;
+		max-width: $Trustpilot-reviews-max-width;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__reviews-mask-top {
+		background: linear-gradient(rgba($grey-2, 0.25), rgba($grey-2, 0));
+		transform: translate(16px, 90%);
+	}
+
+	&__reviews-mask-bottom {
+		background: linear-gradient(rgba($grey-2, 0), rgba($grey-2, 0.25));
+		transform: translate(16px, -95%);
+	}
+
+	&__reviews-mask {
+		position: relative;
+		top: 0;
+		left: -16px;
+		height: 8px;
+		border-radius: 5px;
+		transition: opacity $transition-fast;
+
+		&--complete {
+			opacity: 0;
+		}
+	}
+
+	&__reviews-container {
+		overflow: hidden;
+		flex: 0 1 auto;
+		max-height: $Trustpilot-reviews-max-height;
+		padding: 0 8px 8px 8px;
+	}
+
+	&__show-more {
+		@include button-reset;
+		flex: 0 0 auto;
+		@include fluid-property(margin-top, 12px, 20px);
+		background: none;
+		color: $dark-grey;
+		transition: visibility $transition-fast;
+
+		&--complete {
+			visibility: hidden;
+		}
+	}
+
+	&__show-more-caret {
+		svg {
+			width: 0.8em;
+			height: 0.8em;
+
+			transform: rotate(90deg);
+			polygon {
+				fill: $dark-grey;
+			}
+		}
+	}
+
+	&__patrol-man {
+		@include fluid-property(right, -80px, 0px);
+		position: absolute;
+		bottom: 0;
+		width: $Trustpilot-patrol-man-width;
+
+		background-size: cover;
+
+		opacity: 0;
+		transition: opacity 1s ease;
+
+		&--loaded {
+			opacity: 1;
+		}
+
+		&:before {
+			content: '';
+			display: block;
+			padding-bottom: percentage(536 / 200);
+		}
+	}
+
+	&__title {
+		@include fluid-property(font-size, 26px, 30px);
+		color: $dark-grey;
+	}
+
+	&__wysiwyg {
+		color: $grey-7;
+	}
+
+	@include breakpoint($tablet-landscape, up) {
+		&__content {
+			display: flex;
+			max-width: 1100px;
+		}
+
+		&__description {
+			width: calc(100% - #{$Trustpilot-reviews-max-width});
+		}
+
+		&__reviews {
+			margin-top: 0;
+			width: $Trustpilot-reviews-max-width;
+		}
+	}
+
+	@include breakpoint(tablet, below) {
+		&__logo {
+			margin: auto;
+		}
+
+		&__patrol-man {
+			display: none;
+		}
+
+		&__inner {
+			padding-right: 0;
+		}
+
+		&__description {
+			text-align: center;
+			padding: 0;
+		}
+
+		&__content {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+}

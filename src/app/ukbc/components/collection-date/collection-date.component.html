@@ -1,0 +1,10 @@
+<div class="CollectionDate">
+	<ukbc-instalment-date-picker 
+		[label]="content.CollectionDateLabel" 
+		[options]="CollectionDates" 
+		[value]="collectionDate"
+	 	[validationErrors]="Errors" 
+	 	[forceShowValidationErrors]="forceShowValidationErrors" 
+		(onChange)="InputChanged($event)">
+	</ukbc-instalment-date-picker>
+</div>

@@ -1,0 +1,33 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+.DirectDebitAgreeToTerms {
+	&__accept {
+		@include margin-top($narrow: true);
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+
+	&__information {
+		@include margin-right;
+
+		p:first-child {
+			margin-top: 0;
+		}
+
+		p,
+		ul {
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	&__complete-button {
+		@include margin-top;
+		display: flex;
+		align-self: flex-end;
+		margin-left: auto;
+	}
+}

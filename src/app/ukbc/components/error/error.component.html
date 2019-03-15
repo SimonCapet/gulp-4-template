@@ -1,0 +1,7 @@
+<div class="Error">
+	<div class="Error__content">
+		<h2>{{ (Error | async).title }} </h2>
+		<p innerHTML="{{ (Error | async).description }}"></p>
+		<button class="Btn Btn--grey" type="button" (click)="TryAgain()">{{ (Error | async).tryAgainButtonText }}</button>
+	</div>
+</div>

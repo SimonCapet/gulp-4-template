@@ -1,0 +1,57 @@
+@import '../../../../styles/core-variables-and-helpers';
+
+// Includes extra height for when all error messages are shown and ccv tooltip is open
+$payment-card-iframe-height: 500px;
+
+.PaymentCard {
+	&__buttons {
+		margin-bottom: 1.5em;
+	}
+
+	& &__button {
+		@include breakpoint(tablet, up) {
+			max-width: 10em;
+			margin-top: 0;
+		}
+	}
+
+	.realex-iframe {
+		width: 1px;
+		min-width: 100%;
+		height: $payment-card-iframe-height;
+		border: 0;
+	}
+
+	&__iframe-container {
+		&--loading {
+			position: absolute;
+		}
+	}
+
+	&__retry-message {
+		margin-top: 0;
+
+		color: $red;
+	}
+
+	&__loading {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		position: relative;
+
+		height: $payment-card-iframe-height;
+
+		background: $grey-11;
+	}
+
+	&__loading-message {
+		@include pica;
+	}
+
+	&__loader {
+		@include pargon;
+	}
+}

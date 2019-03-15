@@ -1,0 +1,17 @@
+{
+	"@context": "http://schema.org",
+	"@type": "Product",
+	"aggregateRating": {
+		"@type": "AggregateRating",
+		"ratingValue": "4",
+		"reviewCount": "12885"
+	},
+	"description":
+		"Get outstanding vehicle breakdown cover starting from £4.50 a month with the RAC. Enjoy FREE Onward Travel with selected personal cover packages.",
+	"name": "Breakdown Cover",
+	"offers": {
+		"@type": "Offer",
+		"price": "4.50",
+		"priceCurrency": "GBP"
+	}
+}

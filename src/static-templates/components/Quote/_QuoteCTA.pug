@@ -1,0 +1,18 @@
+link(rel="stylesheet" href="/static/styles/components/QuoteCTA.css")
+link(rel="stylesheet" href="/static/styles/components/TPStars.css")
+style(type="text/css").
+	.QuoteCTA {
+		background-image: url('/assets/landing-page/man-and-van-mobile.jpg'), linear-gradient(-180deg, rgba(0,0,0,0) 10%, #444444 54%);
+	}
+	@media (min-width: 600px) {
+		.QuoteCTA {
+			background-image: url('/assets/landing-page/man-and-van-desktop.jpg'), linear-gradient(-180deg, rgba(0,0,0,0) 10%, #444444 54%);
+		}
+	}
+.QuoteCTA
+	.QuoteCTA__top
+		.Container
+			include _QuoteCTA__overlay
+	.QuoteCTA__bottom
+		.Container
+			include _QuoteCTA__features

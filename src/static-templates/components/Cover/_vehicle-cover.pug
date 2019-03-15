@@ -1,0 +1,25 @@
+-
+	var vehicleCoverConfig = {
+		title: 'Vehicle cover',
+		body: '<strong>Cover for your vehicle whoever is driving</strong> - we\'ll come to your rescue if you break down more than &#188; of a mile from your home.',
+		monthlyPrice: '4.50',
+		annualPrice: '34.99',
+		url: '/breakdown-cover/uk-breakdown-cover/car-cover',
+		monthlyUrl: '/breakdown-cover/uk-breakdown-cover/car-cover',
+		products: [
+			{
+				title: 'Roadside cover included as standard',
+			},
+			{
+				title: 'Cover for your vehicle whoever is driving',
+			},
+			{
+				title: 'Get <strong style="color: red;">FREE</strong> onward travel when you select national recovery',
+			},
+		],
+		modalContent: '<h2>Vehicle cover</h2> <h4>Cover for one car</h4> <p>We\'ll cover one car, whoever is driving. This is great if you share your car with other people.</p> <h4>Roadside cover</h4> <p>We\'ll come to your rescue wherever you break down in the UK as long as you\'re more than ¼ mile from your home. If we can\'t fix your car at the roadside, we\'ll take you and your car to a garage or any other destination within 10 miles.</p> <h4>Up to 5 callouts</h4> <p>We\'ll come to your rescue up to five times in one year.</p>'
+	}
+
+include ./_breakdown-cover
+
++BreakdownCoverCard(vehicleCoverConfig, 'vehicleCover', ['mobile', 'tablet'])

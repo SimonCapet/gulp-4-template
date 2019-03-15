@@ -1,0 +1,92 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+:host {
+	flex: 1 0 auto;
+}
+
+.DirectDebit {
+	p#{&}__server-error {
+		color: $red;
+		font-weight: bold;
+		margin-bottom: 1em;
+	}
+
+	&__instalment-date {
+		@include margin-top;
+	}
+
+	&__title {
+		margin-top: 1em;
+	}
+	
+	&__form {
+		display: flex;
+		
+		@include breakpoint(tablet, down) {
+			flex-direction: column;
+		}
+	}
+	
+	&__form-inputs, &__form-info {
+		flex: 1;
+	}
+	
+	&__form-info {
+		margin-top: 1.5em;
+
+		svg {
+			width: 150px;
+			height: 60px;
+		}
+		
+		p {
+			margin-top: 0.5em;
+			margin-bottom: 0;
+		}
+	}
+
+	&__annual-price-lower-hint {
+		margin-top: 0.5em;
+	}
+
+	&__payment-information {
+		padding-right: 50px;
+	}
+
+	&__payment-information &__server-error {
+		max-width: 16em;
+	}
+
+	&__information {
+		margin-top: 1.25em;
+	}
+
+	&__section {
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__guarantee_link {
+		margin: 0.85em 0 0.25em 0;
+		font-size: 1.1em;
+		display: block;
+
+		svg {
+			display: inline-block;
+
+			transform: translateY(0.25em);
+			margin: 0 0.25em 0 0;
+
+			width: 1.2em;
+			height: 1.2em;
+
+			fill: currentColor;
+		}
+	}
+	
+	&__values {
+		padding-bottom: 0;
+	}
+}

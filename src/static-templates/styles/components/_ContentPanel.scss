@@ -1,0 +1,21 @@
+.ContentPanel {
+	border: solid 2px $grey-5;
+	border-radius: 10px;
+	background-color: $white;
+	width: 100%;
+	position: relative;
+	display: flex;
+
+	padding: 10px 20px;
+
+	&__wrapper {
+		position: relative;
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
+		display: flex;
+	}
+
+	&__bullets {
+		padding-left: 1.2em;
+	}
+}

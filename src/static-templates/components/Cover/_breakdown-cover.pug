@@ -1,0 +1,70 @@
+include ../_modal
+
+mixin BreakdownCoverCard(config, modalIndex, monthlyPrices, redPrices, prePrice)
+	- var monthlyClasses = ['hidden-xs', 'hidden-sm', 'hidden-md', 'hidden-lg', 'hidden-xl'];
+	- var annualClasses = [];
+
+	if monthlyPrices.includes('mobile')
+		- monthlyClasses = monthlyClasses.filter(cls => cls !== 'hidden-xs')
+		- annualClasses.push('hidden-xs')
+
+	if monthlyPrices.includes('tablet')
+		- monthlyClasses = monthlyClasses.filter(cls => cls !== 'hidden-sm' && cls !== 'hidden-md')
+		- annualClasses.push('hidden-sm')
+		- annualClasses.push('hidden-md')
+
+	if monthlyPrices.includes('desktop')
+		- monthlyClasses = monthlyClasses.filter(cls => cls !== 'hidden-lg' && cls !== 'hidden-xl')
+		- annualClasses.push('hidden-lg')
+		- annualClasses.push('hidden-xl')
+
+	.BreakdownCover(class=(config.highlighted ? 'BreakdownCover--highlighted' : '') + (redPrices ? ' BreakdownCover--red-prices' : ''))
+		.BreakdownCover__inner
+			if config.flag
+				.BreakdownCover__flag !{config.flag}
+
+			if config.title || config.body
+				.BreakdownCover__left-wrapper
+					.BreakdownCover__left-inner-wrapper
+						.BreakdownCover__heading #{config.title}
+						.BreakdownCover__body !{config.body}
+			.BreakdownCover__price-mobile
+				if prePrice
+					.BreakdownCover__pre-price !{config.saveFlag}
+				.BreakdownCover__price-actual &pound;#{config.monthlyPrice}
+				.BreakdownCover__price-frequency monthly cover
+				if config.saveRoundel
+					.BreakdownCover__roundel !{config.saveRoundel}
+			.BreakdownCover__right-wrapper
+				ul.BreakdownCover__list
+					each product in config.products
+						- var itemClass = '';
+						- if (product.excluded) {
+						-	itemClass += 'BreakdownCover__item--excluded';
+						- }
+						- if (product.red) {
+						-	itemClass += 'BreakdownCover__item--red';
+						- }
+						- if (product.hiddenOnDesktop) {
+						-	itemClass += 'hidden-lg hidden-xl';
+						- }
+						li.BreakdownCover__item(class=itemClass) !{product.title}
+				.BreakdownCover__price(class=monthlyClasses)
+					.BreakdownCover__price-from from
+					.BreakdownCover__price-actual &pound;#{config.monthlyPrice}
+					.BreakdownCover__price--wrapper
+						.BreakdownCover__price-frequency monthly cover
+						.BreakdownCover__price-annual &pound;#{config.annualPrice} annual cover
+				.BreakdownCover__price(class=annualClasses)
+					.BreakdownCover__price-from from
+					.BreakdownCover__price-actual &pound;#{config.annualPrice}
+					.BreakdownCover__price--wrapper
+						.BreakdownCover__price-frequency annual cover
+						.BreakdownCover__price-annual &pound;#{config.monthlyPrice} monthly cover
+				.BreakdownCover__button
+					button.BreakdownCover__more-link.Modal__trigger.LinkBtn.LinkBtn--chevron-right(type="button" data-modal=modalIndex data-analytics="findoutmore_vbm") More info
+					a.Btn.Btn--gradient.Btn--chevron-right(class=monthlyClasses href=config.monthlyUrl || config.url) Select
+					a.Btn.Btn--gradient.Btn--chevron-right(class=annualClasses href=config.url) Select
+	if modalIndex !== null
+		+modal(modalIndex, config.modalContent, config.monthlyPrice, config.monthlyUrl || config.url)
+

@@ -1,0 +1,15 @@
+include ./_peace-of-mind-item
+
+- var items = []
+- items.push({ title: 'Cover you anywhere', description: 'All of our membership packages cover you anywhere in the UK, that includes at the roadside and at home.', imgUrl:'/assets/complete-peace-of-mind/cover-anywhere-320-w.jpg' })
+- items.push({ title: 'Doubled night-time patrols', description: 'This year we have doubled our night time patrols, so we can come to your rescue quickly whatever the time of day.', imgUrl:'/assets/complete-peace-of-mind/night-patrols-320-w.jpg' })
+- items.push({ title: '4 out of 5 fixed at the roadside', description: 'We fix 4 out of 5 cars by the roadside, so you can get back on the road without any stress or hassle.', imgUrl:'/assets/complete-peace-of-mind/roadside-fix-320-w.jpg' })
+
+.PeaceOfMind__hero
+	.PeaceOfMind__hero-background(data-component="responsive-image" data-img="assets/complete-peace-of-mind/majestic-van-2560-w.jpg" data-img-type="background" data-loaded-class="PeaceOfMind__hero-background--loaded")
+	h2.PeaceOfMind__title Complete peace of mind
+		small.PeaceOfMind__subtitle when you're covered by the RAC.
+.PeaceOfMind__items
+	.PeaceOfMind__cols
+		for item in items
+			+PeaceOfMindItem(item.imgUrl, item.title, item.description)

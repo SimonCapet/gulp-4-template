@@ -1,0 +1,17 @@
+@import '../../../../../styles/core-variables-and-helpers';
+@import '../../../../ukbc-settings';
+
+:host {
+	flex: 1 1 auto;
+	max-width: 575px;
+}
+
+.Vehicles {
+	&__add {
+		&:before {
+			content: '+';
+			display: inline-block;
+			margin-right: 3px;
+		}
+	}
+}

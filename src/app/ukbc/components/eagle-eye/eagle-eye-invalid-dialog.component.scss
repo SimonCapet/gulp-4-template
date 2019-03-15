@@ -1,0 +1,8 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+.EagleEyeInvalidDialog {
+	&__error {
+		@include margin-bottom;
+	}
+}

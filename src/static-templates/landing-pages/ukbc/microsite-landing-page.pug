@@ -1,0 +1,61 @@
+extend ../../components/_master
+
+block content
+	include ../../components/CoverBundles/_CoverBundlesConfig
+	include ../../components/CoverBundles/_CoverBundlesCarousel
+	include ../../components/ProofPoints/_ProofPoints
+
+	- var items = []
+	- items.push({ description: '<span class="great-primer"><strong style="color: #ef6c00;">BEST</strong> in market cover in UK & Europe</span>', imgUrl:'/assets/proof-point-van.png' })
+	- items.push({ description: '<span class="great-primer">No <strong style="color: #ef6c00;">weight or size</strong> restrictions for caravans or motorhomes</span>', imgUrl:'/assets/proof-point-camper.png' })
+	- items.push({ description: '<span class="great-primer">Hire car with a tow bar available with Onward Travel</span>', imgUrl:'/assets/proof-point-wheel.png' })
+
+	include ../../components/Site/_site-header
+
+	link(rel="stylesheet" href="/static/styles/components/CTA.css")
+
+	.Banner.Banner--background-image
+		.Banner__background(data-component="responsive-image" data-imgs="/assets/landing-page/kia-hero-2560-w.jpg,/assets/landing-page/kia-hero-1536-w.jpg,/assets/landing-page/kia-hero-1024-w.jpg,/assets/landing-page/kia-hero-640-w.jpg" data-img-type="background" data-loaded-class="Banner__background--loaded")
+		.Banner__inner
+			.row
+				.col-xs-12.col-sm-7.col-md-6.col-lg-5
+					.CTA
+						img(src='/assets/landing-page/kia-logo.png' alt="Kia Logo")
+						h1.great-primer(style="margin-top: .5em") KIAssist, provided by RAC
+						p.pica Save up to 60%
+						a.CTA__btn.Btn.Btn--chevron-right.pica(href="#") Build your own cover from &pound;69
+
+	div(style="background: #eee")
+		.Container
+			div(style="text-align: center")
+				h2.double-pica(style="padding-top: 1em; margin-bottom: 1em") KIAssist cover that's right for you
+				p(style="font-size: 1.125rem") We’re giving Kia drivers a saving of up to 60%¹ on the RAC’s average renewal quote, plus a choice of cover levels with KIAssist and KIAssist Lite.  It’s easy to get cover today, select below what’s right for you.
+				p(style="font-size: 1.125rem") Also, you can save even more with 2 year cover, for details just call <a href="tel:03301590418" style="text-decoration: none">0330 159 0418</a>.
+		.Container
+			hr.content-break
+			h2.double-pica(style="margin: 0 0 1.5em; text-align: center") Build your own cover
+			.row
+				.col-xs-12.col-sm-6
+					.CTA.CTA--block.CTA--shadow
+						h3.great-primer Not a Member of The Camping and Caravanning Club?
+						p(style="margin-bottom: 4em") Join Arrival today and get a year's FREE Club membership
+						a.CTA__btn.Btn.Btn--chevron-right.pica(href="#") Build your own cover
+				.col-xs-12.col-sm-6
+					.CTA.CTA--block.CTA--shadow
+						h3.great-primer Already a Member of The Camping and Caravanning Club?
+						p(style="margin-bottom: 4em") Join Arrival today and get a FREE £15 Club voucher
+						a.CTA__btn.Btn.Btn--chevron-right.pica(href="#") Build your own cover
+			
+			hr.content-break
+				
+		+CoverBundlesCarousel(coverBundlesConfig.items)
+
+		if !items.length
+			hr.content-break.content-break--invisible
+		else 
+			.Container
+				hr.content-break
+				+ProofPoints(items)
+				hr.content-break
+
+	include ../../components/Site/_SiteFooter

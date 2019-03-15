@@ -1,0 +1,11 @@
+<div class="DirectDebitGuaranteeDialog">
+	<div 
+		class="DirectDebitGuaranteeDialog__content" 
+		[innerHtml]="content | safeHTML">
+	</div>
+	<button 
+		class="DirectDebitGuaranteeDialog__print-link LinkBtn"
+		(click)="PrintPage()">
+		{{ printLinkLabel }}
+	</button>
+</div>

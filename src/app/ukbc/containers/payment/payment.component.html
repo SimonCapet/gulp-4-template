@@ -1,0 +1,105 @@
+<div class="CheckoutStep">
+	<div class="CheckoutStep__content Payment">
+		<ukbc-section-card 
+			class="Payment__card" 
+			#coverStartDate [contentClass]="CardTypes.CoverStartDate"
+			[cardStatus]="CardStatus$ | async" 
+			[type]="CardTypes.CoverStartDate" 
+			[title]="(GeneralContent$ | async)[ (IsRenewal$ | async) ? 'CoverRenewalDateCardTitle'  : 'CoverDateCardTitle' ]">
+			<ukbc-payment-cover-start-date
+				[isOpen]="IsCardOpen(CardTypes.CoverStartDate)" 
+				[isComplete]="IsCardComplete(CardTypes.CoverStartDate)"
+				[isRenewal]="(IsRenewal$ | async)" 
+				[TodayOnly]="JourneyContent.TodayOnlyCoverStartDate" 
+				[isReadonly]="checkIsReadonly(CardTypes.CoverStartDate)"
+				(onOpen)="OpenCard(CardTypes.CoverStartDate)" 
+				(onComplete)="CompleteCard(CardTypes.CoverStartDate)"
+				[forceShowValidationErrors]="ForceShowValidationErrors">
+			</ukbc-payment-cover-start-date>
+		</ukbc-section-card>
+		<ukbc-section-card 
+			class="Payment__card Payment__details" 
+			#paymentDetails 
+			[contentClass]="CardTypes.PaymentDetails"
+			[cardStatus]="CardStatus$ | async" 
+			[title]="(GeneralContent$ | async).PaymentDetailsCardTitle"
+			[type]="CardTypes.PaymentDetails">
+			<div 
+				*ngIf="IsCardOpen(CardTypes.PaymentDetails) && JourneyContent.PaymentDetailsInformationMessage"
+				[innerHTML]="JourneyContent.PaymentDetailsInformationMessage | safeHTML">
+			</div>
+			<ukbc-payment-frequency 
+				[isOpen]="IsCardOpen(CardTypes.PaymentDetails)" 
+				[isComplete]="IsCardComplete(CardTypes.PaymentDetails)"
+				*ngIf="!JourneyContent.HidePaymentOption && !JourneyContent.HidePaymentFrequencyToggle && !JourneyContent.SinglePaymentFrequencyAvailable">
+			</ukbc-payment-frequency>
+			<ukbc-payment-frequency-duration 
+				[isOpen]="IsCardOpen(CardTypes.PaymentDetails)" 
+				[isComplete]="IsCardComplete(CardTypes.PaymentDetails)"
+				*ngIf="JourneyContent.TwoYearPolicy && JourneyContent.TwoYearAllowPolicyLengthSelection && AnnualSelected && !JourneyContent.HidePaymentOption && !JourneyContent.HidePaymentFrequencyToggle && !JourneyContent.SinglePaymentFrequencyAvailable">
+			</ukbc-payment-frequency-duration>
+			<ukbc-payment-method 
+				*ngIf="(Payment$ | async).availablePaymentTypes.length > 1"
+				[isOpen]="IsCardOpen(CardTypes.PaymentDetails)"
+				[isComplete]="IsCardComplete(CardTypes.PaymentDetails)" 
+				[Content]="GeneralContent$ | async"
+				[Payment]="(Payment$ | async).payment.model"
+			 	[PaymentOptions]="(Payment$ | async).options" 
+				[AvailablePaymentTypes]="(Payment$ | async).availablePaymentTypes">
+			</ukbc-payment-method>
+			<div class="Payment__info-box Payment__info-box--grey"
+				*ngIf="IsCardOpen(CardTypes.PaymentDetails) && DisplayCancellationMessage"
+				[innerHTML]="CancellationMessage | safeHTML">
+			</div>
+			<ukbc-direct-debit-details
+				*ngIf="ShowDirectDebitSection() | async"
+				[isOpen]="IsCardOpen(CardTypes.PaymentDetails)"
+				[isComplete]="IsCardComplete(CardTypes.PaymentDetails)" 
+				[forceShowValidationErrors]="ForceShowValidationErrors"
+				[displayDirectDebitDetailsInvalidError]="displayDirectDebitDetailsInvalidError"
+			 	[displayDirectDebitDetailsServerError]="displayDirectDebitDetailsServerError" 
+				[loading]="CompletingCard || PaymentOptionsLoading"
+				[content]="(GeneralContent$ | async)" 
+				[PaymentOptions]="(Payment$ | async).options" 
+				[ShowAFFMessage]="!JourneyContent.HideAAF"
+				[ShowCoverCheckMessage]="true" 
+				(onComplete)="CompleteCard(CardTypes.PaymentDetails)">
+			</ukbc-direct-debit-details>
+			<ukbc-card-information 
+				*ngIf="IsPayingByCard" 
+				[isOpen]="IsCardOpen(CardTypes.PaymentDetails)" 
+				[isComplete]="IsCardComplete(CardTypes.PaymentDetails)"
+			 	[forceShowValidationErrors]="ForceShowValidationErrors" 
+			 	[content]="(GeneralContent$ | async)" 
+			 	[journeyContent]="JourneyContent"
+			 	[payment]="(Payment$ | async).payment.model" 
+			 	[paymentOptions]="(Payment$ | async).options" 
+			 	[purchaseType]="(Payment$ | async).payment.model.purchaseType"
+			 	[loading]="CompletingCard || PaymentOptionsLoading" 
+			 	[isZeroPayment]="IsZeroPayment" 
+				 (onComplete)="CompleteCard(CardTypes.PaymentDetails)">
+			</ukbc-card-information>
+			<div class="SectionCard__edit" *ngIf="!IsCardOpen(CardTypes.PaymentDetails) && IsCardComplete(CardTypes.PaymentDetails)">
+				<Button class="LinkBtn LinkBtn--blue" (click)="OpenCard(CardTypes.PaymentDetails)">{{ (GeneralContent$ | async).EditPaymentDetails }}</Button>
+			</div>
+		</ukbc-section-card>
+		<ukbc-section-card
+			class="Payment__card"
+			#cardPayment
+			[cardStatus]="CardStatus$ | async"
+			[type]="CardTypes.CardPayment"
+		 	title="{{ (CardPaymentCardTitle() | async) }}">
+			<ukbc-terms-and-conditions 
+				*ngIf="(IsCardOpen(CardTypes.CardPayment)) && (ShowCardIframe() | async) && (CurrentStep$ | async).data.ShowTermsAndConditions"
+				[termsAndConditions]="JourneyContent.TermsAndConditions">
+			</ukbc-terms-and-conditions>
+			<ukbc-payment-card 
+				*ngIf="(IsCardOpen(CardTypes.CardPayment)) && (ShowCardIframe() | async)" 
+				[options]="(Payment$ | async).options"
+			 	[paymentDetails]="Payment" 
+			 	[cardPaymentCard]="cardPaymentCard" 
+				[content]="(GeneralContent$| async)">
+			</ukbc-payment-card>
+		</ukbc-section-card>
+	</div>
+</div>

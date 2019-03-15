@@ -1,0 +1,25 @@
+<span class="RadioButtons">
+	<input 		
+		class="RadioButtons__input" 
+		type="radio" 
+		id="{{ 'monthly-' + UUID }}" 
+		name="{{ 'payment-frequency-' + UUID }}"
+		[value]="EPurchaseType.Monthly" 
+		(click)="ToggleFrequency(EPurchaseType.Monthly, $event)" 
+		[checked]="Frequency === EPurchaseType.Monthly"
+		(keyup)="HandleRadioKeyup($event)" 
+		[disabled]="!(CanChangeFrequency$ | async)" />
+		<label *ngIf="DisplayFrequency(EPurchaseType.Monthly)" class="RadioButtons__label" for="{{ 'monthly-' + UUID }}">{{ MonthlyLabel }}</label>
+	<input 
+		*ngIf="!JourneyContent.SinglePaymentFrequencyAvailable || Frequency === EPurchaseType.Annual"
+		class="RadioButtons__input" 
+		type="radio" 
+		id="{{ 'annual-' + UUID }}" 
+		name="{{ 'payment-frequency-' + UUID }}" 
+		[value]="EPurchaseType.Annual" 
+		(click)="ToggleFrequency(EPurchaseType.Annual, $event)"
+		[checked]="Frequency === EPurchaseType.Annual" 
+		(keyup)="HandleRadioKeyup($event)" 
+		[disabled]="!(CanChangeFrequency$ | async)" />
+		<label *ngIf="DisplayFrequency(EPurchaseType.Annual)" class="RadioButtons__label" for="{{ 'annual-' + UUID }}"> {{ AnnualLabel }} </label>
+	</span>

@@ -1,0 +1,5 @@
+<span class="NumberPicker">
+	<button class="NumberPicker__button NumberPicker__button--minus" type="button" [disabled]="value <= min" (click)="ChangeValue(-1)">-</button>
+	<div class="NumberPicker__output">{{ value }}</div>
+	<button class="NumberPicker__button NumberPicker__button--plus" type="button" [disabled]="value >= max" (click)="ChangeValue(1)">+</button>
+</span>

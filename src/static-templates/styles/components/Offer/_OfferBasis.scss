@@ -1,0 +1,13 @@
+.OfferBasis {
+	height: auto;
+	&__title {
+		@include offer-product-title-font-size;
+		margin: 0;
+
+		color: $black;
+	}
+
+	&__description {
+		margin-top: 0;
+	}
+}

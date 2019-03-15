@@ -1,0 +1,141 @@
+<form class="CardForm" novalidate [ngClass]="PersonClasses">
+	<div class="CardForm__content">
+		<div class="CardForm__header">
+			<h3 class="CardForm__title" 
+				*ngIf="!(JourneyContent$ | async).HidePersonDetailsCardTitle" 
+				[innerHTML]="(index === 0 ? (Content$ | async).PrimaryMemberAdjective : ((index + 1) | ordinal)) + ' ' + (Content$  | async).AdditionalMemberLabel">
+			</h3>
+		</div>
+		<div class="CardForm__details" *ngIf="isContactOpen">
+			<div class="CardForm__inputs">
+				<app-input-select 
+					class="CardForm__input CardForm__input--half-width" 
+					[disabled]="(IsRenewal$ | async) && Contact.model.PrimaryMember"
+					title="Title" 
+					[value]="Contact.model.Title" 
+					[options]="Salutations" 
+					(onChange)="setField.emit($event)" 
+					[model]="{contact: Contact.model, field: 'Title'}"
+					[validationErrors]="ValidationErrors.Title" 
+					[forceShowValidationErrors]="forceShowValidationErrors" 
+					(onFocus)="onFocus.emit($event)"
+					[trackingFieldName]="TrackingFieldName('Title')">
+				</app-input-select>
+				<app-input-text 
+					id=`given-name-{{this.componentID}}` 
+					class="CardForm__input" 
+					[disabled]="(IsRenewal$ | async) && Contact.model.PrimaryMember"
+					title="First Name" 
+					[value]="Contact.model.FirstName" 
+					(onChange)="setField.emit($event)" 
+					[model]="{contact: Contact.model, field: 'FirstName'}"
+					[autocomplete]="'given-name'" 
+					[validationErrors]="ValidationErrors.FirstName" 
+					[forceShowValidationErrors]="forceShowValidationErrors"
+					(onFocus)="onFocus.emit($event)" 
+					[trackingFieldName]="TrackingFieldName('FirstName')">
+				</app-input-text>
+				<app-input-text 
+					id=`family-name-{{this.componentID}}`
+					class="CardForm__input" 
+					[disabled]="(IsRenewal$ | async) && Contact.model.PrimaryMember"
+					title="Last Name" 
+					[value]="Contact.model.LastName" 
+					(onChange)="setField.emit($event)" 
+					[model]="{contact: Contact.model, field: 'LastName'}"
+					[autocomplete]="'family-name'" 
+					[validationErrors]="ValidationErrors.LastName" 
+					[forceShowValidationErrors]="forceShowValidationErrors"
+					(onFocus)="onFocus.emit($event)" 
+					[trackingFieldName]="TrackingFieldName('LastName')">
+				</app-input-text>
+				<app-input-date 
+					class="CardForm__input" 
+					[disabled]="(IsRenewal$ | async) && Contact.model.PrimaryMember"
+					title="Date of Birth" 
+					[value]="Contact.model.DOB" 
+					(onChange)="setField.emit($event)" 
+					[model]="{contact: Contact.model, field: 'DOB'}"
+					[modelId]="Contact.model.Id" 
+					[validationErrors]="ValidationErrors.DOB" 
+					[forceShowValidationErrors]="forceShowValidationErrors"
+					(onFocus)="onFocus.emit($event)" 
+					[trackingFieldName]="TrackingFieldName('DateOfBirth')" 
+					[autocomplete]="'birthday'">
+				</app-input-date>
+				<app-input-text 
+					id=`email-{{this.componentID}}` 
+					class="CardForm__input" 
+					*ngIf="Contact.model.PrimaryMember" 
+					[disabled]="(IsRenewal$ | async)" 
+					id="leadmemberemail"
+					title="Email" 
+					type="email" 
+					[value]="Contact.model.Email" 
+					(onChange)="setField.emit($event)" 
+					[model]="{contact: Contact.model, field: 'Email'}"
+					[autocomplete]="'email'" 
+					[validationErrors]="ValidationErrors.Email" 
+					[maxLength]="'80'"
+					[forceShowValidationErrors]="forceShowValidationErrors" 
+					(onFocus)="onFocus.emit($event)" 
+					[trackingFieldName]="TrackingFieldName('Email')">
+				</app-input-text>
+				<app-input-text 
+					id=`phone-{{this.componentID}}`
+					class="CardForm__input" 
+					*ngIf="Contact.model.PrimaryMember" 
+					id="leadmembertelephone" 
+					title="Phone Number"
+					type="tel" 
+					[value]="Contact.model.PhoneNumber" 
+					(onChange)="setField.emit($event)" 
+					[model]="{contact: Contact.model, field: 'PhoneNumber'}"
+					[autocomplete]="'tel'" 
+					[maxLength]="'16'" 
+					[validationErrors]="ValidationErrors.PhoneNumber"
+					[forceShowValidationErrors]="forceShowValidationErrors" 
+					(onFocus)="onFocus.emit($event)" 
+					[trackingFieldName]="TrackingFieldName('PhoneNumber')">
+				</app-input-text>
+			</div>
+			<div class="CardForm__save" *ngIf="isContactOpen">
+				<button 
+					class="CardForm__save-button Btn" 
+					type="button" 
+					(click)="SaveContact(Contact.model)">
+					{{ (Content$ | async).SavePerson }}
+				</button>
+				<button 
+					class="Details__link LinkBtn LinkBtn--blue" 
+					*ngIf="shouldShowDataHandlingLink"
+				 	type="button" 
+					(click)="showDataHandlingDialog.emit()">
+					{{ dataHandlingLinkLabel }}
+				</button>
+			</div>
+		</div>
+		<div class="SectionCard__values SectionCard__details-values" *ngIf="isContactComplete && !isContactOpen">
+			<div class="SectionCard__value">
+				<span class="SectionCard__value-label">Name:</span>
+				<span> {{ Contact.model.Title }} {{ Contact.model.FirstName }} {{ Contact.model.LastName }}</span>
+			</div>
+			<div class="SectionCard__value"><span class="SectionCard__value-label">Date of birth:</span>
+				<span> {{ Contact.model.DOB | date:'dd/MM/y' }}</span>
+			</div>
+			<div class="SectionCard__value" *ngIf="Contact.model.PrimaryMember">
+				<span class="SectionCard__value-label">Email:</span>
+				<span> {{ Contact.model.Email }}</span>
+			</div>
+			<div class="SectionCard__value" *ngIf="Contact.model.PrimaryMember">
+				<span class="SectionCard__value-label">Phone number:</span>
+				<span> {{ Contact.model.PhoneNumber }}</span>
+			</div>
+		</div>
+		<div class="SectionCard__edit" *ngIf="!isContactOpen && isContactComplete">
+			<button class="LinkBtn LinkBtn--blue"  type="button" (click)="EditContact(Contact.model)">
+				{{ (Content$ | async).EditPerson }}
+			</button>
+		</div>
+	</div>
+</form>

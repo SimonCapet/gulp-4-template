@@ -1,0 +1,13 @@
+.SectionCard__content--Vehicles {
+	@media (max-width: 1150px) {
+		flex: 1 0 100%;
+	}
+
+	@media (max-width: 1090px) {
+		flex: 1 0 auto;
+	}
+
+	@media (max-width: 605px) {
+		flex: 1 0 100%;
+	}
+}

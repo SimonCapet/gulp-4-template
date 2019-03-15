@@ -1,0 +1,48 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+.Price {
+	word-break: keep-all;
+
+	@include breakpoint(mobile, above) {
+		display: inline-flex;
+	}
+
+	&--previous {
+		margin-right: 0.5em;
+		color: $red-5;
+	}
+
+	&--new {
+		color: $red-3;
+	}
+
+	&__value {
+		@include bold-weight;
+
+		&--current {
+			color: $orange-2;
+		}
+
+		&--previous {
+			@include strikethrough($red-3);
+			display: inline-block;
+		}
+	}
+
+	&__suffix {
+		@include long-primer;
+		margin-left: 0.15em;
+	}
+
+	.has-hover .Btn:hover:not(:disabled) & {
+		&--previous,
+		&--new,
+		&__value--current {
+			color: inherit;
+		}
+		&__value--previous {
+			@include strikethrough($white);
+		}
+	}
+}

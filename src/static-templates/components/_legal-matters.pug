@@ -1,0 +1,66 @@
+-
+	var matterConfig = [
+		{
+			title: 'Personal Injury',
+			bullets: [
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+			]
+		},
+		{
+			title: 'Employment',
+			bullets: [
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+			]
+		},
+		{
+			title: 'Family',
+			bullets: [
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+			]
+		},
+		{
+			title: 'Property',
+			bullets: [
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+			]
+		},
+		{
+			title: 'Motor',
+			bullets: [
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+			]
+		},
+		{
+			title: 'Wills',
+			bullets: [
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+			]
+		},
+		
+	
+	]
+
+.LegalMatters
+	.LegalMatters__text-wrapper
+		h3.LegalMatters__heading 24/7 Legal Advice Helpline
+		p.LegalMatters__body Your Legal Care Plus policy gives you access to our 24/7 Legal Advice Helpline which will <br> provice you with help and advice on any personal legal matters in the UK, including:
+	each val, index in matterConfig
+		if (index % 3 === 0)
+			.row
+				each val2, index2 in matterConfig.slice(index, index+3)
+					include ./_content-card
+					+ContentCard(val2, 'col-xs-12 col-sm-4 col-lg-4')

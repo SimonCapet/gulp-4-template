@@ -1,0 +1,166 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+$question-time-icon-size: 1.3em;
+
+.Question {
+	@include breakpoint(tablet, below) {
+		padding-top: 20px;
+	}
+
+	@include breakpoint(tablet, up) {
+		@include padding-top($question-desktop-padding-top-small, $question-desktop-padding-top-large, $clip-at-start: false, $vertical: true);
+	}
+
+	display: block;
+	flex-direction: column;
+	padding-bottom: 40px;
+
+	opacity: 0.2;
+
+	transition: opacity $transition-fast;
+
+	@include breakpoint(tablet, below) {
+		justify-content: center;
+	}
+
+	&--active,
+	&--scrolling {
+		opacity: 1;
+	}
+
+	&__time {
+		@include margin-bottom($narrow: true);
+		@include fluid-font-size(0.6, 1);
+		@include medium-weight;
+
+		display: block;
+		position: relative;
+		padding-left: $question-time-icon-size + 0.25em;
+		color: $orange-2;
+
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			width: $question-time-icon-size;
+			height: $question-time-icon-size;
+
+			background: {
+				image: url(/assets/timer.svg);
+				repeat: no-repeat;
+				size: contain;
+			}
+		}
+	}
+
+	&__title {
+		line-height: 1.2em;
+	}
+
+	&__description {
+		@include fluid-font-size(0.6, 1);
+		line-height: 1.4em;
+	}
+
+	&__more {
+		@include medium-weight;
+
+		svg {
+			display: inline-block;
+
+			transform: translateY(0.25em);
+			margin: 0 0.25em 0 0;
+
+			width: 1.2em;
+			height: 1.2em;
+
+			fill: currentColor;
+		}
+	}
+
+	&__banners {
+		@include margin-top($narrow: true);
+	}
+
+	&__info-banner,
+	&__offer-banner {
+		display: inline-block;
+		margin-bottom: 0;
+		padding: 0.5em;
+	}
+
+	&__info-banner {
+		background: $blue-5;
+	}
+
+	&__offer-banner {
+		background: $orange-5;
+	}
+
+	&__buttons {
+		@include margin-top;
+	}
+
+	&__btn:not(.Btn--chevron-right) {
+		@include breakpoint(tablet, below) {
+			width: 100%;
+			text-align: left;
+		}
+	}
+
+	&__btn {
+		margin: 0.5em 0 0;
+		padding-top: 0.9em;
+		padding-bottom: 0.9em;
+
+		@include breakpoint(tablet, up) {
+			margin-right: 0.5em;
+		}
+	}
+
+	&__yes-button-text {
+		margin: 0 0.5em 0 0;
+	}
+
+	&__price {
+		display: block;
+		word-break: keep-all;
+
+		opacity: 0;
+		transition: opacity $transition-fast;
+
+		@include breakpoint(mobile, above) {
+			display: inline-flex;
+		}
+	}
+
+	&--active & {
+		&__price {
+			opacity: 1;
+		}
+	}
+
+	&__basis {
+		@include margin-top;
+		display: flex;
+		align-items: center;
+	}
+
+	&__number-picker {
+		flex: 0 0 auto;
+		font-size: 1.8em;
+	}
+
+	&__basis-label {
+		@include pica;
+		margin-left: 0.75em;
+	}
+
+	&__basis-price {
+		color: $orange-2;
+	}
+}

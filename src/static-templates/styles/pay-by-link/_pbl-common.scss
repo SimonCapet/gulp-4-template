@@ -1,0 +1,90 @@
+@import '../sass-helpers/base/colours';
+@import '../sass-helpers/core-variables-and-helpers';
+
+$text-primary: #47474A;
+$text: 1em;
+$title: 1.5em;
+$border: #979797;
+$pbl-container-width: 500px;
+$pbl-margin-top: 18px;
+
+@mixin size($width, $height: $width) {
+	width: $width;
+	height: $height;
+}
+
+.PayByLink__content {
+	color: $text-primary;
+	width: 100%;
+	padding: 18px 16px;
+	height: 100vh;
+	background-color: $grey-11;
+
+	@include breakpoint(tablet, up) {
+		margin: auto;
+		padding: 18px 32px;
+		width: $pbl-container-width;
+	}
+}
+
+.PayByLink__icon-container {
+	height: 48px;
+	width: 100%;
+	text-align: center;
+	margin-top: $pbl-margin-top;
+}
+
+.PayByLink__success-icon {
+	@include size(48px);
+}
+
+.PayByLink__image-container {
+	width: 100%;
+
+	@include breakpoint(tablet, up) {
+		margin: auto;
+		width: $pbl-container-width;
+	}
+}
+
+.PayByLink__image {
+	@include aspect-ratio(602px ,293px);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.PayByLink__list {
+	@include list-reset;
+	font-size: $text;
+	line-height: 1.25em;
+	margin-top: $pbl-margin-top;
+
+	li {
+		padding-bottom: 16px;
+	}
+	
+	li:nth-child(1) {
+		font-size: $title;
+		@include medium-weight;
+		line-height: 1.25em;
+	}
+	
+	li:nth-child(2) {
+		margin-top: $pbl-margin-top;
+	}
+}
+
+.PayByLink__total {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	padding: 16px 0;
+	border-top: 1px solid $border;
+	font-size: $text;
+	margin-top: $pbl-margin-top;
+}
+
+.PayByLink__phone-number {
+	white-space: nowrap;
+}

@@ -1,0 +1,196 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+$remove-cross-svg-size: 20px;
+$svg-spacing-top: 0.3em;
+$svg-spacing-right: 0.1em;
+$remove-button-width: 90px;
+$remove-button-height-mobile: 50px;
+$undo-svg-size: 55px;
+$default-font-size: 18px;
+
+:host {
+	height: 100%;
+	display: block;
+	overflow: hidden;
+}
+
+.SummaryProduct {
+	$c: &;
+	display: flex;
+	padding-top: 25px;
+	flex-direction: column;
+	height: 100%;
+
+	&__inner-wrapper {
+		position: relative;
+		height: 100%;
+		flex: 1;
+
+		.IE & {
+			flex: 1 1 auto;
+		}
+	}
+
+	&__svg-icon {
+		position: absolute;
+		left: 0;
+		height: $remove-cross-svg-size;
+		width: $remove-cross-svg-size;
+		margin-right: $svg-spacing-right;
+		fill: currentColor;
+	}
+
+	&__title {
+		@include fluid-property(font-size, 24px, 28px);
+		@include padding-top(0px, 10px);
+		@include padding-bottom(12px, 25px);
+		@include medium-weight;
+
+		display: flex;
+	}
+
+	&__description {
+		@include fluid-property(font-size, 18px, 22px);
+		@include padding-bottom(20px, 25px);
+		line-height: 1.4em;
+	}
+
+	&__more-info {
+		@include medium-weight;
+		@include margin-bottom(25px, 32px);
+		font-size: $default-font-size;
+		position: relative;
+		margin-right: auto;
+		color: $blue;
+
+		.LinkBtn__link-label {
+			padding-left: 30px;
+		}
+
+		&.LinkBtn:hover {
+			color: $blue-2;
+		}
+	}
+
+	&__button-wrapper {
+		display: flex;
+		width: 100%;
+		align-items: center;
+
+		@include breakpoint(tablet, below) {
+			margin-right: initial;
+			width: 100%;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+
+	&__selected {
+		margin-right: 20px;
+		cursor: auto;
+
+		@include breakpoint(tablet, below) {
+			width: 100%;
+		}
+	}
+
+	&__remove {
+		@include medium-weight;
+		@include padding-left(10px, 20px);
+		font-size: $default-font-size;
+		position: relative;
+		color: $grey-2;
+		flex: 0 0 $remove-button-width;
+
+		.LinkBtn__link-label {
+			padding-left: 5px;
+		}
+
+		&.LinkBtn:hover {
+			color: $grey-8;
+		}
+
+		@include breakpoint(tablet, below) {
+			height: 100%;
+			max-height: $remove-button-height-mobile;
+			padding-top: 20px;
+			.LinkBtn__link-label {
+				padding-left: 15px;
+			}
+		}
+	}
+
+	&__add {
+		margin-right: auto;
+
+		@include breakpoint(tablet, below) {
+			width: 100%;
+		}
+	}
+
+	&__separator {
+		@include margin-top(30px, 40px);
+		height: 1px;
+		width: 100%;
+		background-color: $grey-3;
+	}
+
+	&__undo-wrapper {
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		color: $grey-3;
+		background-color: $white;
+		border: 2px dashed $grey-3;
+		overflow: hidden;
+		transform: scale(0);
+
+		&--active {
+			transform: scale(1);
+		}
+	}
+
+	&__undo-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 100%;
+	}
+
+	&__undo-svg {
+		fill: currentColor;
+		height: $undo-svg-size;
+		width: $undo-svg-size;
+		@include padding-bottom(12px, 15px);
+	}
+
+	&__undo-title {
+		@include fluid-property(font-size, 18px, 22px);
+		@include padding(12px, 15px);
+		text-align: center;
+	}
+
+	&__undo-btn {
+		@include fluid-property(font-size, 16px, 18px);
+		@include medium-weight;
+		color: $blue;
+	}
+
+	&--hide-shadow {
+		box-shadow: none;
+	}
+
+	&__offer {
+		background: $orange-5;
+		display: inline-block;
+		padding: 0.5em;
+		margin-top: 0;
+	}
+}

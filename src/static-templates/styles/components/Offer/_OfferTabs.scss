@@ -1,0 +1,106 @@
+$number-of-tabs: 2;
+
+.OfferTabs {
+	$c: &;
+
+	@include padding-top;
+	@include padding-bottom($collapse-padding-small * 2, $collapse-padding-large * 2);
+
+	@for $i from 1 through $number-of-tabs {
+		&__input:nth-child(#{$i}):not(:checked) ~ & {
+			&__tabs > #{$c}__tab:nth-child(#{$i}) > #{$c}__btn {
+				background: linear-gradient(to bottom, $orange-3 0%, $orange-2 100%);
+				border-color: $orange-2;
+			}
+		}
+	}
+
+	&__tabs {
+		@include breakpoint(tablet, below) {
+			display: flex;
+		}
+	}
+
+	&__tab {
+		@include breakpoint(tablet, below) {
+			display: flex;
+			width: 50%;
+		}
+	}
+
+	&__btn {
+		&--mobile {
+			display: flex;
+			flex-grow: 1;
+			align-items: center;
+
+			@include breakpoint(tablet, up) {
+				display: none;
+			}
+		}
+
+		&--desktop {
+			padding-left: ($btn-padding * 2) + 2.2em;
+
+			@include breakpoint(tablet, below) {
+				display: none;
+			}
+		}
+	}
+
+	&__btn-icon {
+		display: inline-block;
+		position: absolute;
+		top: 50%;
+		left: $btn-padding;
+		transform: translateY(-50%);
+
+		height: 1em;
+	}
+
+	&__bullets {
+		margin-bottom: 0;
+		padding-left: 1.2em;
+	}
+
+	&__mobile-description {
+		@include margin-bottom;
+
+		@include breakpoint(tablet, up) {
+			display: none;
+		}
+	}
+
+	&__desktop-description {
+		@include padding-top($narrow: true);
+
+		display: flex;
+
+		@include breakpoint(tablet, below) {
+			display: none;
+		}
+	}
+
+	&__desktop-content {
+		flex-grow: 1;
+	}
+
+	&__price {
+		@include padding-left($narrow: true);
+		@include pargon;
+		@include medium-weight;
+
+		text-align: center;
+		line-height: 1em;
+		letter-spacing: 0em;
+		color: $dark-grey;
+
+		small {
+			display: block;
+		}
+	}
+
+	&__link {
+		@include padding-top($narrow: true);
+	}
+}

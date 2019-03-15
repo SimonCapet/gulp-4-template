@@ -1,0 +1,8 @@
+<div class="QuestionProgress" [ngClass]="Classes">
+	<div class="QuestionProgress__inner">
+		<p *ngIf="title" class="QuestionProgress__text">{{ title }} {{ CurrentActiveQuestion }} of {{ NumberOfQuestions }}</p>
+		<div class="QuestionProgress__bar">
+			<div class="QuestionProgress__indicator" [ngStyle]="{ width: IndicatorWidth }"></div>
+		</div>
+	</div>
+</div>

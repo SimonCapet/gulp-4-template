@@ -1,0 +1,10 @@
+@import '../../../../../styles/core-variables-and-helpers';
+@import '../../../../ukbc-settings';
+
+.DisallowedPurchaseTypeDialog {
+	&__button {
+		&:not(:last-child) {
+			margin-bottom: 0.5em;
+		}
+	}
+}

@@ -1,0 +1,8 @@
+<div class="LoadingIndicator" [ngClass]="{'LoadingIndicator--hidden': !IsLoading}">
+	<h2 class="LoadingIndicator__title">{{ title }}</h2>
+	<div class="LoadingIndicator__loader Loader Loader--orange" [ngClass]="LoaderClasses">
+		<div class="Loader__chevron"></div>
+		<div class="Loader__chevron"></div>
+		<div class="Loader__chevron"></div>
+	</div>
+</div>

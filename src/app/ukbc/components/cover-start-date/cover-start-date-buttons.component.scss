@@ -1,0 +1,25 @@
+@import '../../../../styles/core-variables-and-helpers';
+
+.CoverStartBtn {
+	@include pica;
+
+	@include breakpoint(tablet, down) {
+		display: block;
+	}
+	
+	@include breakpoint(tablet, up) {
+		max-width: 10em;
+	}
+
+	&__label {
+		line-height: 1.5;
+		font-weight: 400;
+
+		@include breakpoint(tablet, up) {
+			display: block;
+		}
+		@include breakpoint(tablet, down) {
+			margin-left: 0.5em;
+		}
+	}
+}

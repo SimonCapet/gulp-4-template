@@ -1,0 +1,49 @@
+$content-breakpoint: 1366px;
+$sidebar-breakpoint: 900px;
+$tablet-breakpoint: 768px;
+
+.Content {
+	@include fluid-property(padding-right, 10px, 50px);
+	@include fluid-property(padding-left, 10px, 50px);
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	max-width: 1270px;
+
+	&__main {
+		flex: 1 1 auto;
+		padding-right: 40px;
+
+		@include breakpoint($sidebar-breakpoint, down) {
+			flex: 1 1 auto;
+			padding-right: 0;
+		}
+	}
+
+	&__sidebar {
+		flex: 1 1 25%;
+
+		@include breakpoint($sidebar-breakpoint, down) {
+			flex: 1 1 auto;
+		}
+	}
+
+	@include breakpoint($content-breakpoint, up) {
+		padding-right: 50px;
+		padding-left: 50px;
+	}
+
+	@include breakpoint($content-breakpoint, below) {
+		@include fluid-property(padding-right, 10px, 50px);
+		@include fluid-property(padding-left, 10px, 50px);
+	}
+
+	@include breakpoint($sidebar-breakpoint, down) {
+		flex-direction: column;
+	}
+
+	@include breakpoint($tablet, up) {
+		padding-right: 50px;
+		padding-left: 50px;
+	}
+}

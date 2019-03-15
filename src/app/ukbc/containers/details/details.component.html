@@ -1,0 +1,76 @@
+<div class="CheckoutStep">
+	<div class="CheckoutStep__content Details">
+		<ukbc-section-card 
+			class="Details__card" 
+			#membersCard
+			[contentClass]="CardType.Members" 
+			[cardStatus]="CardStatus" 
+			[type]="CardType.Members" 
+			[title]="GetMembersCardTitle()">
+			<ukbc-details-members
+				[primaryMember]="PrimaryMember" 
+				[additionalMembers]="AdditionalMembers" 
+				(setField)="SetContactField($event)" 
+				[isOpen]="IsCardOpen(CardType.Members)" 
+				[forceShowValidationErrors]="ForceShowValidationErrors$ | async" 
+				[cardType]="CardType.Members"
+				(completeContact)="CompleteContact($event)" 
+				(editContact)="EditContact($event)" 
+				[contactCardStatus]="ContactCardStatus" 
+				(onOpen)="OpenCard($event)">
+			</ukbc-details-members>
+		</ukbc-section-card>
+		<ukbc-section-card
+			class="Details__card" 
+			#addressCard
+			[contentClass]="CardType.Address" 
+			[cardStatus]="CardStatus" 
+			[type]="CardType.Address" 
+			[title]="(GeneralContent$ | async).AddressCardTitle">
+			<ukbc-details-address 
+				[address]="Address" 
+				(setField)="SetAddressField($event)" 
+				(setAddress)="SetAddress($event)" 
+				[isOpen]="IsCardOpen(CardType.Address)" 
+				[isComplete]="IsCardCompleted(CardType.Address)" 
+				[content]="(GeneralContent$ | async)" 
+				[forceShowValidationErrors]="ForceShowValidationErrors$ | async"
+				(onAddressOptions)="addressCard.scrollIntoView($event)" 
+				(onManualEditToggle)="OnAddressManualEditToggle($event)" 
+				(onAddressChosen)="OnAddressChosen()" 
+				(onAddressLoading)="OnAddressLoading($event)" 
+				(onAddressSaved)="CompleteCard(CardType.Address)"
+				(onOpen)="OpenCard(CardType.Address)">
+			</ukbc-details-address>
+		</ukbc-section-card>
+		<ukbc-section-card 
+			class="Details__card" 
+			#vehiclesCard
+			*ngIf="VehiclesState.vehicles.length > 0" 
+			[contentClass]="CardType.Vehicles" 
+			[cardStatus]="CardStatus" 
+			[type]="CardType.Vehicles" 
+			[title]="(GeneralContent$ | async).VehiclesCardTitle">
+			<ukbc-details-vehicles 
+				[vehiclesState]="VehiclesState" 
+				[isOpen]="IsCardOpen(CardType.Vehicles)" 
+				[isComplete]="IsCardCompleted(CardType.Vehicles)" 
+				[forceShowValidationErrors]="ForceShowValidationErrors$ | async" 
+				(onVehicleLoading)="OnVehicleLoading($event)"
+				(showValidationErrors)="showValidationErrors($event)" 
+				(completeCard)="CompleteCard(CardType.Vehicles)" 
+				(openCard)="OpenCard(CardType.Vehicles)">
+			</ukbc-details-vehicles>
+			<div class="Details__result" *ngIf="!IsCardOpen(CardType.Vehicles)">
+				<table class="VehicleResults">
+					<tr class="VehicleResults__row" *ngFor="let vehicle of Vehicles">
+						<td class="VehicleResults__cell VehicleResults__cell--reg">{{ vehicle.model.Vrm }}</td>
+						<td class="VehicleResults__cell VehicleResults__cell">{{ vehicle.model.Make }}</td>
+						<td class="VehicleResults__cell VehicleResults__dekstop-only">{{ vehicle.model.Model }}</td>
+						<td class="VehicleResults__cell VehicleResults__dekstop-only">{{ vehicle.model.Year }}</td>
+					</tr>
+				</table>
+			</div>
+		</ukbc-section-card>
+	</div>
+</div>

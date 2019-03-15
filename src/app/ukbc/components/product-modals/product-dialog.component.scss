@@ -1,0 +1,37 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+.ProductDialog {
+	@include pica;
+
+	&__price {
+		@include medium-weight;
+		color: $orange-2;
+	}
+
+	&__more-info-link {
+		@include margin-bottom();
+	}
+
+	&__button:hover & {
+		&__price,
+		&__price-suffix {
+			color: inherit;
+		}
+	}
+
+	&__total-price {
+		margin: 0 0 0 0.3em;
+	}
+
+	&__price-suffix {
+		@include long-primer;
+		margin-left: 0.15em;
+	}
+
+	&__button {
+		&:not(:last-child) {
+			margin-bottom: 0.5em;
+		}
+	}
+}

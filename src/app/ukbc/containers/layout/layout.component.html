@@ -1,0 +1,40 @@
+<div class="Checkout" 
+	[ngClass]="'Checkout--' + (CurrentStep$ | async)?.type" 
+	[class.Checkout--eagle-eye]="(JourneyContent$ | async).AllowPaymentByEagleEyeTokens"
+ 	[class.Checkout--print-hidden]="SomeDialogIsOpen">
+	<ukbc-header class="Checkout__header" #header [steps]="Steps$ | async"></ukbc-header>
+	<ukbc-eagle-eye-header 
+		class="Checkout__eagle-eye" 
+		#eagleEye 
+		*ngIf="(JourneyContent$ | async).AllowPaymentByEagleEyeTokens">
+	</ukbc-eagle-eye-header>
+	<div class="Checkout__desktop-container">
+		<div class="Checkout__desktop-right" *ngIf="DesktopMode">
+			<app-question-progress 
+				*ngIf="(CurrentStep$ | async)?.type === EStepType.Questions"
+				[title]="(CurrentStep$ | async)?.data.ProgressBarLabel">
+			</app-question-progress>
+			<ukbc-basket [currentStep]="(CurrentStep$ | async)"></ukbc-basket>
+		</div>
+		<ukbc-basket #basket *ngIf="!DesktopMode" [currentStep]="(CurrentStep$ | async)"></ukbc-basket>
+		<app-question-progress 
+			#questionProgress 
+			*ngIf="!DesktopMode && (CurrentStep$ | async)?.type === EStepType.Questions"
+			[style.opacity]="ProgressOpacity"
+			[style.top]="ProgressTop">
+		</app-question-progress>
+		<main class="Checkout__main">
+			<router-outlet></router-outlet>
+		</main>
+	</div>
+	<ukbc-loading-indicator 
+		[isLoading]="(LoadingState$ | async).showLoadingIndicator" 
+		[title]="(LoadingState$ | async).loadingIndicatorTitle">
+	</ukbc-loading-indicator>
+</div>
+<ukbc-chat-now 
+	*ngIf="LiveChatContent.ShowLiveChatPopOut" 
+	[config]="LiveChatContent" 
+	[currentStep]="CurrentStep$ | async"
+	[isLoading]="(LoadingState$ | async).showLoadingIndicator">
+</ukbc-chat-now>

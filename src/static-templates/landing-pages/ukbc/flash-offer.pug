@@ -1,0 +1,13 @@
+extend _export-master
+
+block content
+	.SiteWrapper(style="padding-top: 0")
+		include ./countdown-banner
+
+		div(style="position: relative;")
+			include ../../components/Landing/_landing-progress-bar
+		
+			include ../../components/ProductBasis/_ProductBases
+
+		div(style="padding-bottom: 20px")
+			include ../../components/_seo-paragraph

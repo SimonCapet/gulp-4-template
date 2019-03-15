@@ -1,0 +1,9 @@
+
+<header class="FAQs__header">
+	<h2 class="FAQs__title">{{ title }}</h2>
+	<button type="button" class="FAQs__button LinkBtn LinkBtn--grey" (click)="ToggleAll()"> {{ AllOpen ? 'Contract All' : 'Expand All' }} </button>
+</header>
+<details class="FAQ" *ngFor="let faq of faqs; let i = index;" [open]="OpenState[i]" [class.FAQ--open]="OpenState[i]">
+	<summary class="FAQ__question" (click)="ToggleFAQ(i, faq.AnalyticsId, $event)">{{ faq.Question }}</summary>
+	<div class="FAQ__answer" [innerHTML]="faq.Answer | safeHTML"></div>
+</details>

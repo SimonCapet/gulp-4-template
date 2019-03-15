@@ -1,0 +1,12 @@
+@import '../../../../styles/core-variables-and-helpers';
+
+.PaymentFrequencyDuration {
+	&__title {
+		margin-top: 1.25em;
+		@include margin-bottom($narrow: true);
+		
+		@include breakpoint(tablet, down) {
+			margin-top: 1.75em;
+		}
+	}
+}

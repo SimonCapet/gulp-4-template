@@ -1,0 +1,48 @@
+@import '../styles/core-variables-and-helpers';
+
+.NumberPicker {
+	display: flex;
+	align-items: center;
+	min-width: 4.8em;
+
+	&__button {
+		@include button-reset;
+		@include medium-weight;
+
+		padding: 0 0 0.2em;
+
+		font-size: 1.5em;
+
+		width: 1.1em;
+		height: 1.1em;
+		line-height: 1em;
+
+		border-radius: 50%;
+
+		background: $white;
+		color: $black;
+		box-shadow: 0 3px 5px 0 rgba($grey, 0.3);
+
+		&:disabled {
+			background: $grey-3;
+			color: $grey;
+
+			cursor: not-allowed;
+		}
+	}
+
+	&__output {
+		@include medium-weight;
+
+		padding: 0 0.5em;
+		line-height: 1em;
+	}
+
+	.has-hover &__button:not(:disabled):hover {
+		background: darken($green, 5%);
+	}
+
+	.toggling &__button:focus {
+		box-shadow: 0 0 0 3px $form-field-focus;
+	}
+}

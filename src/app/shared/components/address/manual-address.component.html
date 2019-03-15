@@ -1,0 +1,78 @@
+<app-input-text 
+	id=`address-line-1-{{this.componentID}}`
+	class="Address__input" 
+	title="{{ config.AddressLine1.manualTitle }}" 
+	[value]="Address.AddressLine1"
+	(onChange)="InputChanged($event)" 
+	(onFocus)="onFocus.emit($event)" 
+	[model]="{ field: 'AddressLine1' }" 
+	[autocomplete]="'address-line1'" 
+	[validationErrors]="ValidationErrors.AddressLine1" 
+	[forceShowValidationErrors]="forceShowValidationErrors"
+	[trackingFieldName]="TrackingFieldName('AddressLine1')">
+</app-input-text>
+<app-input-text 
+	id=`address-line-2-{{this.componentID}}`
+	class="Address__input" 
+	title="{{ config.AddressLine2.title }}" 
+	[value]="Address.AddressLine2" 
+	[model]="{ field: 'AddressLine2' }"
+	(onChange)="InputChanged($event)" 
+	(onFocus)="onFocus.emit($event)" 
+	[autocomplete]="'address-line2'" 
+	[validationErrors]="ValidationErrors.AddressLine2"
+	[forceShowValidationErrors]="forceShowValidationErrors" 
+	[trackingFieldName]="TrackingFieldName('AddressLine2')">
+</app-input-text>
+<app-input-text 
+	id=`address-line-3-{{this.componentID}}`
+	class="Address__input" 
+	title="{{ config.AddressLine3.title }}" 
+	[value]="Address.AddressLine3" 
+	[model]="{ field: 'AddressLine3' }"
+	(onChange)="InputChanged($event)" 
+	(onFocus)="onFocus.emit($event)" 
+	[autocomplete]="'address-line3'" 
+	[validationErrors]="ValidationErrors.AddressLine3"
+	[forceShowValidationErrors]="forceShowValidationErrors" 
+	[trackingFieldName]="TrackingFieldName('AddressLine3')">
+</app-input-text>
+<app-input-text 
+	id=`address-town-{{this.componentID}}`
+	class="Address__input" 
+	title="{{ config.Town.title }}" 
+	[value]="Address.Town" 
+	[model]="{ field: 'Town' }"
+	(onChange)="InputChanged($event)" 
+	(onFocus)="onFocus.emit($event)" 
+	[autocomplete]="'address-level2'"
+	[validationErrors]="ValidationErrors.Town" 
+	[forceShowValidationErrors]="forceShowValidationErrors" 
+	[trackingFieldName]="TrackingFieldName('Town')">
+</app-input-text>
+<app-input-text 
+	id=`address-county-{{this.componentID}}`
+	class="Address__input" 
+	title="{{ config.County.title }}" 
+	[value]="Address.County" 
+	[model]="{ field: 'County' }"
+	(onChange)="InputChanged($event)" 
+	(onFocus)="onFocus.emit($event)" 
+	[autocomplete]="'address-level1'"
+	[validationErrors]="ValidationErrors.County" 
+	[forceShowValidationErrors]="forceShowValidationErrors"
+	[trackingFieldName]="TrackingFieldName('County')">
+</app-input-text>
+<app-input-text 
+	id=`address-postcode-{{this.componentID}}`
+	class="Address__input" 
+	title="{{ config.Postcode.title }}" 
+	[value]="Address.Postcode" 
+	(onChange)="InputChanged($event)"
+	(onFocus)="onFocus.emit($event)" 
+	[model]="{ field: 'Postcode' }" 
+	[autocomplete]="'postal-code'" 
+	[validationErrors]="ValidationErrors.Postcode"
+	[forceShowValidationErrors]="forceShowValidationErrors" 
+	[trackingFieldName]="TrackingFieldName('Postcode')">
+</app-input-text>

@@ -1,0 +1,14 @@
+<div class="VSOEError">
+	<div class="VSOEError__content">
+		<h2 class="VSOEError__title">{{ (ErrorContent$ | async).VSOEErrorModalTitle }}</h2>
+		<div class="VSOEError__description" [innerHTML]="VSOEErrors | safeHTML"></div>
+	</div>
+	<div class="VSOEError__buttons">
+		<button class="VSOEError__button Btn Btn--grey Btn--chevron-left" type="button" (click)="CloseDialog()">
+			{{ (ErrorContent$ | async).VSOEErrorChangeVehicle }}
+		</button>
+		<button class="VSOEError__button Btn Btn--chevron-right" type="button" (click)="RemoveProduct()">
+			Remove {{ RemoveButtonTitle }}
+		</button>
+	</div>
+</div>

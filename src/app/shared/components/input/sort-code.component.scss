@@ -1,0 +1,49 @@
+@import '../../../../styles/core-variables-and-helpers';
+
+$sort-code-width: 2.5em;
+
+.SortCode {
+	&__inputs {
+		position: relative;
+		display: table;
+		table-layout: fixed;
+		background-color: $input-background-color;
+		border: $input-border-width $form-field-default solid;
+		border-radius: $input-border-radius;
+	}
+
+	&__input-container {
+		display: table-cell;
+		position: relative;
+		width: $sort-code-width;
+		vertical-align: top;
+	}
+
+	&__input {
+		background: none;
+		margin: 0;
+		padding-right: 0.4em;
+		border: none;
+		border-radius: 0;
+		box-shadow: none;
+		min-width: 0;
+		width: $sort-code-width;
+	}
+
+	&__input-three {
+		width: #{$sort-code-width + $input-element-right-padding};
+		padding-right: $input-element-right-padding;
+	}
+
+	.Input--focused & {
+		&__inputs {
+			border-color: $form-field-focus;
+		}
+	}
+
+	.Input--invalid & {
+		&__inputs {
+			border-color: $form-field-invalid;
+		}
+	}
+}

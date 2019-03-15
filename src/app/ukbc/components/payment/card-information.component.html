@@ -1,0 +1,35 @@
+<div class="CardInformation CardForm" *ngIf="isOpen">
+	<ukbc-monthly-card-collection-date 
+		class="Payment__collection-date" 
+		*ngIf="purchaseType === EPurchaseType.Monthly"
+		[content]="content" 
+		[forceShowValidationErrors]="ForceShowValidationErrors" 
+		[paymentOptions]="paymentOptions">
+	</ukbc-monthly-card-collection-date>
+	<span
+	 	*ngIf="!IsLCPJourney &&!journeyContent.HideAAF && paymentOptions && paymentOptions.AAFMessageToDisplay"
+		[innerHTML]="paymentOptions.AAFMessageToDisplay | safeHTML">
+	</span>
+	<span *ngIf="IsLCPJourney" [innerHTML]="CustomerPaymentInformation"></span>
+	<ukbc-cover-check 
+		[content]="purchaseType === EPurchaseType.Annual ? content.CoverCheckMessageAnnual : content.CoverCheckMessageMonthly">
+	</ukbc-cover-check>
+	<button
+		class="CardForm__save-button Btn Btn--orange CardInformation__save" 
+		[ngClass]="{'Btn--loading': loading, 'Loader--loading': loading}"
+		[disabled]="loading" 
+		(click)="SaveCardDetails()">
+		<span class="Btn__inner">{{ SaveButtonText }}</span>
+		<div class="Btn__loader Loader">
+			<div class="Loader__chevron"></div>
+			<div class="Loader__chevron"></div>
+			<div class="Loader__chevron"></div>
+		</div>
+	</button>
+</div>
+<div class="SectionCard__values CardInformation__values" *ngIf="!isOpen && isComplete">
+	<div class="SectionCard__value" *ngIf="purchaseType === EPurchaseType.Monthly">
+		<span class="SectionCard__value-label">{{ content.CollectionDateLabel }}</span>
+		<span> {{ InstalmentDate }}</span>
+	</div>
+</div>

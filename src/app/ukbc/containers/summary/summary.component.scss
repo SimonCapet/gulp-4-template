@@ -1,0 +1,93 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+$header-border-radius: 10px;
+$header-padding: 28px;
+$header-headline-font-size: 32px;
+$header-strapline-font-size: 24px;
+$basket-header-height: 111px;
+
+.Summary {
+	&__included-cover {
+		box-shadow: $ukbc-header-box-shadow;
+		border-radius: $header-border-radius;
+	}
+
+	&__header {
+		@include breakpoint(tablet, below) {
+			@include padding-vertical(18px, $header-padding, $clip-at-end: false);
+		}
+
+		@include breakpoint(tablet, up) {
+			min-height: $basket-header-height;
+		}
+
+		@include padding-horizontal(18px, $header-padding);
+
+		padding-top: $basket-header-desktop-top-padding;
+		padding-bottom: $basket-header-desktop-bottom-padding;
+
+		border-top-left-radius: $header-border-radius;
+		border-top-right-radius: $header-border-radius;
+		background-color: $black;
+	}
+
+	&__title {
+		@include medium-weight;
+		@include fluid-property(font-size, 26px, 32px);
+		padding-bottom: 10px;
+		line-height: 1.1em;
+		color: $white;
+	}
+
+	&__strapline {
+		@include medium-weight;
+		@include fluid-property(font-size, 18px, 24px);
+		color: $grey-9;
+	}
+
+	&__selected-products {
+		@include padding-bottom(22px, 28px);
+		@include padding-horizontal(22px, 28px);
+		background-color: $white;
+		border-bottom-left-radius: $header-border-radius;
+		border-bottom-right-radius: $header-border-radius;
+	}
+
+	&__faqs,
+	&__available-products,
+	&__terms-conditions,
+	&__footer {
+		@include padding-bottom(22px, 28px);
+		@include padding-horizontal(22px, 28px);
+
+		display: block;
+
+		.Btn:not(:last-of-type) {
+			@include margin-right($narrow: true);
+			@include margin-bottom($narrow: true);
+		}
+	}
+
+	&__footer {
+		.Btn {
+			@include breakpoint(mobile-large, below) {
+				width: 100%;
+			}
+		}
+	}
+
+	&__added-animation-wrapper,
+	&__avail-animation-wrapper {
+		height: 100%;
+	}
+
+	&__available-product-title {
+		@include fluid-property(font-size, 26px, 32px);
+		@include padding-top(25px, 55px);
+		@include padding-bottom(25px, 35px);
+		@include medium-weight;
+		line-height: 1.1em;
+		border-bottom: 1px solid $grey-3;
+	}
+}

@@ -1,0 +1,15 @@
+extend _export-master
+
+block content
+	include ../../components/ProductBasis/_ProductBasisConfig
+	include ../../components/ProductBasis/_ProductBasis
+
+	div(style="background: #e6e6e6; padding: 30px 0;")
+		link(rel="stylesheet" href="/static/styles/components/ProductBasis.css")
+		- var monthlyClasses = ['mobile', 'tablet'];
+		.Container
+			.row.center-xs
+				+ProductBasis({ package: productBasisConfig[0], monthlyPrices: monthlyClasses, fullWidth: false })
+				.col-md-2.double-pica.medium.text-center(style="align-items: center; justify-content: center;")
+					p OR
+				+ProductBasis({ package: productBasisConfig[1], monthlyPrices: monthlyClasses, fullWidth: false })

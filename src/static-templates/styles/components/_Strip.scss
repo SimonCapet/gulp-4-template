@@ -1,0 +1,18 @@
+$strip-breakpoint: 1200px;
+
+.Strip {
+	// Background colours
+	&--white {
+		background-color: $white;
+	}
+
+	// Padding
+	&--padded {
+		@include fluid-property(padding-top, 30px, 50px);
+		@include fluid-property(padding-bottom, 30px, 70px);
+	}
+
+	@include breakpoint($strip-breakpoint, down) {
+		margin: 0 10px;
+	}
+}

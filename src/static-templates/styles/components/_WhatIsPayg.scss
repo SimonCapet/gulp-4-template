@@ -1,0 +1,40 @@
+$chevron-bullet-top-offset: 5px;
+
+.WhatIsPayg {
+	@include padding-vertical(40px, 80px);
+	border-bottom: 1px solid $grey-5;
+	&__heading {
+		@include fluid-property(font-size, 24px, 32px);
+
+		&--orange {
+			color: $orange-2;
+		}
+	}
+
+	&__bullets {
+		@include fluid-property(padding-top, 15px, 20px);
+		display: flex;
+		align-items: flex-start;
+
+		@include breakpoint(tablet, below) {
+			flex-direction: column;
+		}
+	}
+
+	&__bullet {
+		display: flex;
+		align-items: center;
+		padding-right: 30px;
+
+		@include breakpoint(tablet, below) {
+			padding: 10px 0 10px 0;
+			align-items: flex-start;
+		}
+	}
+
+	&__bullet-chevron {
+		align-self: flex-start;
+		transform: translateY($chevron-bullet-top-offset);
+		padding-right: 10px;
+	}
+}

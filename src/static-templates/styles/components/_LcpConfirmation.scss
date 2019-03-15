@@ -1,0 +1,20 @@
+$lcp-confirmation-breakpoint: 768px;
+
+.LcpConfirmation {
+	&__text-wrapper {
+		max-width: 80%;
+	}
+
+	&__heading {
+		@include normal-weight;
+	}
+
+	&__sub-heading {
+		@include normal-weight;
+	}
+
+	@include breakpoint($lcp-confirmation-breakpoint, down) {
+		max-width: 100%;
+		padding: 20px;
+	}
+}

@@ -1,0 +1,70 @@
+<form class="CardForm Address" novalidate="novalidate">
+	<div class="CardForm__content--Address-form" *ngIf="!hasChosenAddress">
+		<div class="CardForm__details">
+			<div class="CardForm__inputs">
+				<div *ngIf="!isManuallyEditing">
+					<app-input-address-picker 
+						[config]="config" 
+						[classes]="classes" 
+						[forceShowValidationErrors]="forceShowValidationErrors"
+						(onAddressChosen)="AddressSelected($event)" 
+						(onAddressOptionsFound)="AddressOptionsFound($event)"
+						(onAddressNotFound)="AddressNotFound($event)" 
+						(onChooseAddressError)="OnChooseAddressError()" 
+						(resetAddress)="ResetAddress()"
+						(onAddressLoading)="OnAddressLoading($event)" 
+						(setAddressField)="setField.emit($event)" 
+						[trackingFieldPrefix]="'LeadMember'">
+					</app-input-address-picker>
+				</div>
+				<div *ngIf="isManuallyEditing">
+					<p class="Address__no-results" *ngIf="NoSearchResultsMessage">{{ NoSearchResultsMessage }}</p>
+					<p class="Address__no-results" *ngIf="ChooseAddressError">{{ ChooseAddressError }}</p>
+					<app-input-manual-address 
+						[config]="config" 
+						[classes]="classes" 
+						[forceShowValidationErrors]="forceShowValidationErrors"
+					 	(setField)="setField.emit($event)" 
+						[trackingFieldPrefix]="'LeadMember'">
+					</app-input-manual-address>
+					<button 
+						class="CardForm__save-button Btn Btn--orange Address__save" 
+						type="button" 
+						(click)="SaveAddress()">
+						{{ config.saveAddressTitle }}
+					</button>
+				</div>
+				<button 
+					class="LinkBtn LinkBtn--blue Address__manual-toggle" 
+					type="button" 
+					*ngIf="!AddressLoading" 
+					(click)="ToggleManualInput()"
+					[disabled]="AddressLoading">
+					{{ isManuallyEditing ? config.backToAddressSearchTitle : config.manualInputTitle }}
+				</button>
+			</div>
+		</div>
+	</div>
+	<div *ngIf="hasChosenAddress">
+		<div class="Address__summary">
+			<div class="Address__summary-line" *ngIf="Address.AddressLine1">{{ Address.AddressLine1 }}</div>
+			<div class="Address__summary-line" *ngIf="Address.AddressLine2">{{ Address.AddressLine2 }}</div>
+			<div class="Address__summary-line" *ngIf="Address.AddressLine3">{{ Address.AddressLine3 }}</div>
+			<div class="Address__summary-line" *ngIf="Address.Town">{{ Address.Town }}</div>
+			<div class="Address__summary-line" *ngIf="Address.County">{{ Address.County }}</div>
+			<div class="Address__summary-line" *ngIf="Address.Postcode">{{ Address.Postcode }}</div>
+		</div>
+		<button 
+			class="LinkBtn LinkBtn--blue Address__edit" 
+			type="button" 
+			(click)="EditAddress()">
+			{{ config.editAddressTitle }}
+		</button>
+		<button 
+			class="CardForm__save-button Btn Btn--orange Address__save" 
+			type="button"
+			(click)="SaveAddress()">
+			{{ config.saveAddressTitle }}
+		</button>
+	</div>
+</form>

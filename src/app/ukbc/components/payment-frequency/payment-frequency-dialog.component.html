@@ -1,0 +1,11 @@
+<div class="PaymentFrequencyDialog">
+	<div 
+		class="PaymentFrequencyDialog__content" 
+		[innerHtml]="content | safeHTML">
+	</div>
+	<button 
+		class="PaymentFrequencyDialog__print-link LinkBtn"
+		(click)="PrintPage()">
+		{{ printLinkLabel }}
+	</button>
+</div>

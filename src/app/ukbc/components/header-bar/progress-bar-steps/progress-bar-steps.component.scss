@@ -1,0 +1,115 @@
+@import '../../../../../styles/core-variables-and-helpers';
+@import '../../../../ukbc-settings';
+
+$chevron-line-width: 20px;
+$label-number-circle-size: 30px;
+$step-spacing-left: 10px;
+$step-spacing-right: 35px;
+$tick-size: 12px;
+
+:host {
+	height: 100%;
+
+	@include breakpoint(tablet, below) {
+		display: none;
+	}
+}
+
+.ProgressBarSteps {
+	$c: &;
+
+	&__wrapper {
+		@include padding-horizontal();
+		display: flex;
+		align-items: center;
+		height: 100%;
+	}
+
+	&__step {
+		display: flex;
+		position: relative;
+		height: 100%;
+		align-items: center;
+		justify-content: center;
+		padding: 0 $step-spacing-left 0 $step-spacing-right;
+		color: $grey-2;
+
+		&:before,
+		&:last-child:after {
+			content: '';
+			position: absolute;
+			height: 100%;
+			width: $chevron-line-width;
+			top: 0;
+			background: {
+				image: url(/assets/cheveron-line.svg);
+				repeat: no-repeat;
+			}
+		}
+
+		&:last-child {
+			padding-right: 30px;
+		}
+
+		&:before {
+			left: 0;
+		}
+
+		&:after {
+			right: 0;
+		}
+
+		&--current {
+			color: $tuatara;
+		}
+	}
+
+	&__number-circle {
+		position: relative;
+		border-radius: 100%;
+		height: $label-number-circle-size;
+		width: $label-number-circle-size;
+		flex: 0 0 $label-number-circle-size;
+		margin-right: 10px;
+		border: solid 2px $grey-12;
+		background-color: inherit;
+		color: $grey-12;
+
+		#{$c}__step--current &,
+		#{$c}__step--completed & {
+			background-color: $orange-2;
+			border: 0 none;
+			color: $white;
+		}
+	}
+
+	&__number,
+	&__tick {
+		@include medium-weight;
+		font-size: 17px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	&__tick {
+		content: '';
+		height: $tick-size;
+		width: $tick-size;
+		background: {
+			image: url(/assets/tick-white.svg);
+			repeat: no-repeat;
+		}
+	}
+
+	&__step-label {
+		@include medium-weight();
+		color: $grey-2;
+
+		#{$c}__step--completed &,
+		#{$c}__step--current & {
+			color: $tuatara;
+		}
+	}
+}

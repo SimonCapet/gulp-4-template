@@ -1,0 +1,55 @@
+<section class="Question" #context [ngClass]="Classes">
+	<strong class="Question__time" *ngIf="question.TimeTitle">{{ question.TimeTitle }}</strong>
+	<h2 class="Question__title" [innerHTML]="question.Title | safeHTML"></h2>
+	<div class="Question__description" [innerHTML]="question.Description | safeHTML"></div>
+	<button class="Question__more LinkBtn LinkBtn--blue" type="button" *ngIf="question.ModalContent" (click)="OpenDialog()" [disabled]="!question.Active">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M18.7 5c-.9-1.5-2.1-2.7-3.6-3.6A9.4 9.4 0 0 0 10 0C8.2 0 6.5.4 5 1.3A11 11 0 0 0 1.3 5 9.6 9.6 0 0 0 0 10c0 1.8.4 3.5 1.3 5s2.1 2.7 3.6 3.6c1.5.9 3.2 1.3 5 1.3 1.8 0 3.5-.4 5-1.3s2.7-2.1 3.6-3.6a9.6 9.6 0 0 0 1.3-5c.2-1.8-.2-3.5-1.1-5zM8.3 2.5l.1-.3.3-.1h2.5l.3.1.1.3v2.1l-.1.3-.2.1H8.7l-.2-.1-.2-.3V2.5zm5 13.7l-.1.3-.3.1H7.1l-.3-.1-.1-.3v-2.1l.1-.3.3-.1h1.3V9.6H7.1l-.3-.1-.1-.3V7.1l.1-.3.3-.1h4.2l.3.1.1.3v6.7H13l.3.1.1.3v2z"/></svg>
+		{{ question.MoreLabel }}
+	</button>
+	<div class="Question__banners" *ngIf="question.InfoBanner || Offer">
+		<p class="Question__info-banner" *ngIf="question.InfoBanner" [innerHTML]="question.InfoBanner | safeHTML"></p>
+		<p class="Question__offer-banner" *ngIf="Offer.offerMessage" [style.backgroundColor]="Offer.backgroundColour" [innerHTML]="Offer.offerMessage | safeHTML"></p>
+	</div>
+	<div class="Question__buttons" *ngIf="!question.IsBasis">
+		<button class="Question__btn Btn" type="button" [ngClass]="YesButtonCssClass" (click)="YesClick()" [disabled]="!question.Active" [attr.data-products-add]="question.YesButtonProductsToAdd"> 
+			<span *ngIf="YesButtonCssClass === 'Btn--add'">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33"><path d="M16.5 0a16.5 16.5 0 1 0 0 33 16.5 16.5 0 0 0 0-33zm6.9 17.8h-5.6v5.6c0 .8-.7 1.5-1.5 1.5s-1.5-.7-1.5-1.5v-5.6H9.3c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5h5.6V9.3c0-.8.7-1.5 1.5-1.5s1.5.7 1.5 1.5v5.6h5.6c.8 0 1.5.7 1.5 1.5-.1.8-.8 1.4-1.6 1.4z"/></svg>
+			</span>
+			<span *ngIf="YesButtonCssClass === 'Btn--added'">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39 39"><path d="M19.5.5a19 19 0 1 0 0 38 19 19 0 0 0 0-38zm0 35c-8.8 0-16-7.2-16-16s7.2-16 16-16 16 7.2 16 16-7.2 16-16 16z"/><path class="st0" d="M26.8 12.7c-.7-.4-1.6-.3-2.1.4l-7 10.8-2.5-3.1c-.5-.6-1.5-.7-2.1-.2-.6.5-.7 1.5-.2 2.1l3.3 4 .3.3c.4.3.9.4 1.4.4h.4c.6-.1 1.2-.5 1.5-1l7.6-11.6c.3-.7.1-1.6-.6-2.1z"/></svg>
+			</span>
+			<span class="Question__yes-button-text">{{ YesButtonText }}</span>
+			<div class="Question__price" *ngIf="!question.YesButtonHidePrice && question.YesButtonProductsToAdd.length && YesButtonCssClass === 'Btn--add' && Price">
+				<ukbc-product-price 
+					[price]="Price" 
+					[comparisonPrice]="ComparisonPrice" 
+					[journeyContent]="journeyContent"
+					[priceSuffix]="addProductButtonCostSuffix">
+				</ukbc-product-price>
+			</div>
+		</button>
+		<button 
+			class="Question__btn Btn" 
+			type="button" 
+			*ngIf="NoButtonText" 
+			[ngClass]="NoButtonCssClass" 
+			(click)="NoClick()"
+			[disabled]="!question.Active" 
+			[attr.data-products-remove]="question.NoButtonProductsToRemove ">
+			<span *ngIf="NoButtonCssClass === 'Btn--remove' || NoButtonCssClass === 'Btn--removed'">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 27"><path d="M13.5 0C6.1 0 0 6.1 0 13.5S6.1 27 13.5 27 27 20.9 27 13.5 20.9 0 13.5 0zm0 24.7a11.2 11.2 0 1 1 0-22.4 11.2 11.2 0 0 1 0 22.4z" class="st0"/><path d="M18.2 8.8c-.3-.3-1-.3-1.4 0l-3.4 3.4L10 8.8c-.3-.3-.9-.3-1.4 0-.3.4-.3 1 0 1.4l3.4 3.4L8.6 17c-.3.3-.3 1 0 1.4.2.2.4.3.7.3.3 0 .5-.1.7-.3l3.4-3.4 3.4 3.4c.2.2.4.3.7.3.3 0 .5-.1.7-.3.3-.3.3-1 0-1.4l-3.4-3.4 3.4-3.4c.4-.4.4-1 0-1.4z"/></svg>
+			</span>
+			{{ NoButtonText }}
+		</button>
+	</div>
+	<div class="Question__basis" *ngIf="question.IsBasis">
+		<app-number-picker 
+			class="Question__number-picker" 
+			[value]="basisValues.Value" 
+			[min]="basisValues.Min" 
+			[max]="basisValues.Max"
+			(onChange)="SetBasis($event)">
+		</app-number-picker>
+		<span class="Question__basis-label" [innerHTML]="BasisLabel | safeHTML"></span>
+	</div>
+</section>

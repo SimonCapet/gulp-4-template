@@ -1,0 +1,62 @@
+@import '../sass-helpers/core-variables-and-helpers';
+$trustpilot-bg: #17B37E;
+
+.TPReviews {
+	@include padding-vertical(40px, 70px);
+	background-color: $trustpilot-bg;
+	color: $white;
+	text-align: center;
+}
+
+.TPReviews__title {
+	@include fluid-property(margin-bottom, 30px, 40px);
+}
+
+.TPReview {
+	background-color: $white;
+	color: $tuatara;
+	text-align: left;
+	padding: 1.6em;
+}
+
+.TPReview__rating,
+.TPReview__tp-logo {
+	float: left;
+	margin-bottom: 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.TPReview__tp-logo {
+	width: 95px;
+	height: 20px;
+}
+
+.TPReview__rating {
+	width: 100px;
+	height: 20px;
+	margin-right: 20px;
+}
+
+.TPReview__reviewer,
+.TPReview__title,
+.TPReview__text {
+	margin-top: 0;
+	margin-bottom: 15px;
+}
+
+.TPReview__title {
+	clear: both;
+	font-size: 1.5em;
+}
+
+.TPReview__reviewer {
+	@include medium-weight;
+	font-size: 1.15em;
+}
+
+.TPReview__date {
+	margin: 0;
+	color: rgba($tuatara, 0.6);
+	font-size: 0.9em;
+}

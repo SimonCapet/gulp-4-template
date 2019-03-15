@@ -1,0 +1,10 @@
+<div class="BasketPrice" [ngClass]="{ 'BasketPrice--loading': PriceLoading }">
+	<strong class="BasketPrice__total" [class.BasketPrice__animate-price]="AnimatePrice">{{ Price }}</strong>
+    <div class="BasketPrice__loader">
+        <div class="Loader Loader Loader--loading">
+            <div class="Loader__chevron"></div>
+            <div class="Loader__chevron"></div>
+            <div class="Loader__chevron"></div>
+        </div>
+    </div>
+</div>

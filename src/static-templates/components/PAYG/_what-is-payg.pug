@@ -1,0 +1,14 @@
+-
+	var bullets = [
+		"You pay an annual membership fee of just £24 and if you break down, just call us."	,
+		"There's a callout charge of £85 if you break down at the roadside and £110 at home",
+		"We'll fix your vehicle and if we can't, take it, you and up to 8 passengers up to 10 miles to a destination of your choice"
+	]
+
+.WhatIsPayg
+	h2.WhatIsPayg__heading What is&#0160;
+		span.WhatIsPayg__heading--orange RAC
+		| &#0160;Pay As You Go?
+	p.WhatIsPayg__body If you don't drive many miles or your car's just come out of warranty then RAC Pay As You Go could be perfect for you - get complete peace of mind you'll be able to call on the RAC if you break down.
+	include ./_what-is-payg-bullets
+	+PaygBullets(bullets)

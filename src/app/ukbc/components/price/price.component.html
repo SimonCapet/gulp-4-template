@@ -1,0 +1,11 @@
+<div class="Price">
+	<div class="Price--current" *ngIf="!ShowComparisonPrice">
+		<span class="Price__value Price__value--current">{{ price }}</span><span class="Price__suffix">{{ CurrentPriceSuffix }}</span>
+	</div>
+	<div class="Price--previous" *ngIf="ShowComparisonPrice">
+		<span class="Price__label">{{ journeyContent.ComparisonPriceLabel }} </span><span class="Price__value Price__value--previous">{{ comparisonPrice }}</span><span class="Price__suffix">{{ CurrentPriceSuffix }}</span>
+	</div>
+	<div class="Price--new" *ngIf="ShowComparisonPrice">
+		<span class="Price__label">{{ journeyContent.NewPriceLabel }} </span><span class="Price__value Price__value--next">{{ price }}</span><span class="Price__suffix">{{ ComparisonPriceSuffix }}</span>
+	</div>
+</div>

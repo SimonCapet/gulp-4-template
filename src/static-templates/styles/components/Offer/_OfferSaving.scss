@@ -1,0 +1,22 @@
+.OfferSaving {
+	$c: &;
+	@include bold-weight;
+
+	position: relative;
+	padding: 0.5em;
+
+	background: $red-2;
+	color: $white;
+
+	text-align: center;
+
+	border-radius: inherit;
+
+	&--highlighted {
+		box-shadow: 0 0 $offer-cell-highlighted-shadow-radius rgba($black, 0.5);
+	}
+
+	+ #{$c} {
+		border-left: 1px solid $white;
+	}
+}

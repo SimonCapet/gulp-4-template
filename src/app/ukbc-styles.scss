@@ -1,0 +1,8 @@
+@import '../styles/core';
+
+@import 'ukbc/shared-styles/CardForm';
+
+.Btn {
+	@include fluid-property(font-size, 22px, 24px);
+	@include medium-weight;
+}

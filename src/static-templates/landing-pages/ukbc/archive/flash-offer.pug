@@ -1,0 +1,24 @@
+include ../../../components/ProductBasis/_ProductBasisConfig
+include ../../../components/ProductBasis/_ProductBasis
+- var monthlyClasses = ['mobile', 'tablet'];
+
+if debug
+	meta(name="viewport" content="width=device-width, initial-scale=1")
+style
+	include ../../../../../dist/static/styles/styles-landing-page.css
+
+block content
+	.SiteWrapper(style="padding-top: 0")
+		include ../../../components/Site/_site-header
+		+ProductBasis({ package: productBasisConfig[0], monthlyPrices: monthlyClasses, bgColour: 'linear-gradient(#cd2500, #EC2F04)', fullWidth: true })
+		.double-pica.medium.text-center OR
+		+ProductBasis({ package: productBasisConfig[1], monthlyPrices: monthlyClasses, fullWidth: true })
+if debug
+	<script>
+		| document.write('<script src="//' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js" defer></' + 'script>');
+		| document.write('<script src="//' + (location.host || 'localhost').split(':')[0] + ':8080/js/polyfills.js" defer></' + 'script>');
+		| document.write('<script src="//' + (location.host || 'localhost').split(':')[0] + ':8080/js/landing.js" defer></' + 'script>');
+	</script>
+else
+	script(src="/js/polyfills.js")
+	script(src="/js/landing.js")

@@ -1,0 +1,115 @@
+.SiteRibbon {
+	display: none;
+
+	border-bottom: 1px solid #eee;
+
+	&__inner {
+		display: flex;
+
+		max-width: 1190px;
+		margin: 0 auto;
+		padding: 0 15px;
+	}
+
+	&__list {
+		display: flex;
+
+		margin: 0 auto 0 0;
+		padding-left: 0;
+
+		list-style-type: none;
+
+		&--right {
+			margin-right: 0;
+		}
+	}
+
+	&__item {
+		@include brevier;
+		@include medium-weight;
+
+		border-right: 1px solid #eee;
+
+		&:first-child {
+			border-left: 1px solid #eee;
+		}
+	}
+
+	&__link {
+		position: relative;
+
+		display: block;
+		padding: 10px;
+
+		color: $dark-grey;
+		text-decoration: none;
+
+		transition: 0.15s color ease, 0.15s background-color ease;
+
+		&:before {
+			position: absolute;
+			top: 0;
+			left: 0;
+
+			width: 100%;
+			height: 0;
+
+			background-color: $orange-2;
+			transition: 0.15s height ease;
+			content: '';
+		}
+
+		&:hover,
+		&:active,
+		&--active {
+			&:before {
+				height: 4px;
+			}
+		}
+
+		&:active,
+		&--active {
+			color: $white;
+
+			background-color: #777;
+
+			&:hover {
+				background-color: #777;
+			}
+		}
+
+		&--highlight {
+			color: $orange-2;
+		}
+	}
+
+	.has-hover & {
+		&__link:hover {
+			color: $white;
+			background-color: #aaa;
+		}
+	}
+
+	&__content {
+		display: block;
+
+		padding: 10px;
+	}
+
+	&__icon {
+		display: inline-block;
+		width: 15px;
+		height: 19px;
+		margin: -4px 5px -4px 0;
+
+		vertical-align: middle;
+
+		svg {
+			fill: currentColor;
+		}
+	}
+
+	@include breakpoint(tablet, up) {
+		display: block;
+	}
+}

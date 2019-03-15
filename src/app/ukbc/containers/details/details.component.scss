@@ -1,0 +1,19 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+.Details {
+	&__card {
+		align-self: stretch;
+
+		&:not(:last-child) {
+			@include margin-bottom;
+		}
+	}
+
+	&__link {
+		display: block;
+		@include margin-top($narrow: true);
+	}
+}
+
+@import './VehicleResults';

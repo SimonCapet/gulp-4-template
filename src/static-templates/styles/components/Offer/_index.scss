@@ -1,0 +1,31 @@
+$offer-max-width-3: 990px;
+$offer-max-width-4: 1300px;
+
+$offer-border-radius: 8px;
+$offer-cell-padding-vertical: 10px;
+$offer-cell-padding-horizontal-small: 10px;
+$offer-cell-padding-horizontal-large: 30px;
+$offer-cell-border-colour: $grey-2;
+$offer-cell-highlighted-background: $orange-7;
+$offer-cell-highlighted-shadow-radius: 5px;
+$offer-tick-size: 24px;
+$offer-free-background-colour: $red-2;
+$offer-free-border-width: 2px;
+$offer-free-offset: 5px;
+$offer-tooltip-caret-size: 20px;
+
+@mixin offer-product-title-font-size {
+	@include fluid-font-size(0.5, 0.7, $tablet);
+}
+
+@import './Offer';
+@import './OfferFlag';
+@import './OfferSaving';
+@import './OfferBasis';
+@import './OfferProduct';
+@import './OfferTooltip';
+@import './OfferMobile';
+@import './OfferPackage';
+@import './OfferProductHighlight';
+@import './OfferTabs';
+@import './OfferTrustPilot';

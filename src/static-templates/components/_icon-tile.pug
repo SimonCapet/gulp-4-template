@@ -1,0 +1,7 @@
+mixin IconTile(config)
+	.IconTile(class=config.extraClass)
+		.IconTile__icon(class=config.iconExtraClass)
+			img(src=config.imgPath)
+		.IconTile__inner
+			.IconTile__text #{config.text}
+				

@@ -1,0 +1,120 @@
+<div class="DirectDebit" *ngIf="isOpen">
+	<div class="CardForm">
+		<div class="DirectDebit__instalment-date">
+			<ukbc-collection-date 
+				[content]="content" 
+				[collectionDate]="PaymentDetails.model.collectionDate" 
+				[paymentOptions]="PaymentOptions"
+				[forceShowValidationErrors]="forceShowValidationErrors" 
+				[daysAfterStartDateUntilFirstAvailableCollectionDate]="IsAnnual ? 30 : 17"
+				[numberOfInstalments]="IsAnnual ? 1 : 11" 
+				(onCollectionDateChange)="onCollectionDateSet($event)">
+			</ukbc-collection-date>
+		</div>
+		<div class="Payment__info-box" *ngIf="DirectDebitMessage">
+			<div class="Payment__info-box-text" [innerHtml]="FirstCollectionDateHelpText | safeHTML"></div>
+			<div class="Payment__info-box-text" [innerHtml]="DirectDebitMessage | safeHTML"></div>
+		</div>
+		<div class="CardForm__content">
+			<div class="CardForm__details">
+				<div class="DirectDebit__form">
+					<div class="DirectDebit__form-inputs">
+						<h3 class="CardForm__title DirectDebit__title">{{ content.DirectDebitDetailsLabel }}</h3>
+						<div class="CardForm__inputs DirectDebit__payment-information">
+							<app-input-text 
+								class="CardForm__input" 
+								[title]="content.AccountNameLabel" 
+								[value]="PaymentDetails.model.accountName"
+								(onChange)="setDirectDebitField($event)" 
+								[model]="{ field: 'accountName'}" 
+								[validationErrors]="ValidationErrors.accountName"
+								[forceShowValidationErrors]="forceShowValidationErrors" 
+								[trackingFieldName]="'AccountName'">
+							</app-input-text>
+							<app-input-text 
+								class="CardForm__input" 
+								[title]="content.AccountNumberLabel" 
+								type="tel" 
+								[value]="PaymentDetails.model.accountNumber"
+								(onChange)="setDirectDebitField($event)" 
+								[model]="{ field: 'accountNumber'}" 
+								[maxLength]="8" 
+								[validationErrors]="ValidationErrors.accountNumber"
+								[forceShowValidationErrors]="forceShowValidationErrors" 
+								[serverError]="displayDirectDebitDetailsInvalidError"
+								[trackingFieldName]="'AccountNumber'">
+							</app-input-text>
+							<ukbc-sort-code 
+								class="CardForm__input" 
+								[title]="content.SortCodeLabel" 
+								[value]="PaymentDetails.model.sortCode"
+								(onChange)="setDirectDebitField($event)" 
+								[model]="{ field: 'sortCode' }" 
+								[validationErrors]="ValidationErrors.sortCode"
+								[forceShowValidationErrors]="forceShowValidationErrors" 
+								[serverError]="displayDirectDebitDetailsInvalidError"
+								[trackingFieldName]="'SortCode'">
+							</ukbc-sort-code>
+							<p class="DirectDebit__server-error" *ngIf="displayDirectDebitDetailsInvalidError">
+								{{ content.ServerErrorDirectDebitInvalidDetails }}
+							</p>
+						</div>
+					</div>
+					<div class="DirectDebit__form-info">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 31.8"><path d="M24.7.1v.5c6.4 1.4 12 5.4 12 14.8.2 7.8-5.9 14.4-13.8 14.6H22C12 30 3.7 24.1 3.8 19.3c0-4.4 8.7-7.7 16.3-8l3.5.1V0C8.7 0 0 6.6 0 15.9c0 8.8 10 15.9 22.4 15.9 12.4 0 22.5-6.6 22.5-15.9C44.9 7.8 36.3.7 24.7.1z"/><path d="M13.8 20.7c0 4.9 5.5 7.8 9.8 8.1V12.1c-5.1.2-9.8 3.7-9.8 8.6zM90 7.9l.2-1.3c-2.5-1.1-9.2-.6-9.1 3.9.1 3.9 5.2 5.1 9 4l-.1-1.3c-1.2.3-6.2.7-6.2-2.6.1-4.2 5.7-2.9 6.2-2.7zm.8-1.6v1.4h3.4v7.1h2.4V7.7h3.4V6.3m-19.6 8.4v-1.4h-4.5v-2.1h4.3V9.8h-4.3V7.7h4.5V6.2h-6.8v8.5h2.3M58.4 6.2h2.5v8.4h-2.5zm-7.1.1h-4.5v8.4h4.5c3.1 0 5.8-1.6 5.8-4.2s-2.7-4.2-5.8-4.2zm-.4 7h-1.6V7.5l2 .1c1.7-.1 3.1 1.2 3.1 2.9 0 1.6-1.3 2.8-3.5 2.8zm.4 3.6h-4.5v8.4h4.5c3.1 0 5.8-1.6 5.8-4.2s-2.7-4.2-5.8-4.2zm-.4 7l-1.6.1v-5.9l2 .1c1.7-.1 3.1 1.2 3.1 2.9 0 1.6-1.3 2.8-3.5 2.8zM86 19.2h2.5v6.3H86zm0-2.9h2.5v1.6H86zm10.8 7.3v-3h2.1v-1.3h-2.1v-1.6h-2.5v1.6h-2v1.3h2v3.3c0 2.2 3 2.3 4.7 1.9v-1.4c-.9.2-2.2 0-2.2-.8zm-32.4-4.9c-2.7 0-4.6 1.5-4.6 3.4 0 2.1 2.1 3.4 4.6 3.4 1.2.1 2.5-.1 3.6-.5v-1.5c-.7.7-5.6 1.6-5.7-.9h6.3c.2-2.9-2.1-3.9-4.2-3.9zm-2 2.8c0-1.1.9-1.5 2.1-1.5.9-.1 1.8.5 1.9 1.5h-4zm7-10.9c1.1-.1 2-1 2-2.2 0-1.9-2.5-2.2-3.7-2.2h-4.6v8.5h2.5v-3.4h.9c.6 0 1.1.3 1.4.9l1.3 2.5H72l-2-3.5c-.1-.2-.3-.4-.6-.6zm-2.1-.7h-1.7V7.6h1.7c.8 0 1.6.4 1.6 1.1 0 .8-.9 1.2-1.6 1.2zm11 9.1h-.4c-1.1-.1-2.2.3-3 1.1v-3.8h-2.5v9.2h2.5v-.8c.8.8 1.9 1.1 3 1 1.9.2 3.5-1.2 3.7-3.1v-.3c0-1.9-1.5-3.3-3.3-3.3zm-.9 5.2H77c-1 0-1.9-.7-2.1-1.7V22c.2-1 1.1-1.7 2.1-1.7 1.1-.1 2 .7 2.1 1.7.2 1.2-.6 2.1-1.7 2.2z"/></svg>
+						<p>{{ IsAnnual ? content.DirectDebitInformationMonthly : content.DirectDebitInformationAnnual }}</p>
+						<button class="DirectDebit__guarantee_link LinkBtn LinkBtn--blue" type="button" (click)="DDGuarantee()">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M18.7 5c-.9-1.5-2.1-2.7-3.6-3.6A9.4 9.4 0 0 0 10 0C8.2 0 6.5.4 5 1.3A11 11 0 0 0 1.3 5 9.6 9.6 0 0 0 0 10c0 1.8.4 3.5 1.3 5s2.1 2.7 3.6 3.6c1.5.9 3.2 1.3 5 1.3 1.8 0 3.5-.4 5-1.3s2.7-2.1 3.6-3.6a9.6 9.6 0 0 0 1.3-5c.2-1.8-.2-3.5-1.1-5zM8.3 2.5l.1-.3.3-.1h2.5l.3.1.1.3v2.1l-.1.3-.2.1H8.7l-.2-.1-.2-.3V2.5zm5 13.7l-.1.3-.3.1H7.1l-.3-.1-.1-.3v-2.1l.1-.3.3-.1h1.3V9.6H7.1l-.3-.1-.1-.3V7.1l.1-.3.3-.1h4.2l.3.1.1.3v6.7H13l.3.1.1.3v2z"/></svg>
+							{{ content.DirectDebitGuaranteeLinkLabel }}
+						</button>
+					</div>
+				</div>
+				<div class="DirectDebit__information">
+					<p *ngIf="ShowAFFMessage" [innerHTML]="AAFMessageToDisplay"></p>
+					<div *ngIf="ShowCoverCheckMessage">
+						<ukbc-cover-check [content]="IsAnnual ?  content.CoverCheckMessageAnnual : content.CoverCheckMessageMonthly"></ukbc-cover-check>
+					</div>
+					<ukbc-direct-debit-terms 
+						[content]="content" 
+						[agreeToDirectDebitTerms]="(PaymentState$ | async).agreeToDirectDebitTermsAndConditions.model"
+						[forceShowValidationErrors]="forceShowValidationErrors">
+					</ukbc-direct-debit-terms>
+					<p class="DirectDebit__server-error" *ngIf="displayDirectDebitDetailsServerError">
+						{{ content.ServerErrorDirectDebitGenericError }}
+					</p>
+					<button 
+						class="Btn CardForm__save-button" 
+						type="button"
+						[ngClass]="{'Btn--loading': loading, 'Loader--loading': loading}" 
+						[disabled]="loading" 
+						(click)="onComplete.emit()">
+						<div class="Btn__inner">{{ content.SavePaymentMethodDirectDebit }}</div>
+						<div class="Btn__loader Loader Loader--grey">
+							<div class="Loader__chevron"></div>
+							<div class="Loader__chevron"></div>
+							<div class="Loader__chevron"></div>
+						</div>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="DirectDebit__values SectionCard__values SectionCard__details-values" *ngIf="!isOpen && isComplete">
+	<div class="SectionCard__value">
+		<span class="SectionCard__value-label">{{ content.AccountNameLabel }}:</span>
+		<span> {{ PaymentDetails.model.accountName }}</span>
+	</div>
+	<div class="SectionCard__value">
+		<span class="SectionCard__value-label">{{ content.AccountNumberLabel }}:</span>
+		<span> {{ PaymentDetails.model.accountNumber }}</span>
+	</div>
+	<div class="SectionCard__value">
+		<span class="SectionCard__value-label">{{ content.SortCodeLabel }}:</span>
+		<span> {{ PaymentDetails.model.sortCode }}</span>
+	</div>
+	<div class="SectionCard__value">
+		<span class="SectionCard__value-label">{{ content.CollectionDateLabel }}</span>
+		<span> {{ IsAnnual ? firstCollectionDate : InstalmentDateNumber }}</span>
+	</div>
+</div>

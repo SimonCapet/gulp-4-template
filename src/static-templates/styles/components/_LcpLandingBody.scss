@@ -1,0 +1,65 @@
+$services-breakpoint: 768px;
+
+.LcpLandingBody {
+	@include fluid-property(padding-top, 10px, 30px);
+	@include fluid-property(padding-bottom, 10px, 30px);
+
+	max-width: 1270px;
+	margin: 0 auto;
+	padding-top: 40px;
+	padding-bottom: 40px;
+
+	&__intro {
+		@include pica;
+		@include medium-weight;
+
+		strong {
+			@include bold-weight;
+		}
+	}
+
+	&__follow-up-text {
+		@include fluid-font-size(0.5);
+		line-height: 1.5em;
+	}
+
+	&__services {
+		@include fluid-property(padding-top, 20px, 60px);
+
+		display: flex;
+
+		@include breakpoint($services-breakpoint, down) {
+			flex-direction: column;
+		}
+	}
+
+	&__title {
+		flex: 1 1 33.333%;
+
+		@include breakpoint($services-breakpoint, down) {
+			flex: 1 1 auto;
+			margin: 10px 0;
+		}
+	}
+
+	&__icon {
+		&--hand {
+			width: 100px;
+		}
+
+		@include breakpoint($services-breakpoint, down) {
+			&--hand {
+				flex: 0 0 80px;
+				width: 80px;
+			}
+
+			&--arrow {
+				margin: 0 10px;
+			}
+
+			&--call {
+				margin: 0 10px;
+			}
+		}
+	}
+}

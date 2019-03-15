@@ -1,0 +1,29 @@
+-
+	var motorLegalConfig = [
+		{
+			title: 'Uninsured loss recovery.',
+			body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+		},
+		{
+			title: 'Legal defense.',
+			body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing.'
+		},
+		{
+			title: 'Consumer disputes.',
+			body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor.'
+		},
+		{
+			title: 'Advice on personal legal matters.',
+			body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet.'
+		}
+	]
+
+
+.MotorLegal
+	h3.MotorLegal__heading Motor Legal Expenses Cover
+	ul.MotorLegal__bullets
+		each val in motorLegalConfig
+			li.MotorLegal__bullet 
+				span.MotorLegal__bullet-title #{val.title}&nbsp;
+				span.MotorLegal__bullet-body #{val.body}
+			

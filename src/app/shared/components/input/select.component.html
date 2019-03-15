@@ -1,0 +1,20 @@
+<div class="Input Input--select" [ngClass]="Classes">
+	<label class="Input__label">
+		<span class="Input__title" *ngIf="!!title">
+			<span class="Input__title-inner">{{ title }}</span>
+		</span>
+		<div class="Input__field">
+			<select class="Input__input" [(ngModel)]="value" (change)="SendValue($event)" (focus)="Focused($event)" (blur)="Blurred($event)" [disabled]="disabled">
+				<option disabled="disabled" hidden="hidden"></option>
+				<option *ngFor="let option of options" [value]="option.value">{{ option.text || option.value }}</option>
+			</select>
+			<div class="Input__caret">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 5" fill="#9b9b9b"><path d="M0 0l6 5 6-5z"/></svg>
+			</div>
+			<img class="Input__valid-indicator-image" src="/assets/tick-green.svg" alt="Valid" />
+			<img class="Input__invalid-indicator-image" src="/assets/exclamation.svg" alt="Invalid" />
+			<div class="Input__suffix" *ngIf="suffix">{{ suffix }}</div>
+		</div>
+	</label>
+	<div class="Input__error">{{ ErrorMessage }}</div>
+</div>

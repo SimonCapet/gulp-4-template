@@ -1,0 +1,52 @@
+@import '../../../styles/core-variables-and-helpers';
+$input-half-width: 185px;
+
+.CardForm {
+	&__title {
+		@include pica;
+		color: $grey;
+		margin-bottom: 0;
+	}
+
+	&__input {
+		display: block;
+
+		&--half-width {
+			.Input--select {
+				width: $input-half-width;
+				.Input__field,
+				.Input__input {
+					width: 100%;
+				}
+			}
+		}
+	}
+
+	&__content {
+		width: 100%;
+	}
+
+	&__details {
+		width: 100%;
+	}
+
+	&__error {
+		color: $red;
+	}
+
+	.Btn {
+		font-size: 1.15em;
+	}
+
+	&__save-button {
+		margin-top: 1.25em;
+	}
+
+	// Modifiers
+
+	&--incomplete & {
+		&__title {
+			color: $grey-3;
+		}
+	}
+}

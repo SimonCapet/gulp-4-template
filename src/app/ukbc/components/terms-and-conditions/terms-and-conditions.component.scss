@@ -1,0 +1,10 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+$spacing: 40px;
+
+.TermsAndConditons {
+	border-bottom: 1px solid $grey-5;
+	margin-bottom: $spacing;
+	padding-bottom: $spacing;
+}

@@ -1,0 +1,125 @@
+.FAQ {
+	margin-bottom: 30px;
+
+	&--other-design {
+		border-bottom: 1px solid $grey-5;
+		margin-bottom: 20px;
+		padding-bottom: 20px;
+	}
+
+	&__wrapper {
+		@include fluid-property(padding-top, 1px, 25px);
+		@include fluid-property(padding-bottom, 1px, 25px);
+	}
+
+	&__title {
+		@include normal-weight;
+
+		margin-bottom: 30px;
+
+		&--other-design {
+			@include fluid-property(font-size, 24px, 32px);
+			@include medium-weight;
+		}
+
+		&--orange {
+			color: $orange-2;
+		}
+	}
+
+	&__question {
+		@include fluid-font-size(1.1);
+		@include medium-weight;
+
+		position: relative;
+
+		cursor: pointer;
+
+		&:before,
+		&:after {
+			position: absolute;
+
+			content: '';
+		}
+
+		&:before {
+			top: 50%;
+			left: 0;
+
+			width: calc(100% - 35px);
+			height: 1px;
+
+			background-color: #d9d9d9;
+		}
+
+		&:after {
+			top: 50%;
+			right: 0;
+			bottom: 0;
+
+			width: 13px;
+			height: 10px;
+			margin-top: -5px;
+
+			background: transparent url(/assets/chevron-down-orange.svg) no-repeat center center;
+			background-size: cover;
+			transform: rotateZ(0);
+			transition: 0.5s all ease;
+		}
+
+		&--other-design {
+			&:before {
+				display: none;
+			}
+
+			&:after {
+				width: 23px;
+				height: 14px;
+				background: transparent url(/assets/chevron-rounded-orange.svg) no-repeat center center;
+			}
+		}
+	}
+
+	&__question-text {
+		position: relative;
+
+		display: inline-block;
+		max-width: calc(100% - 55px);
+		padding-right: 20px;
+
+		background-color: $white;
+	}
+
+	&__orange-q {
+		color: $orange-2;
+	}
+
+	&__answer {
+		height: 0;
+
+		overflow: hidden;
+		transition: 0.5s height ease;
+	}
+
+	&__answer-inner {
+		padding: 20px 0;
+	}
+
+	@include breakpoint(tablet, up) {
+		&__title {
+			margin-bottom: 50px;
+		}
+	}
+
+	// Modifiers
+	&--open {
+	}
+
+	&--open & {
+		&__question {
+			&:after {
+				transform: rotateZ(180deg);
+			}
+		}
+	}
+}

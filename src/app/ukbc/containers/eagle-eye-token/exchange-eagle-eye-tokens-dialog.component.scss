@@ -1,0 +1,12 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+.ExchangeEagleEyeTokensDialog {
+	.Modal__title {
+		color: $orange-2;
+	}
+
+	&__Button {
+		@include margin-top($narrow: true);
+	}
+}

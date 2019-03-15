@@ -1,0 +1,12 @@
+<ukbc-collection-date 
+	[collectionDate]="CollectionDate$ | async" 
+	[paymentOptions]="paymentOptions"
+	[forceShowValidationErrors]="forceShowValidationErrors" 
+	[daysAfterStartDateUntilFirstAvailableCollectionDate]="NUMBER_OF_DAYS_AFTER_START_DATE_UNTIL_FIRST_AVAILABLE_COLLECTION_DATE_FOR_CARD"
+	[content]="content" 
+	(onCollectionDateChange)="OnDateChanged($event)">
+</ukbc-collection-date>
+<div class="Payment__info-box" *ngIf="!!(CollectionDate$ | async)">
+	<div class="Payment__info-box-text" [innerHTML]="CollectionDateInstalmentHelpText | safeHTML"></div>
+	<div class="Payment__info-box-text" [innerHtml]="MonthlyOnCardPaymentDescription | safeHTML"></div>
+</div>

@@ -1,0 +1,96 @@
+@import '../../../../styles/core-variables-and-helpers';
+
+$arrow-width: 15px;
+$arrow-height: 7px;
+$faq-padding-top-bottom: 17px;
+$checkbox-size: 20px;
+
+.FAQs {
+	&__header {
+		@include padding-top(13px, 55px);
+		@include padding-bottom(25px, 35px);
+
+		display: flex;
+		border-bottom: 1px solid $grey-3;
+	}
+
+	&__title {
+		@include fluid-property(font-size, 26px, 32px);
+		@include medium-weight;
+		line-height: 1.1em;
+	}
+
+	&__button {
+		@include medium-weight;
+		margin: 0 0 0 auto;
+		flex-shrink: 0;
+		color: $grey-2;
+		text-decoration: underline;
+		font-size: px-to-rem(16px);
+	}
+}
+
+.FAQ {
+	$c: &;
+	&__question {
+		@include medium-weight;
+		@include pica;
+		padding: px-to-rem($faq-padding-top-bottom) #{10px + $arrow-width} px-to-rem($faq-padding-top-bottom) 0;
+		border-bottom: 1px solid $grey-3;
+		user-select: none;
+		cursor: pointer;
+		position: relative;
+		display: block;
+
+		&::-webkit-details-marker {
+			display: none;
+		}
+
+		&:focus {
+			outline: none;
+		}
+
+		#{$c}--open & {
+			border-bottom: 0;
+		}
+
+		&:after {
+			content: ' ';
+			display: block;
+			position: absolute;
+			right: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			width: $arrow-width;
+			height: $arrow-height;
+			background-image: url(/assets/chevron-thin-down-grey.svg);
+			background-repeat: no-repeat;
+			background-size: 100% auto;
+			transition: transform 0.3s ease-out;
+
+			#{$c}--open & {
+				transform: rotate(-180deg);
+			}
+		}
+	}
+
+	&__answer {
+		display: none;
+		#{$c}--open & {
+			display: inherit;
+			border-bottom: 1px solid $grey-3;
+		}
+
+		:first-child {
+			margin-top: 0;
+		}
+
+		.Checkbox__label:before {
+			width: $checkbox-size;
+			height: $checkbox-size;
+			border: 2px solid $dark-grey;
+			border-radius: 1px;
+			margin-right: 0.5em;
+		}
+	}
+}

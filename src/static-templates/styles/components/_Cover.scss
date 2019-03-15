@@ -1,0 +1,497 @@
+$cover-ribbon-background-colour: #cc0001;
+$cover-breakpoint: 900px;
+
+.Cover {
+	position: relative;
+
+	min-height: 115px;
+	margin: 10px;
+	padding: 15px;
+
+	border-radius: 6px;
+	box-shadow: 0 2px 10px 0 rgba($grey, 0.3);
+	overflow: hidden;
+
+	&__inner-container {
+		display: flex;
+
+		width: 100%;
+	}
+
+	&__content,
+	&__buttons {
+		color: $grey;
+	}
+
+	&__buttons {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+	}
+
+	&__description {
+		display: none;
+	}
+
+	&__description {
+		@include medium-weight;
+	}
+
+	&__more-link {
+		@include medium-weight;
+
+		padding: 0 20px 0 0;
+		border: none;
+
+		color: #ee8140;
+		line-height: 2;
+		text-decoration: underline;
+
+		background: transparent url('/assets/chevron-right-orange.svg') no-repeat right 13px/ 10px 10px;
+
+		cursor: pointer;
+
+		white-space: nowrap;
+
+		.has-hover &:hover {
+			text-decoration: none;
+		}
+
+		&:focus,
+		&:active {
+			outline: none;
+		}
+
+		&--desktop {
+			display: none;
+		}
+	}
+
+	&__from {
+		@include medium-weight;
+		color: $orange-2;
+	}
+
+	&__price {
+		@include medium-weight;
+		line-height: 1em;
+		margin: 0 0 0.35em;
+		color: $orange-2;
+
+		font-size: 2.625em;
+	}
+
+	&__name {
+		@include long-primer;
+		margin: 0 0 1.5em;
+		text-transform: uppercase;
+	}
+
+	&__frequency {
+		@include brevier;
+
+		display: block;
+
+		line-height: 1;
+		font-weight: 300;
+	}
+
+	&__btn {
+		white-space: nowrap;
+		&--desktop {
+			display: none;
+		}
+	}
+
+	&__feature-list {
+		margin-top: 0;
+		margin-bottom: 0;
+		padding-left: 28px;
+
+		list-style-type: none;
+
+		@include breakpoint($cover-breakpoint, below) {
+			width: calc(100% - 2em);
+		}
+	}
+
+	&__feature-item {
+		position: relative;
+
+		margin-bottom: 0.5em;
+
+		text-align: left;
+		line-height: 1.2em;
+
+		&:before {
+			position: absolute;
+			top: 0.688em;
+			left: -1.75em;
+
+			width: 1.125em;
+			height: 1.125em;
+
+			background: #e3e3e3 url('/assets/cross.svg') no-repeat center center;
+			background-size: 0.5em;
+			background-color: attr(data-color);
+			border-radius: 50%;
+
+			transform: translateY(-50%);
+
+			content: '';
+		}
+
+		&--included:before {
+			background-image: url('/assets/tick.svg');
+			background-color: currentColor;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&__feature-text {
+		color: $black;
+	}
+
+	&__ribbon {
+		z-index: 2;
+		display: flex;
+		align-content: center;
+		position: absolute;
+		top: 15px;
+		right: 15px;
+
+		width: 4em;
+		height: 4em;
+
+		border-radius: 50%;
+
+		padding: 1em 0.25em 0.25em;
+		min-height: 2.5em;
+
+		font-size: 1.4em;
+		line-height: 1.1em;
+		font-weight: 400;
+		color: $white;
+
+		background-color: $cover-ribbon-background-colour;
+
+		text-align: center;
+		text-transform: uppercase;
+
+		&--hidden {
+			opacity: 0;
+		}
+	}
+
+	@include breakpoint($cover-breakpoint, up) {
+		display: flex;
+
+		padding: 0;
+		border-top: none;
+
+		background-color: $grey-4;
+
+		&__container {
+			display: flex;
+			justify-content: center;
+			overflow: hidden;
+			padding-top: 30px;
+		}
+
+		&__content,
+		&__buttons {
+			position: relative;
+			background-color: $white;
+		}
+
+		&__content {
+			padding: 20px 20px 0;
+		}
+
+		&__buttons {
+			align-items: center;
+			padding: 0 20px 20px;
+			border-bottom-left-radius: 4px;
+			border-bottom-right-radius: 4px;
+		}
+
+		&__ribbon {
+			min-height: 2.1em;
+
+			padding-top: 0.5em;
+			padding-bottom: 0;
+			border-radius: 0;
+			width: 100%;
+			height: 30px;
+			justify-content: center;
+
+			top: 0;
+			right: 0;
+
+			border-top-left-radius: 4px;
+			border-top-right-radius: 4px;
+
+			font-size: 1.5em;
+		}
+
+		&__description {
+			display: block;
+		}
+
+		&__description {
+			@include great-primer;
+
+			position: absolute;
+			top: 50px;
+			left: 50px;
+
+			max-width: 9.5em;
+
+			line-height: 1.1;
+		}
+
+		&__more-link {
+			top: auto;
+			right: auto;
+			bottom: 70px;
+			left: 50px;
+
+			&--mobile {
+				display: none;
+			}
+
+			&--desktop {
+				display: inline-block;
+			}
+		}
+
+		&__price {
+			top: 50px;
+			right: 80px;
+			bottom: auto;
+			left: auto;
+
+			font-size: 3.25em;
+		}
+
+		&__btn {
+			top: auto;
+			right: 50px;
+			bottom: 50px;
+
+			min-width: 8.889em;
+
+			text-align: left;
+			font-size: 1.125em;
+
+			&--mobile {
+				display: none;
+			}
+
+			&--desktop {
+				display: inline-block;
+				clear: both;
+			}
+		}
+	}
+
+	// Modifiers
+	&--basic {
+		@include padding-bottom;
+		min-height: 130px;
+		margin: 0;
+		padding-top: 20px;
+		padding-bottom: 30px;
+		padding-left: 10px;
+		padding-right: 10px;
+		border-top: none;
+		box-shadow: none;
+
+		@include breakpoint($cover-breakpoint, up) {
+			padding-top: 20px;
+			padding-bottom: 30px;
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+	}
+
+	&--basic & {
+		&__inner-container {
+			position: relative;
+			padding: 20px;
+			background: $white;
+			border-radius: 6px;
+			box-shadow: 0 2px 10px 0 rgba($grey, 0.3);
+		}
+
+		&__more-link {
+			top: 20px;
+			right: 25px;
+		}
+
+		&__price {
+			bottom: 30px;
+			left: 25px;
+		}
+
+		&__feature-list {
+			color: $blue;
+		}
+
+		&__content {
+			width: 100%;
+		}
+
+		@include breakpoint($cover-breakpoint, up) {
+			&__inner-container {
+				max-width: 870px;
+				margin: 0 auto;
+				padding-left: 40px;
+				padding-right: 40px;
+
+				align-items: center;
+			}
+
+			&__header,
+			&__content {
+				padding: 0;
+			}
+
+			&__header {
+				margin-top: 1px;
+
+				text-align: center;
+			}
+
+			&__name {
+				margin-bottom: 0;
+			}
+
+			&__content {
+				display: flex;
+				align-items: center;
+			}
+
+			&__feature-list {
+				margin-bottom: 0;
+				padding: 0 30px 0 75px;
+			}
+
+			&__buttons {
+				padding: 0;
+			}
+
+			&__btn {
+				position: relative;
+				top: auto;
+				right: auto;
+				bottom: auto;
+				margin-left: auto;
+			}
+
+			&__frequency {
+				display: block;
+
+				margin-left: 0;
+			}
+
+			&__more-link {
+				&--desktop {
+					position: static;
+					display: inline-block;
+				}
+			}
+		}
+	}
+
+	&--vertical {
+		background: $white;
+		border-radius: 4px;
+
+		@include breakpoint($cover-breakpoint, up) {
+			display: flex;
+			width: 100%;
+			max-width: 300px;
+			overflow: visible;
+
+			box-shadow: none;
+
+			.PackageLogo {
+				color: $white;
+			}
+		}
+	}
+
+	&--vertical & {
+		&__content {
+			width: 100%;
+		}
+		@include breakpoint($cover-breakpoint, up) {
+			&__inner-container {
+				display: flex;
+				flex-direction: column;
+				margin-top: 50px;
+				box-shadow: 0 2px 10px 0 rgba($grey, 0.3);
+				border-radius: 4px;
+			}
+
+			&__feature-list {
+				flex-grow: 1;
+				padding: 0 20px 15px 40px;
+			}
+
+			&__content {
+				display: flex;
+				flex-direction: column;
+				width: auto;
+				flex-grow: 1;
+
+				padding-bottom: 0;
+
+				text-align: center;
+
+				border-radius: 6px;
+			}
+
+			&__description,
+			&__price {
+				position: static;
+			}
+
+			&__more-link {
+				position: relative;
+				bottom: auto;
+				left: auto;
+				margin-bottom: 0.25em;
+			}
+
+			&__btn {
+				position: relative;
+				right: auto;
+				bottom: auto;
+				width: 100%;
+			}
+		}
+	}
+
+	&--ribbon {
+		@include breakpoint($cover-breakpoint, up) {
+			box-shadow: 0 2px 10px 0 rgba($grey, 0.3);
+		}
+	}
+
+	&--ribbon & {
+		@include breakpoint($cover-breakpoint, up) {
+			&__inner-container {
+				margin-top: 0;
+				padding-top: 50px;
+				border-top-left-radius: 0;
+				border-top-right-radius: 0;
+				box-shadow: none;
+			}
+		}
+	}
+}

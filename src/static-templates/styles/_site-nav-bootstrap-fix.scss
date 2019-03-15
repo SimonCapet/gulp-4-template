@@ -1,0 +1,34 @@
+// Site nav hack
+@media only screen and (min-width: 1200px) {
+	.siteNav > ul > li > a {
+		font-size: 1.18em;
+	}
+}
+@media only screen and (max-width: 767px) {
+	.siteNav > ul {
+		right: 0;
+		transform: translate(100%, 0);
+	}
+}
+
+@media only screen and (max-width: 992px) and (min-width: 768px) {
+	.siteNav > ul > li > a {
+		font-size: 0.83em;
+	}
+}
+
+@media only screen and (max-width: 1119px) and (min-width: 993px) {
+	.siteNav > ul > li > a {
+		font-size: 1.09em;
+	}
+}
+
+.siteRibbon,
+.siteHeader {
+	.row {
+		flex-wrap: nowrap;
+	}
+	.pull-right {
+		align-self: flex-end;
+	}
+}

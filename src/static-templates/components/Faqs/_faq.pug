@@ -1,0 +1,9 @@
+mixin Faq(config)
+	.FAQ__wrapper(data-component="faqs")
+		h2.FAQ__title #{config.title}
+		each val in config.faqs
+			.FAQ
+				.FAQ__question
+					span.FAQ__question-text #{val.question}
+				.FAQ__answer
+					.FAQ__answer-inner #{val.answer}

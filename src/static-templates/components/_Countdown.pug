@@ -1,0 +1,51 @@
+mixin CountdownNumber(max)
+	- for (let i = 0; i <= max; i++)
+		.CountdownNumber.CountdownNumber--inactive
+			.CountdownNumber__top= i
+			.CountdownNumber__bottom
+				.CountdownNumber__inner= i
+
+
+mixin Countdown(dateTime, showHurry)
+	if debug
+		link(type="text/css" rel="stylesheet" href="//localhost:8080/dist/static/styles/components/Countdown/Countdown.css")
+	else
+		link(type="text/css" rel="stylesheet" href="/styles/components/Countdown/Countdown.css")
+
+	.Countdown(class=showHurry ? 'Countdown--hurry' : '' data-component="countdown" data-date=dateTime)
+		if showHurry
+			.Countdown__hurry Hurry! Ends in:
+		.Countdown__cols
+			.Countdown__col
+				.Countdown__number-pair
+					.Countdown__numbers
+						+CountdownNumber(9)
+					.Countdown__numbers
+						+CountdownNumber(9)
+				.Countdown__label Days
+			.Countdown__colon :
+			.Countdown__col
+				.Countdown__number-pair
+					.Countdown__numbers
+						+CountdownNumber(2)
+					.Countdown__numbers
+						+CountdownNumber(9)
+				.Countdown__label Hours
+			.Countdown__colon :
+			.Countdown__col
+				.Countdown__number-pair
+					.Countdown__numbers
+						+CountdownNumber(5)
+					.Countdown__numbers
+						+CountdownNumber(9)
+				.Countdown__label Minutes
+			.Countdown__colon :
+			.Countdown__col
+				.Countdown__number-pair
+					.Countdown__numbers
+						+CountdownNumber(5)
+					.Countdown__numbers
+						+CountdownNumber(9)
+				.Countdown__label Seconds
+
+

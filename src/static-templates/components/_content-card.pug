@@ -1,0 +1,15 @@
+mixin ContentCard(config, gridSettings)
+	.ContentPanel__wrapper(class=gridSettings)
+		.ContentPanel
+			.ContentPanel__inner
+				if (config.smallTitle)
+					h6.ContentPanel__small-title #{config.smallTitle}
+				h4.ContentPanel__title #{config.title}
+				if (config.body)
+					p.ContentPanel__description #{config.body}
+				if (config.bullets)
+					ul.ContentPanel__bullets
+						for bullet in config.bullets
+							li.ContentPanel__bullet=bullet
+				if (config.linkUrl)
+					a.ContentPanel__link.LinkBtn.LinkBtn--chevron-right.LinkBtn--bold(href=config.linkUrl) #{config.linkTitle}

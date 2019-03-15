@@ -1,0 +1,5 @@
+mixin PeaceOfMindItem(imgUrl, title, description)
+	.PeaceOfMind__col.PeaceOfMindItem
+		.PeaceOfMindItem__img(data-component="responsive-image" data-img=imgUrl data-alt=title data-min-size="320" data-image-class="PeaceOfMindItem__r-img" data-loaded-class="PeaceOfMindItem__r-img--loaded")
+		h3.PeaceOfMindItem__title #{title}
+		p.PeaceOfMindItem__description #{description}

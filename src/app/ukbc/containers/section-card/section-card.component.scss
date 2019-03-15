@@ -1,0 +1,127 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+$edit-caret-width: 0.5em;
+
+.SectionCard {
+	width: 100%;
+	background: none;
+	box-shadow: none;
+	border-radius: 5px;
+	display: flex;
+
+	&__inner {
+		@include padding-vertical;
+		padding-left: 3px;
+		padding-right: 3px;
+
+		flex: 0 1 100%;
+		overflow: hidden;
+		border-bottom: 1px $grey-5 solid;
+	}
+
+	&__header {
+		display: flex;
+		flex: 0 1 20em;
+		justify-content: space-between;
+		flex: none;
+	}
+
+	&__title {
+		@include great-primer;
+		color: $grey;
+		flex-basis: 100%;
+	}
+
+	&__values-title {
+		@include pica;
+	}
+
+	&--incomplete & {
+		&__title {
+			color: $grey-3;
+			margin: 0;
+		}
+	}
+
+	&--complete & {
+		cursor: pointer;
+
+		&__title {
+			&:before {
+				content: '';
+				display: inline-block;
+				width: 1em;
+				height: 1em;
+				margin: 0 0.25em 0 0;
+				background: url(/assets/tick-circle-green.svg) no-repeat;
+				background-size: contain;
+				position: relative;
+				top: 0.1em;
+			}
+		}
+	}
+
+	&__row {
+		width: 100%;
+
+		&:not(:first-of-type) {
+			@include padding-top;
+			@include margin-top;
+			border-top: solid 1px $grey-5;
+		}
+
+		&--green {
+			color: $form-field-valid;
+		}
+
+		&--inline {
+			@include breakpoint(desktop-large, up) {
+				display: flex;
+			}
+		}
+	}
+
+	&__body {
+		flex: none;
+	}
+
+	&__column {
+		display: block;
+		@include breakpoint(desktop, up) {
+			vertical-align: top;
+			display: inline-block;
+		}
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		flex: 1 0;
+	}
+
+	&__value {
+		margin-bottom: 0.25em;
+	}
+
+	&__edit {
+		@include margin-top($narrow: true);
+	}
+
+	&__button {
+		@include margin-top($narrow: true);
+	}
+
+	&__value-label {
+		@include bold-weight;
+		color: $grey;
+	}
+}
+
+@import './PrimaryMember';
+@import './Address';
+@import './AdditionalMembers';
+@import './Vehicles';
+@import './CoverStartDate';
+@import './PaymentMethod';
+@import './DirectDebitDetails';

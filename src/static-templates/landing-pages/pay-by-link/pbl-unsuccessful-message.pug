@@ -1,0 +1,12 @@
+extend ../../components/_masterSimpleNav
+block content
+	include ../../components/Site/_site-header
+		link(rel="stylesheet" href="/static/styles/pay-by-link/styles.css")
+
+	.PayByLink__body
+		.PayByLink__content
+
+			ul.PayByLink__list
+				li Unfortunately, your transaction was unsuccessful.
+				li Payment has not been taken. For security reasons, this link can only be used once and has now expired.
+				li Please call the RAC now on <a class="PayByLink__phone-number" href='tel:0333 202 3066'>0333 202 3066</a> to make your payment and stay covered.

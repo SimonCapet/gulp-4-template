@@ -1,0 +1,17 @@
+.PAYGBenefits {
+	@include padding-vertical(40px, 80px);
+	border-bottom: 1px solid $grey-5;
+
+	&__header {
+		@include fluid-property(font-size, 24px, 32px);
+
+		&--orange {
+			color: $orange-2;
+		}
+	}
+
+	&__sub-header {
+		padding-bottom: 20px;
+		font-size: 18px;
+	}
+}

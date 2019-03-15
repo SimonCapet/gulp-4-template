@@ -1,0 +1,25 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+$basket-token-horizontal-padding: 0.75em;
+
+.BasketToken {
+	@include brevier;
+
+	margin: 0 0 0 $basket-token-horizontal-padding;
+	padding: 0 $basket-token-horizontal-padding;
+	line-height: 1.2em;
+	border-left: 1px solid $grey;
+
+	@include breakpoint(tablet, up) {
+		margin-bottom: 0.3em;
+		padding-right: 0;
+		letter-spacing: -0.09em;
+	}
+
+	&__price {
+		@include medium-weight;
+
+		color: $orange-2;
+	}
+}

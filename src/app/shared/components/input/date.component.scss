@@ -1,0 +1,76 @@
+@import '../../../../styles/core-variables-and-helpers';
+
+$date-day-month-width: 55px;
+$date-year-width: $input-width - (2 * $date-day-month-width);
+$date-input-padding-right: 0.4em;
+
+.Date {
+	&__inputs {
+		position: relative;
+		background-color: $input-background-color;
+		border: $input-border-width $form-field-default solid;
+		border-radius: $input-border-radius;
+		max-width: $input-width;
+		display: flex;
+		align-items: center;
+	}
+
+	&--disabled &__inputs {
+		background-color: $input-disabled-background-color;
+	}
+
+	&__day,
+	&__month,
+	&__year {
+		display: table-cell;
+		position: relative;
+	}
+
+	&__day,
+	&__month {
+		width: $date-day-month-width;
+	}
+
+	&__year {
+		width: $date-year-width;
+		padding-right: $input-element-right-padding;
+	}
+
+	& &__input {
+		background: none;
+		margin: 0;
+		border: 0;
+		min-width: $date-day-month-width;
+		padding-right: $date-input-padding-right;
+
+		&::placeholder {
+			color: $form-field-default;
+			text-decoration: underline;
+		}
+	}
+
+	.Input--focused & {
+		&__inputs {
+			border-color: $form-field-focus;
+		}
+	}
+
+	.Input--invalid & {
+		&__inputs {
+			border-color: $form-field-invalid;
+		}
+	}
+
+	.Input--focused &,
+	.Input--filled & {
+		&__day,
+		&__month {
+			&:after {
+				content: '/';
+				position: absolute;
+				top: 0.75em;
+				left: 2.75em;
+			}
+		}
+	}
+}

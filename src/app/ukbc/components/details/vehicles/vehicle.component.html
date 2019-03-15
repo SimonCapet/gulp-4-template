@@ -1,0 +1,24 @@
+<div class="CardForm" [ngClass]="VehicleClasses">
+	<div class="CardForm__content">
+		<div class="CardForm__header" *ngIf="!hideTitle">
+			<h3 class="CardForm__title" *ngIf="!(JourneyContent$ | async).HideVehicleCountTitle" [innerHTML]="((index + 1) | ordinal) + ' ' + content.VehicleTitle"></h3>
+		</div>
+		<app-input-vehicle 
+			class="CardForm__details" 
+			[config]="VehicleLookupConfig" 
+			[index]="index + 1"
+			[forceShowValidationErrors]="forceShowValidationErrors" 
+			[isOpen]="isOpen" 
+			[isVehicleOpen]="isVehicleOpen"
+			[isVehicleComplete]="isVehicleComplete" 
+			(openVehicle)="OpenVehicle()" 
+			(onVehicleLookupComplete)="OnVehicleLookupComplete($event)"
+			(saveVehicle)="SaveVehicle()" 
+			(setField)="SetField($event)" 
+			(toggleMode)="ToggleMode($event)" 
+			(onVehicleLoading)="OnVehicleLoading($event)"
+			(onFocus)="onFocus.emit($event)" 
+			(onBlur)="OnBlur($event)">
+		</app-input-vehicle>
+	</div>
+</div>

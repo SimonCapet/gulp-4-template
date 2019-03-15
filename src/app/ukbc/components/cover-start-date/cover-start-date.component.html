@@ -1,0 +1,41 @@
+<form class="CardForm" *ngIf="isOpen && !isRenewal">
+	<div class="CardForm__content">
+		<div class="CardForm__inputs">
+			<ukbc-cover-start-date-buttons 
+				[TodayLabel]="TodayLabel" 
+				[TomorrowLabel]="TomorrowLabel" 
+				[AnotherDateLabel]="AnotherDateLabel"
+			 	[TodayDate]="TodayDate" 
+			 	[TomorrowDate]="TomorrowDate" 
+			 	[AnotherDate]="AnotherDate" 
+			 	[coverDateSelected]="CoverDateSelected"
+			 	[TodayOnly]="TodayOnly" 
+				(dateSelected)="UpdateCoverStartDate($event)">
+			</ukbc-cover-start-date-buttons>
+			<div class="CoverStartDate__input-wrapper" *ngIf="CoverDateSelected === ECoverStartDateValue.AnotherDate">
+				<app-input-date 
+					[title]="Content.ChooseManualCoverStartDateLabel" 
+					[value]="AnotherDate" 
+					(onChange)="SetCoverStartDate($event.value)"
+					[model]="{cover: cover, field: 'startDate'}" 
+					[validationErrors]="ValidationErrors$ | async"
+					[forceShowValidationErrors]="forceShowValidationErrors" 
+					(onFocus)="onFocus.emit($event)" 
+					[trackingFieldName]="'CoverStart'">
+				</app-input-date>
+			</div>
+			<button class="CardForm__save-button Btn Btn--orange" type="button" (click)="SaveStartDate()">
+				{{ Content.SaveCoverStartDate }}
+			</button>
+		</div>
+	</div>
+</form>
+<div class="SectionCard__values CoverStartDate__values" *ngIf="!isOpen && isComplete || isRenewal">
+	<div class="SectionCard__value">
+		<span class="SectionCard__value-label">{{ isRenewal ? Content.CoverRenewsOnLabel : Content.CoverStartsOnLabel }}</span>
+		<span>&#0160;{{ (StartDate | date: 'dd/MM/y') }}</span>
+	</div>
+	<div class="SectionCard__edit" *ngIf="!isRenewal && !TodayOnly && !isReadonly">
+		<Button class="LinkBtn LinkBtn--blue" type="button" (click)="Open()">{{ Content.EditCoverStartDate }}</Button>
+	</div>
+</div>

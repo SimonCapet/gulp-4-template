@@ -1,0 +1,41 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+@import '../../../../styles/components/_SiteHeader';
+
+.Questions {
+	&__question {
+		display: block;
+
+		@include breakpoint(tablet, below) {
+			&:not(:last-of-type) {
+				min-height: calc(90vh - #{$basket-height + $question-progress-height-mobile});
+			}
+		}
+
+		@include breakpoint(tablet, up) {
+			&:not(:last-of-type) {
+				min-height: 65vh;
+			}
+
+			&:last-of-type {
+				min-height: 55vh;
+			}
+		}
+	}
+
+	&__complete-button {
+		margin-top: 3vh;
+
+		@include breakpoint(mobile-large, below) {
+			width: 100%;
+		}
+
+		@include breakpoint(tablet, below) {
+			margin-bottom: 80vh;
+		}
+
+		@include breakpoint(tablet, up) {
+			margin-bottom: calc(42vh - #{$header-height-desktop});
+		}
+	}
+}

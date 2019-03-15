@@ -1,0 +1,50 @@
+<input 
+	class="Radio__input" 
+	id="{{ 'monthly-' + UUID }}" 
+	type="radio" 
+	name="{{ 'payment-frequency-toggle-' + UUID }}"
+	(click)="ToggleFrequency(EPurchaseType.Monthly)" 
+	[checked]="Frequency === EPurchaseType.Monthly" 
+	(keyup)="HandleRadioKeyup($event)"
+	[disabled]="!(CanChangeFrequency$ | async)" />
+<label class="Radio__label" for="{{ 'monthly-' + UUID }}">
+	<span class="Radio__label--svg-unchecked">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+			<circle cx="10" cy="10" r="9.5"></circle>
+			<path d="M10 1c5 0 9 4 9 9s-4 9-9 9-9-4-9-9 4-9 9-9m0-1C4.5 0 0 4.5 0 10s4.5 10 10 10 10-4.5 10-10S15.5 0 10 0z" fill="#222"></path>
+		</svg>
+	</span>
+	<span class="Radio__label--svg-checked">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+			<circle class="radio-background" cx="10" cy="10" r="9.5" fill="#fff"></circle>
+			<path class="radio-border" d="M10 1c5 0 9 4 9 9s-4 9-9 9-9-4-9-9 4-9 9-9m0-1C4.5 0 0 4.5 0 10s4.5 10 10 10 10-4.5 10-10S15.5 0 10 0z" fill="#222"></path>
+			<circle class="radio-colour" cx="10" cy="10" r="6" [attr.fill]="radioColour"></circle>
+		</svg>
+	</span>
+	<span class="Radio__label-text">{{ MonthlyLabel }}</span>
+</label>
+<input 
+	class="Radio__input" 
+	id="{{ 'annual-' + UUID }}"
+	type="radio" 
+	name="{{ 'payment-frequency-toggle-' + UUID }}" 
+	(click)="ToggleFrequency(EPurchaseType.Annual)" 
+	[checked]="Frequency === EPurchaseType.Annual"
+	(keyup)="HandleRadioKeyup($event)" 
+	[disabled]="!(CanChangeFrequency$ | async)" />
+<label class="Radio__label" for="{{ 'annual-' + UUID }}">
+	<span class="Radio__label--svg-unchecked">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+		<circle cx="10" cy="10" r="9.5"></circle>
+		<path d="M10 1c5 0 9 4 9 9s-4 9-9 9-9-4-9-9 4-9 9-9m0-1C4.5 0 0 4.5 0 10s4.5 10 10 10 10-4.5 10-10S15.5 0 10 0z" fill="#222"></path>
+	</svg>
+</span>
+<span class="Radio__label--svg-checked">
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+		<circle class="radio-background" cx="10" cy="10" r="9.5" fill="#fff"></circle>
+			<path class="radio-border" d="M10 1c5 0 9 4 9 9s-4 9-9 9-9-4-9-9 4-9 9-9m0-1C4.5 0 0 4.5 0 10s4.5 10 10 10 10-4.5 10-10S15.5 0 10 0z" fill="#222"></path>
+			<circle class="radio-colour" cx="10" cy="10" r="6" [attr.fill]="radioColour"></circle>
+		</svg>
+	</span>
+	<span class="Radio__label-text"> {{ AnnualLabel }}</span>
+</label>

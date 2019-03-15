@@ -1,0 +1,32 @@
+<div class="Input" [ngClass]="Classes">
+	<label class="Input__label">
+		<span class="Input__title" *ngIf="!!title && !inline">
+			<span class="Input__title-inner">{{ title }}</span>
+		</span>
+		<div class="Input__field">
+			<input 
+				class="Input__input" 
+				type="{{ type }}" 
+				[(ngModel)]="value" 
+				(keydown)="SendValue($event)"
+				(change)="SendValue($event)" 
+				(keyup)="OnKeyUp($event)" 
+				(focus)="Focused($event)" 
+				(blur)="Blurred($event)" 
+				(wheel)="OnWheel($event)"
+				[disabled]="disabled" 
+				[attr.autocomplete]="autocomplete" 
+				[attr.maxLength]="maxLength" 
+				[attr.id]="id" 
+				[attr.min]="min"
+				[attr.max]="max" 
+				[attr.step]="step" 
+				[attr.pattern]="pattern" 
+				[placeholder]="!!inline ? title : ''" 
+				novalidate />
+			<img class="Input__valid-indicator-image" *ngIf="!hideValidIndicator" src="/assets/tick-green.svg" alt="Valid" />
+			<img class="Input__invalid-indicator-image" src="/assets/exclamation.svg" alt="Invalid" />
+		</div>
+	</label>
+	<div class="Input__error" *ngIf="!hideErrorMessage">{{ ErrorMessage }}</div>
+</div>

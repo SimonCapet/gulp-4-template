@@ -1,0 +1,56 @@
+<form class="Address" novalidate>
+	<app-input-text 
+		class="Address__input" 
+		id=`address-line-1-{{this.componentID}}`
+		title="{{ config.AddressLine1.title }}" 
+		[value]="AddressPickerModel.AddressLine1"
+	 	[validationErrors]="ValidationErrors.AddressLine1" 
+	 	[forceShowValidationErrors]="ShouldShowValidationErrors"
+	 	(onChange)="InputChanged($event)" 
+	 	(onFocus)="onFocus.emit($event)" 
+	 	[model]="{ field: 'AddressLine1' }" 
+	 	[disabled]="FindingAddress"
+		[autocomplete]="'address-line1'" 
+		[trackingFieldName]="TrackingFieldName('AddressLine1')">
+	</app-input-text>
+	<app-input-text 
+		id=`address-postcode-{{this.componentID}}`
+		class="Address__input" 
+		title="{{ config.Postcode.title }}" 
+		[value]="AddressPickerModel.Postcode"
+		[validationErrors]="ValidationErrors.Postcode" 
+		[forceShowValidationErrors]="ShouldShowValidationErrors" 
+		(onChange)="InputChanged($event)"
+		(onFocus)="onFocus.emit($event)" 
+		[model]="{ field: 'Postcode' }" 
+		[autocomplete]="'postal-code'"
+		[disabled]="FindingAddress" 
+		(keypress)="HandleKeypress($event)" 
+		[autocomplete]="'postal-code'" 
+		[trackingFieldName]="TrackingFieldName('Postcode')">
+	</app-input-text>
+	<button 
+		class="Btn Btn--orange Btn--search Address__search"
+		[ngClass]="findButtonClasses" 
+		type="button" (click)="FindAddress()">
+		<span class="Btn__inner">{{ config.findAddressTitle }}</span>
+		<div class="Btn__loader Loader">
+			<div class="Loader__chevron"></div>
+			<div class="Loader__chevron"></div>
+			<div class="Loader__chevron"></div>
+		</div>
+	</button>
+	<app-input-select 
+		class="Address__options" 
+		id="addressOptions" 
+		*ngIf="options.length > 1" 
+		title="{{ 'Choose your address' }}"
+		[options]="options" 
+		[value]="selectedOption" 
+		[model]="selectedOption" 
+		(onChange)="SelectAddress($event.value)"
+		(onFocus)="onFocus.emit($event)" 
+		[disabled]="FindingAddress" 
+		[trackingFieldName]="TrackingFieldName('SelectAddress')">
+	</app-input-select>
+</form>

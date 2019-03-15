@@ -1,0 +1,8 @@
+include _SerpentinesConfig
+include _Serpentine
+
+link(rel="stylesheet" href="/static/styles/components/Serpentines.css")
+.Container
+	.Serpentines
+		each item in serpentinesConfig.items
+			+Serpentine(item)

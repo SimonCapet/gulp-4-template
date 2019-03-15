@@ -1,0 +1,13 @@
+@import '../sass-helpers/core-variables-and-helpers';
+$offer-bg-colour: #FCE2CC;
+
+.StickyMessage {
+	@include padding-vertical(8px, 13px);
+	@include fluid-property(font-size, 14px, 18px);
+	position: fixed;
+	z-index: 5;
+	width: 100%;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+	background-color: $offer-bg-colour;
+	text-align: center;
+}

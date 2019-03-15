@@ -1,0 +1,10 @@
+<header #racHeader class="Header">
+	<div class="Header__inner">
+		<a href="{{ (Content$ | async).RACLogoRedirectUrl }}" class="Header__logo"></a>
+		<ukbc-progress-bar-steps [steps]="steps" *ngIf="steps && !(JourneyContent$ | async).HideProgressHeaderSteps"></ukbc-progress-bar-steps>
+		<div class="Header__call" *ngIf="(JourneyContent$ | async).UTN">
+			{{ (Content$ | async).HeaderPhoneNumberPreText }} <a href="tel:{{ StripSpaces((JourneyContent$ | async).UTN) }}" class="Header__phone-link">{{ (JourneyContent$ | async).UTN }}</a>
+		</div>
+	</div>
+</header>
+

@@ -1,0 +1,11 @@
+@import '../../../../styles/core-variables-and-helpers';
+
+.VSOEError {
+	&__button {
+		width: 100%;
+	}
+
+	&__button + &__button {
+		@include margin-top($narrow: true);
+	}
+}

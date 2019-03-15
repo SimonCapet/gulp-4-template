@@ -1,0 +1,32 @@
+$your-policy-padding-breakpoint: 1366px;
+
+.YourPolicy {
+	@include fluid-property(padding-right, 10px, 50px);
+	@include fluid-property(padding-left, 10px, 50px);
+
+	max-width: 1270px;
+	margin: 0 auto;
+	padding-top: 40px;
+	padding-bottom: 40px;
+
+	&__heading-wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		padding: 0 0 30px 10px;
+	}
+
+	&__heading-image {
+		width: 35px;
+		margin-right: 15px;
+	}
+
+	&__heading-text {
+		margin: 0;
+	}
+
+	@include breakpoint($your-policy-padding-breakpoint, up) {
+		padding-right: 50px;
+		padding-left: 50px;
+	}
+}

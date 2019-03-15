@@ -1,0 +1,40 @@
+@import '../sass-helpers/core-variables-and-helpers';
+
+.CoverOptions {
+	text-align: center;
+	padding: 40px 0 50px;
+	@include breakpoint(tablet, up) {
+		padding-bottom: 115px;
+	}
+
+	.Btn {
+		margin-top: 0.5em;
+		text-align: left;
+	}
+}
+
+.CoverOptions__title {
+	@include fluid-property(font-size, 30px, 36px);
+}
+
+.CoverOptions__paragraph {
+	@include fluid-property(font-size, 18px, 21px);
+	@include fluid-property(margin-bottom, 20px, 40px);
+}
+
+.CoverOption {
+	margin-bottom: 2em;
+}
+
+.CoverOption__description {
+	font-size: 1.15em;
+	margin: 0;
+}
+
+.CoverOption__icon {
+	margin-bottom: 0.65em;
+	flex-basis: 4.5em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

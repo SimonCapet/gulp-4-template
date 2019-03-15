@@ -1,0 +1,10 @@
+$output-fonts-px: true;
+
+@import './sass-helpers/core-variables-and-helpers';
+
+@import './sass-helpers/components/Btn';
+@import 'components/Banner';
+
+.Banner {
+	font-family: $base-font-family;
+}

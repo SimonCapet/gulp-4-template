@@ -1,0 +1,13 @@
+mixin modal(id, content, price, url)
+	dialog.Modal.Modal--landing-page(data-component="modal" data-modal=id)
+		button.Modal__cross(type="button" title="Close")
+		main.Modal__body
+			.Modal__mask.Modal__mask--top
+			.Modal__inner !{content}
+			.Modal__mask.Modal__mask--bottom
+		//- Cannot use footer element as SEO category page will try to override a load of styles due to shoddy CSS.
+		.Modal__footer
+			.Modal__cta-container
+				.Modal__price &pound;#{price} <span class="Modal__frequency">monthly <br>cover</span>				
+				a.Modal__btn.Modal__btn--desktop.Btn.Btn--arrow.Btn--shadow.Btn--gradient.Btn--chevron-right(href=url) Select packages
+				a.Modal__btn.Modal__btn--mobile.Btn.Btn--arrow.Btn--shadow.Btn--gradient.Btn--chevron-right(href=url) Select

@@ -1,0 +1,38 @@
+@import '../../../../styles/core-variables-and-helpers';
+
+.PaymentFrequencyDuration {	
+	&__more {
+		@include medium-weight;
+		margin-top: 0.5em;
+		margin-bottom: 0.5em;
+		display:block;
+
+		svg {
+			display: inline-block;
+
+			transform: translateY(0.25em);
+			margin: 0 0.25em 0 0;
+
+			width: 1.2em;
+			height: 1.2em;
+
+			fill: currentColor;
+		}
+	}
+
+	&__banners {
+		@include margin-top($narrow: true);
+	}
+
+	&__offer-banner {
+		display: inline-block;
+		margin-bottom: 0;
+		margin-top: 0;
+		padding: 0.5em;
+	}
+
+	&__offer-banner {
+		background: $red;
+		color:white;
+	}
+}

@@ -1,0 +1,58 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+$basket-price-animation: opacity $transition-fast;
+
+.BasketPrice {
+	@include breakpoint(tablet, below) {
+		font-size: px-to-rem(24px);
+	}
+
+	@include breakpoint(tablet, up) {
+		font-size: px-to-rem(44px);
+	}
+
+	display: flex;
+	align-items: center;
+	position: relative;
+	height: 1em;
+
+	&__total {
+		@include medium-weight;
+		display: inline-block;
+		line-height: 1em;
+		transition: $basket-price-animation;
+
+		@include breakpoint(mobile, down) {
+			font-size: 0.9em;
+		}
+	}
+
+	&__loader {
+		@include breakpoint(tablet, below) {
+			font-size: 0.7em;
+		}
+
+		@include breakpoint(tablet, up) {
+			font-size: 0.8em;
+		}
+
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+		opacity: 0;
+		transition: $basket-price-animation;
+	}
+
+	&--loading & {
+		&__total {
+			opacity: 0;
+		}
+
+		&__loader {
+			opacity: 1;
+		}
+	}
+}

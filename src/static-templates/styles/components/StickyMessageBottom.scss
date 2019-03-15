@@ -1,0 +1,22 @@
+@import '../sass-helpers/core-variables-and-helpers';
+
+.StickyMessageBottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  .StickyMessageBottom__button {
+    display: inline-flex;
+    margin-left: 16px;
+
+    &.Btn.Btn--gradient.Btn--chevron-right::after {
+      transform: translate(0, -42%);
+    }
+  }
+}
+
+

@@ -1,0 +1,11 @@
+@import '../../../../styles/core-variables-and-helpers';
+
+.PaymentFrequency {
+	&__title {
+		@include margin-vertical($narrow: true);
+		
+		@include breakpoint(tablet, up) {
+			margin-top: 0;
+		}
+	}
+}

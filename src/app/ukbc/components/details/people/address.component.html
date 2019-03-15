@@ -1,0 +1,28 @@
+<div class="SectionCard__row" *ngIf="isOpen">
+	<app-input-address 
+		[config]="Config" 
+		(setField)="setField.emit($event)" 
+		(setAddress)="setAddress.emit($event)"
+		(onAddressFound)="onAddressFound.emit()" 
+		[isManuallyEditing]="address.manuallyEditingAddress" 
+		[hasChosenAddress]="address.hasChosenAddress"
+		[forceShowValidationErrors]="forceShowValidationErrors" 
+		(onManualEditToggle)="onManualEditToggle.emit($event)"
+		(onAddressChosen)="onAddressChosen.emit()" 
+		(onAddressOptions)="onAddressOptions.emit($event)" 
+		(onFocus)="onFocus.emit($event)"
+		(onAddressLoading)="onAddressLoading.emit($event)" 
+		(onAddressSaved)="onAddressSaved.emit()">
+	</app-input-address>
+</div>
+<div class="SectionCard__values" *ngIf="!isOpen && isComplete">
+	<div>{{ Address.AddressLine1 }}</div>
+	<div>{{ Address.AddressLine2 }}</div>
+	<div>{{ Address.AddressLine3 }}</div>
+	<div>{{ Address.Town }}</div>
+	<div>{{ Address.County }} </div>
+	<div>{{ Address.Postcode }}</div>
+	<div class="SectionCard__edit">
+		<Button class="LinkBtn LinkBtn--blue" (click)="Edit()">{{ content.EditAddress }}</Button>
+	</div>
+</div>

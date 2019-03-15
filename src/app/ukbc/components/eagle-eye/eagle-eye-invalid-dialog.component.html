@@ -1,0 +1,6 @@
+<div class="EagleEyeInvalidDialog">
+	<div class="EagleEyeInvalidDialog__error" [innerHTML]="errorMessage | safeHTML"></div>
+	<button class="EagleEyeInvalidDialog__button Btn Btn--orange Btn--chevron-right" type="button" (click)="Close()">
+		{{ (Content$ | async).EagleEyeTryAgainButton }}
+	</button>
+</div>

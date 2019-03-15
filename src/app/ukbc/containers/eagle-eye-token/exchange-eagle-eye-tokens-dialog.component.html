@@ -1,0 +1,12 @@
+<div class="ExchangeEagleEyeTokensDialog">
+	<div 
+		class="ExchangeEagleEyeTokensDialog__content" 
+		[innerHTML]="(JourneyContent$ | async).ExchangeEagleEyeTokensModalContent | safeHTML">
+	</div>
+	<a
+		class="ExchangeEagleEyeTokensDialog__Button Btn Btn--chevron-right" 
+		[href]="(JourneyContent$ | async).ExchangeEagleEyeTokensModalButtonUrl"
+		target="_blank">
+		{{ (JourneyContent$ | async).ExchangeEagleEyeTokensModalButtonText }}
+	</a>
+</div>

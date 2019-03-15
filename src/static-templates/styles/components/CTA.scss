@@ -1,0 +1,77 @@
+@import '../sass-helpers/core-variables-and-helpers';
+
+.CTA {
+	@include padding;
+
+	display: inline-flex;
+	flex-direction: column;
+	align-items: flex-start;
+
+	* {
+		flex: 0 1 auto;
+		max-width: 100%;
+	}
+
+	background: rgba($white, 0.95);
+
+	&--shadow {
+		box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+	}
+
+	&__btn {
+		// Sends button to bottom of CTA when CTA is in a column and it has grown to be the same height as others
+		margin-top: auto;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		+ p {
+			margin-top: 0;
+		}
+	}
+
+	// If in a col
+	.row > div > & {
+		@include margin-vertical($narrow: true);
+		flex: 1 0 auto;
+
+		.Banner--blazy & {
+			background-color: rgba(255, 255, 255, 0.9);
+		}
+
+		.Banner--shallow & {
+			margin: 0;
+		}
+	}
+}
+
+.CTA__title,
+.CTA__description {
+	@include light-weight; 
+}
+
+.CTA__title {
+	font-size: 0.9em;
+}
+.CTA__caption {
+	@include fluid-property(font-size, 40px, 45px);
+	margin-bottom: 0.4em;
+	line-height: 1em;
+}
+.CTA__description {
+	@include fluid-property(font-size, 20px, 23px);
+	line-height: 1.4em;
+	.Banner--shallow & {
+		@include fluid-property(font-size, 23px, 18px);
+		line-height: 1.3em;
+	}
+}
+
+.CTA__btn-text {
+	display: block;
+	font-size: 1.125em;
+}

@@ -1,0 +1,54 @@
+mixin CoverBundle(config, carouselEnabled)
+	- var monthlyClasses = ['hidden-xs', 'hidden-sm', 'hidden-md', 'hidden-lg', 'hidden-xl'];
+	- var annualClasses = [];
+
+	if config.monthlyPrices.includes('mobile')
+		- monthlyClasses = monthlyClasses.filter(cls => cls !== 'hidden-xs')
+		- annualClasses.push('hidden-xs')
+
+	if config.monthlyPrices.includes('tablet')
+		- monthlyClasses = monthlyClasses.filter(cls => cls !== 'hidden-sm' && cls !== 'hidden-md')
+		- annualClasses.push('hidden-sm')
+		- annualClasses.push('hidden-md')
+
+	if config.monthlyPrices.includes('desktop')
+		- monthlyClasses = monthlyClasses.filter(cls => cls !== 'hidden-lg' && cls !== 'hidden-xl')
+		- annualClasses.push('hidden-lg')
+		- annualClasses.push('hidden-xl')
+
+	each package, index in config.packages
+		.CoverBundle
+			.CoverBundle__price(style="background-color: #222;")
+				if !carouselEnabled
+					button.CoverBundle__info(type="button" data-dialog=`cb-modal-${index}`)
+				.CoverBundle__primary-price(class=monthlyClasses)
+					| &pound;#{package.monthlyPrice}
+					span.CoverBundle__price-frequency Monthly
+				.CoverBundle__secondary-price(class=monthlyClasses)
+					| &pound;#{package.annualPrice}
+					span.CoverBundle__price-frequency Annually
+				.CoverBundle__primary-price(class=annualClasses)
+					| &pound;#{package.annualPrice}
+					span.CoverBundle__price-frequency Annually
+				.CoverBundle__secondary-price(class=annualClasses)
+					| &pound;#{package.monthlyPrice}
+					span.CoverBundle__price-frequency Monthly
+			ul.CoverBundle__features
+				each product in package.products
+					- var itemClass = '';
+						- if (product.included) {
+						-	itemClass += 'CoverBundle__feature--included';
+						- }
+						- if (product.red) {
+						-	itemClass += ' CoverBundle__feature--red';
+						- }
+						- if (product.free) {
+						-	itemClass += ' CoverBundle__feature--free';
+						- }
+						li.CoverBundle__feature(class=itemClass) !{product.title}
+							- if (product.free)
+								span.CoverBundle__free
+	if !carouselEnabled
+		each package, index in config.packages
+			if package.dialogContent !== null
+				.CoverBundle__modal(data-component="dialog" data-id=`cb-modal-${index}` data-content=package.dialogContent)

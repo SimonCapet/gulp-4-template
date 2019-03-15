@@ -1,0 +1,15 @@
+include ./_FlashOfferConfig
+include ./_ProductBasis
+- var monthlyClasses = ['mobile', 'tablet', 'desktop'];
+
+link(rel="stylesheet" href="/static/styles/components/ProductBasis.css")
+.Container
+	.row.center-xs
+		+ProductBasis({ package: flashOfferPackages[0], monthlyPrices: monthlyClasses, fullWidth: true })
+		.col-xs-12.double-pica.medium.text-center
+			p OR
+		style(type="text/css").
+			.ProductBasis ~ .ProductBasis .ProductBasis__inner {
+				background-color: rgba(111, 111, 111);
+			}
+		+ProductBasis({ package: flashOfferPackages[1], monthlyPrices: monthlyClasses, fullWidth: true })

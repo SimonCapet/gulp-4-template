@@ -1,0 +1,277 @@
+@import '../sass-helpers/core-variables-and-helpers';
+$product-basis-border-radius: 7px;
+$description-tablet-height: 106px;
+$description-desktop-height: 85px;
+$flag-height: 36px;
+$flag-height-ie: 25px;
+$icon-width-height: 60px;
+$title-padding: 20px;
+$title-max-height: 63px;
+$svg-height: 35px;
+$svg-top-pos: 5px;
+$cta-height: 115px;
+$price-frequency-width: 50px;
+
+.ProductBasis {
+	text-align: left;
+	@include breakpoint(tablet, up) {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.text--uppercase {
+		text-transform: uppercase;
+		font-weight: 500;
+	}
+
+	strong {
+		font-weight: 500;
+	}
+}
+
+.ProductBasis__flag,
+.ProductBasis__inner {
+	border-top-left-radius: $product-basis-border-radius;
+	border-top-right-radius: $product-basis-border-radius;
+}
+
+.ProductBasis__flag + .ProductBasis__inner {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.ProductBasis__flag {
+	background-color: $red;
+	color: white;
+	text-align: center;
+	padding: 7px 10px;
+	flex: 0 0 $flag-height;
+
+	.IE & {
+		flex: 0 0 $flag-height-ie;
+	}
+}
+
+.ProductBasis__inner {
+	background-color: $grey;
+	color: white;
+	padding: 1.5em 1.2em 1.2em 1.2em;
+	flex: 1 1 auto;
+
+	@include breakpoint(tablet, up) {
+		padding: 1.5em 1.2em 1.2em 1.5em;
+	}
+}
+
+.ProductBasis__title {
+	@include fluid-property(font-size, 17px, 27px);
+
+	width: calc(100% - #{$icon-width-height} - 10px); // 10px for spacing
+	float: right;
+	padding: $title-padding 0;
+	margin: 0;
+	line-height: 1em;
+	max-height: $title-max-height;
+
+	color: $white;
+}
+
+.ProductBasis__description {
+	@include fluid-property(font-size, 18px, 20px);
+	margin: 0;
+	padding: 20px 0;
+	clear: both;
+	.ProductBasis--half-width & {
+		@include breakpoint(tablet, up) {
+			min-height: $description-tablet-height;
+		}
+		@include breakpoint(tablet, above) {
+			min-height: $description-desktop-height;
+		}
+	}
+}
+
+.ProductBasis__icon {
+	width: $icon-width-height;
+	height: $icon-width-height;
+	border-radius: 50%;
+	float: left;
+	background-color: $green;
+
+	&.ProductBasis__icon--people {
+		padding: 7px 10px;
+	}
+
+	&.ProductBasis__icon--vehicle {
+		padding: 8px;
+	}
+
+	svg {
+		width: 100%;
+		height: $svg-height;
+		fill: white;
+		position: relative;
+		top: $svg-top-pos;
+	}
+}
+
+.ProductBasis__contents {
+	padding: 20px 0;
+	margin: 0;
+	clear: both;
+
+	li {
+		display: block;
+		margin-bottom: 5px;
+		position: relative;
+	}
+
+	svg {
+		width: 20px;
+		height: 20px;
+		position: absolute;
+		top: 2px;
+	}
+
+	span {
+		display: block;
+		padding-left: 27px;
+		@include fluid-property(font-size, 15px, 16px);
+	}
+}
+
+.ProductBasis__suitability {
+	color: $grey-3;
+	p {
+		margin: 0 0 7px;
+		font-weight: bold;
+	}
+	ul {
+		margin: 0;
+		padding: 0 0 0 18px;
+	}
+}
+
+.ProductBasis__cta {
+	display: flex;
+	background: linear-gradient(to bottom, #fbfbfb 0%, #f5f5f5 100%);
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+	box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
+	justify-content: space-between;
+
+	@include breakpoint(mobile-large, up) {
+		justify-content: flex-start;
+	}
+
+	.ProductBasis--half-width & {
+		justify-content: space-between;
+		@include breakpoint(tablet, up) {
+			flex: 0 0 $cta-height;
+		}
+	}
+}
+
+.ProductBasis__price {
+	.ProductBasis--half-width &,
+	.ProductBasis--full-width & {
+		@media (min-width: $tablet) and (max-width: $tablet-landscape) {
+			padding: 1.3em 0 1.2em 1.2em;
+		}
+
+		@include breakpoint(tablet, up) {
+			padding: 1em 0 1.2em 1.5em;
+		}
+	}
+
+
+	.ProductBasis--half-width & {
+		display: flex;
+		align-items: center;
+		@include breakpoint(tablet, below) {
+			padding: 1em 0 1.2em 1.2em;
+		}
+	}
+
+	.ProductBasis--full-width & {
+		padding: 10px;
+		margin-right: 10px;
+		@include breakpoint(mobile-large, up) {
+			padding: 1em 0 1.2em 1.2em;
+			width: 50%;
+			margin-right: 0;
+		}
+		@include breakpoint(tablet, up) {
+			padding-right: 20px;
+		}
+	}
+}
+
+.ProductBasis__originalPrice {
+	color: $grey-9;
+	margin-bottom: 10px;
+	.strikethrough {
+		@include strikethrough($grey-9, 1px);
+	}
+	@include breakpoint(tablet, below) {
+		display: block;
+	}
+}
+
+.ProductBasis__action {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-end;
+	padding: 0 1.2em 0 0;
+
+	.ProductBasis--full-width & {
+		padding: 0 10px 0 0;
+		align-items: flex-start;
+		@include breakpoint(tablet, up) {
+			justify-content: center;
+			padding: 0 1.2em 0 0;
+		}
+	}
+}
+
+.ProductBasis__highlightedPrice,
+.ProductBasis__frequency {
+	color: $orange-2;
+	display: inline-block;
+}
+
+.ProductBasis__frequency,
+.ProductBasis__altPrice {
+	font-size: 18px;
+	@include breakpoint(tablet, up) {
+		font-size: 16px;
+	}
+}
+
+.ProductBasis__highlightedPrice {
+	@include fluid-property(font-size, 25px, 48px);
+	font-weight: 500;
+}
+
+.ProductBasis__frequency {
+	width: $price-frequency-width;
+	line-height: 1em;
+
+	@media (min-width: $tablet) and (max-width: $tablet-landscape) {
+		font-size: 14px;
+	}
+
+	.ProductBasis--full-width & {
+		@include light-weight;
+	}
+}
+
+.ProductBasis__altPrice {
+	color: $grey;
+	font-weight: bold;
+	margin-top: 10px;
+	.ProductBasis--full-width & {
+		@include medium-weight;
+	}
+}

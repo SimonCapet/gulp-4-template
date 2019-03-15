@@ -1,0 +1,49 @@
+-
+	var benefits = [
+		{	
+			icon: 'accident-care',
+			heading: "Accident Care",
+			subHeading: "End to End Accident Care Service",
+			summary: "If you're involved in an accident, we'll come to your rescue regardless of who's at fault",
+			bullets: [
+					"We'll come to your rescue and recover you",
+					"We'll talk you through every step of the process",
+					"You have access to personal injury assitance for you and your passengers"
+			]
+		},
+		{
+			icon: 'legal-advice',
+			heading: "Legal Advice",
+			subHeading: "Advice and support",
+			summary: "Free legal advice if you need any guidance on personal legal matters such as wills, family, motor and employment.",
+				bullets: [
+					"We'll come to your rescue and recover you",
+					"We'll talk you through every step of the process",
+					"You have access to personal injury assitance for you and your passengers"
+				]
+		},
+		{
+			icon: 'key-replace',
+			heading: "Key Return",
+			subHeading: "Return your lost keys",
+			summary: "We provide you with keyfobs, so if your keys are lost they can be reunited with you.",
+			bullets: [
+				"We'll come to your rescue and recover you",
+				"We'll talk you through every step of the process",
+				"You have access to personal injury assitance for you and your passengers"
+			]
+		}
+	];
+
+
+
+
+
+.PAYGBenefits
+	h2.PAYGBenefits__header 
+		span.PAYGBenefits__header--orange RAC&#0160;
+		| Member Benefits
+	p.PAYGBenefits__sub-header You also get access to all RAC member benefits, including:
+	.PAYGBenefits__benefits.row
+		include ./_payg-benefit
+		+PaygBenefit(benefits)

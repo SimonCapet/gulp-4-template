@@ -1,0 +1,83 @@
+$offer-product-highlight-horizontal-padding: $offer-cell-padding-horizontal-large - $offer-free-offset;
+$offer-product-highlight-vertical-padding: $offer-cell-padding-vertical - $offer-free-offset;
+
+.OfferProductHighlight {
+	@include fluid-property(right, $offer-cell-padding-horizontal-small, $offer-cell-padding-horizontal-large, $tablet);
+	@include fluid-property(left, $offer-cell-padding-horizontal-small, $offer-cell-padding-horizontal-large, $tablet);
+
+	z-index: 3;
+	position: absolute;
+	top: $offer-product-highlight-vertical-padding * 2;
+	bottom: $offer-product-highlight-vertical-padding * 2;
+
+	display: flex;
+	justify-content: center;
+
+	&__border {
+		position: absolute;
+
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+
+		border: $offer-free-border-width solid $offer-free-background-colour;
+		border-radius: 10px;
+	}
+
+	&__text {
+		text-align: center;
+
+		background: $offer-free-background-colour;
+		color: $white;
+
+		&--right {
+			@include bold-weight;
+
+			position: absolute;
+			top: 50%;
+			right: 0;
+			transform: translate(50%, -50%);
+
+			align-self: center;
+
+			font-size: 0.9em;
+
+			width: 3em;
+			height: 3em;
+
+			line-height: 3em;
+			border-radius: 50%;
+		}
+
+		&--bottom {
+			align-self: flex-end;
+			padding: 0.1em 0.5em;
+			transform: translateY(50%);
+			font-size: 0.8em;
+
+			text-transform: uppercase;
+
+			border-radius: 3px;
+			line-height: 1.4em;
+
+			strong {
+				@include bold-weight;
+			}
+		}
+	}
+
+	&--amber {
+		bottom: $offer-product-highlight-vertical-padding * 4;
+	}
+
+	&--amber & {
+		&__border {
+			border-color: $amber;
+		}
+
+		&__text {
+			background: $amber;
+		}
+	}
+}

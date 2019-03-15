@@ -1,0 +1,106 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+$moc-description-max-width: 650px;
+
+.PaymentStartAndFrequency {
+	@include ukbc-breakpoint($up: true) {
+		display: flex;
+		flex-wrap: wrap;
+		flex: 1 0 auto;
+
+		&--card-open {
+			flex-direction: column;
+		}
+	}
+}
+
+.Payment {
+	&__card {
+		align-self: stretch;
+
+		&:not(:last-child) {
+			@include margin-bottom;
+		}
+	}
+
+	&__section-title {
+		@include pica;
+		margin-top: 0.57em;
+		margin-bottom: 0.75em;
+
+		@include breakpoint(phone, down) {
+			margin-bottom: 0.5em;
+		}
+	}
+
+	&__details .SectionCard--open .SectionCard__title {
+		@include breakpoint(tablet, down) {
+			margin-bottom: 0;
+			padding-bottom: 0.5em;
+		}
+	}
+
+	&__direct-debit-message {
+		margin-top: 0;
+
+		&:empty {
+			margin: 0;
+		}
+	}
+
+	&__moc-payment-description {
+		max-width: $moc-description-max-width;
+		margin-top: 0;
+	}
+
+	&__collection-date {
+		@include margin-bottom;
+		position: relative;
+	}
+
+	&__button {
+		display: block;
+
+		width: 100%;
+
+		font-weight: bold;
+
+		@include breakpoint(tablet, up) {
+			display: inline-block;
+			width: 100%;
+			max-width: 13em;
+
+			&:not(:last-of-type) {
+				margin-right: 1.042em;
+			}
+		}
+
+		@include breakpoint (tablet, down) {
+			&:not(:first-of-type) {
+				margin-top: 1.111em;
+			}
+		}
+	}
+
+	&__info-box {
+		@include long-primer;
+		padding: 0.75em 1.25em;
+		background-color: $blue-5;
+		margin-top: 1.25em;
+	}
+
+	&__info-box--grey {
+		background-color: $grey-3;
+	}
+
+	&__info-box-text {
+		&:not(:last-of-type) {
+			margin-bottom: 1em;
+		}
+
+		strong {
+			white-space: nowrap;
+		}
+	}
+}

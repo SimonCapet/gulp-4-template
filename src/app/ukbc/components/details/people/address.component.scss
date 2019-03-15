@@ -1,0 +1,13 @@
+@import '../../../../../styles/core-variables-and-helpers';
+@import '../../../../ukbc-settings';
+
+.Address {
+
+	&__manual-toggle {
+		display: block;
+	}
+
+	&__input {
+		display: block;
+	}
+}

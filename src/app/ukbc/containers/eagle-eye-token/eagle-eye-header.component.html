@@ -1,0 +1,30 @@
+<div class="EagleEyeHeader">
+	<div class="EagleEyeHeader__company-logo" [style.background-image]="'url(' + (JourneyContent$ | async).EagleEyeLogoUrl + ')'"></div>
+	<app-input-text 
+		class="EagleEyeHeader__input" 
+		[title]="(JourneyContent$ | async).EagleEyeInputLabel" 
+		[value]="(EagleEyeState$ | async).token.model.value"
+		[model]="{token: (EagleEyeState$ | async).token, field: 'value'}" 
+		[disabled]="(EagleEyeState$ | async).isTokenVerified"
+		(onChange)="SetToken($event.value)" 
+		(onKeyUp)="OnKeyUp($event)" 
+		[validationErrors]="(EagleEyeState$ | async).token.validationErrors.value"
+		[forceShowValidationErrors]="ForceShowValidationErrors$ | async" 
+		[inline]="true" 
+		[hideErrorMessage]="true"
+		[hideValidIndicator]="!(EagleEyeState$ | async).isTokenVerified" 
+		[dontAddInputFocusedClass]="true">
+	</app-input-text>
+	<button 
+		class="EagleEyeHeader__activate-button Btn Btn--chevron-right" 
+		[ngClass]="{'Btn--loading': (EagleEyeState$ | async).isVerificationLoading, 'Loader--loading': (EagleEyeState$ | async).isVerificationLoading, 'EagleEyeHeader__activate-button--hidden': (EagleEyeState$ | async).isTokenVerified}"
+		[disabled]="(EagleEyeState$ | async).isTokenVerified || (EagleEyeState$ | async).isVerificationLoading" 
+		(click)="ActivateToken()">
+		<div class="Btn__inner">{{ (JourneyContent$ | async).EagleEyeActivateButton }}</div>
+		<div class="Btn__loader Loader">
+			<div class="Loader__chevron"></div>
+			<div class="Loader__chevron"></div>
+			<div class="Loader__chevron"></div>
+		</div>
+	</button>
+</div>

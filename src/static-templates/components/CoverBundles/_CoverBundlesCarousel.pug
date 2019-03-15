@@ -1,0 +1,23 @@
+mixin CoverBundlesCarousel(config, noStyles, carouselEnabled)
+	include _CoverBundle
+	if !noStyles
+		link(rel="stylesheet" href="/static/styles/components/CoverBundles.css")
+	- const carouselAttr = carouselEnabled ? 'cover-bundles' : '';
+	.CoverBundles__carousel(data-component=carouselAttr)
+		if !carouselEnabled
+			p.CoverBundles__intro Our popular cover options
+		if carouselEnabled
+			button.CoverBundles__prev
+				include ../../../assets/chevron-left-white.svg
+			button.CoverBundles__next
+				include ../../../assets/chevron-right-white.svg
+		.CoverBundles__items
+			+CoverBundle({ packages: config, monthlyPrices: ['mobile', 'tablet'] }, carouselEnabled)
+		if carouselEnabled
+			.CoverBundles__dots
+				each package, index in config
+					- var itemClass = 'CoverBundles__dot';
+					- if (index == 0) {
+					-	itemClass += ' CoverBundles__dot--active';
+					- }
+					button(class=itemClass data-goto=index type=button)

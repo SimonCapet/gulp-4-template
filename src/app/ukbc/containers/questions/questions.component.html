@@ -1,0 +1,24 @@
+<ng-template ngFor let-question let-index="index" [ngForOf]="StaticQuestions">
+	<app-question 
+		class="Questions__question" 
+		*ngIf="!(Questions$ | async)[index].Hidden" 
+		[question]="(Questions$ | async)[index]"
+	 	[index]="index" 
+	 	[selectedProductCodes]="SelectedProductCodes$ | async" 
+	 	[productPrices]="ProductPrices$ | async"
+	 	[comparisonProductPrices]="ComparisonProductPrices$ | async" 
+	 	[basisValues]="BasisValues$ | async" 
+	 	[basisProductCodes]="BasisProductCodes$ | async"
+	 	[userScrolling]="UserScrolling" 
+	 	[scrollOffset]="ScrollOffset$ | async" 
+	 	[currentStep]="CurrentStep$ | async"
+	 	[addProductButtonCostSuffix]="AddProductButtonPriceSuffix$ | async" 
+		[journeyContent]="JourneyContent$ | async">
+	</app-question>
+</ng-template>
+<button 
+	class="Btn Btn--chevron-right Questions__complete-button" 
+	(click)="CompleteStep()" 
+	[disabled]="!(CanCompleteStep() | async)">
+	{{(CurrentStep$ | async).data.CompleteStepButton }}
+</button>

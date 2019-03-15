@@ -1,0 +1,36 @@
+@import '../sass-helpers/core-variables-and-helpers';
+
+.ProofPoint {
+	@include padding-horizontal;
+
+	text-align: center;
+
+	&__img-placeholder {
+		@include margin-bottom;
+		position: relative;
+
+		&:before {
+			content: '';
+			display: block;
+			padding-bottom: 100%;
+		}
+	}
+
+	&__img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+
+		opacity: 0;
+		transition: opacity $transition-slow;
+
+		&--loaded {
+			opacity: 1;
+		}
+	}
+
+	&__title {
+		@include great-primer;
+	}
+}

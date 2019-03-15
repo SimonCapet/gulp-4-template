@@ -1,0 +1,79 @@
+@import '../../../../styles/core-variables-and-helpers';
+
+.VehiclePicker {
+	width: 100%;
+
+	&__input {
+		&--vrm {
+			.Input__input {
+				text-transform: uppercase;
+			}
+		}
+	}
+
+	&__button-error {
+		@include brevier;
+
+		margin: 0.5em 0 0;
+		color: $form-field-invalid;
+	}
+
+	&__error {
+		margin: 0.75em 0 0.25em 0;
+		color: $form-field-invalid;
+	}
+
+	&__lookup-vehicle {
+		margin-top: 1.25em;
+	}
+
+	&__manual-toggle {
+		margin-top: 1em;
+	}
+
+	&__result &__vehicle-registration {
+		@include pica;
+
+		display: inline-block;
+		margin: 0.75em 0;
+		padding: 0.25em 0.5em;
+
+		background: $license-plate-yellow;
+		color: $grey;
+
+		border-radius: 0.25em;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+	}
+
+	&__summary {
+		flex-grow: 1;
+		display: block;
+
+		@include breakpoint(mobile, down) {
+			display: none;
+		}
+	}
+
+	&__mobile-summary {
+		display: none;
+		flex-grow: 1;
+
+		@include breakpoint(mobile, down) {
+			display: block;
+		}
+	}
+
+	&__value {
+		margin-bottom: 0.25em;
+	}
+
+	&__value-label {
+		color: $grey;
+	}
+
+	&__edit {
+		@include margin-top($narrow: true);
+		flex-shrink: 0;
+	}
+}

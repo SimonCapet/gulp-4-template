@@ -1,0 +1,27 @@
+$legal-matters-breakpoint: 1200px;
+$legal-matters-padding-breakpoint: 1366px;
+
+.LegalMatters {
+	@include fluid-property(padding-right, 10px, 50px);
+	@include fluid-property(padding-left, 10px, 50px);
+
+	max-width: 1270px;
+	margin: 0 auto;
+	padding-top: 40px;
+	padding-bottom: 40px;
+
+	&__text-wrapper {
+		@include breakpoint($legal-matters-breakpoint, down) {
+			margin: 0 5px;
+		}
+	}
+
+	&__body {
+		padding-bottom: 20px;
+	}
+
+	@include breakpoint($legal-matters-padding-breakpoint, up) {
+		padding-right: 50px;
+		padding-left: 50px;
+	}
+}

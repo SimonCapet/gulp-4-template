@@ -1,0 +1,98 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+body {
+	background: $grey-11;
+}
+
+.Checkout {
+	$c: &;
+	&__header {
+		display: block;
+		width: 100%;
+		z-index: 4;
+
+		@include breakpoint(tablet, below) {
+			display: block;
+			position: relative;
+		}
+
+		@include breakpoint(tablet, up) {
+			position: fixed;
+		}
+
+		.Header {
+			@include breakpoint(tablet, below) {
+				position: static;
+			}
+
+			&__inner {
+				@include container($container-max-width-desktop);
+			}
+		}
+	}
+
+	&__eagle-eye {
+		@include breakpoint(tablet, up) {
+			position: fixed;
+			top: $header-height-desktop;
+			width: 100%;
+			z-index: 3;
+		}
+	}
+
+	&__desktop-container {
+		@include breakpoint(tablet, up) {
+			@include container($container-max-width-desktop, $clip-at-start: false);
+			padding-top: $header-height-desktop;
+
+			display: flex;
+		}
+	}
+
+	&--eagle-eye &__desktop-container {
+		@include breakpoint(tablet, up) {
+			padding-top: $header-height-desktop + $eagle-eye-header-height-desktop;
+		}
+	}
+
+	&__desktop-right {
+		@include breakpoint(tablet, up) {
+			position: relative;
+			order: 1;
+		}
+	}
+
+	&__main {
+		@include breakpoint(tablet, below) {
+			@include container($padding-small: $main-collapse-padding-small, $clip-at-end: false);
+		}
+
+		@include breakpoint(tablet, up) {
+			@include padding-right(30px, 40px, $clip-at-start: false, $clip-low: $tablet);
+
+			order: 0;
+			width: calc(100% - #{$desktop-basket-width});
+		}
+
+		padding-top: $checkout-main-padding-top;
+
+		#{$c}--summary & {
+			@include breakpoint(tablet, below) {
+				padding-top: $main-collapse-padding-small;
+			}
+		}
+	}
+
+	&--questions &__main {
+		@include breakpoint(tablet, down) {
+			padding-top: 0;
+		}
+	}
+
+	&--print-hidden {
+		@media print {
+			display: none;
+		}
+	}
+}

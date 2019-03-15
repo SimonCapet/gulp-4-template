@@ -1,0 +1,13 @@
+mixin Faq(config)
+	.FAQ__wrapper(data-component="faqs")
+		h2.FAQ__title.FAQ__title--other-design
+			span.FAQ__title--orange RAC&#0160;
+			| #{config.title}
+		each val in config.faqs
+			.FAQ.FAQ--other-design
+				.FAQ__question.FAQ__question--other-design
+					span.FAQ__question-text 
+						span.FAQ__orange-q Q.&#0160;
+						| #{val.question}
+				.FAQ__answer
+					.FAQ__answer-inner #{val.answer}

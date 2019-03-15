@@ -1,0 +1,21 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+.VehicleResults {
+	border-spacing: 0.15em;
+
+	&__cell {
+		vertical-align: top;
+
+		&--reg {
+			padding-right: 0.5em;
+			text-transform: uppercase;
+		}
+	}
+
+	&__dekstop-only {
+		@media (max-width: 420px) {
+			display: none;
+		}
+	}
+}

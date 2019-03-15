@@ -1,0 +1,113 @@
+$image-breakpoint: $tablet;
+$button-breakpoint: 900px;
+
+.LcpLandingBanner {
+	background-color: $white;
+
+	&__inner-wrapper {
+		display: flex;
+	}
+
+	&__text-wrapper {
+		flex: 1 1 60%;
+	}
+
+	&__image-wrapper {
+		flex: 1 1 40%;
+		position: relative;
+		margin-left: 50px;
+
+		@include breakpoint($image-breakpoint, down) {
+			display: none;
+		}
+	}
+
+	&__image {
+		box-shadow: 0 2px 10px 0 rgba($grey, 0.3);
+		border-radius: 10px;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: auto;
+	}
+
+	&__heading {
+		@include normal-weight;
+		margin-bottom: 0.3em;
+	}
+
+	&__sub-heading {
+		@include fluid-font-size(1.7);
+		line-height: 1.4em;
+	}
+
+	&__bullets {
+		padding-left: 0;
+	}
+
+	&__bullet {
+		list-style: none;
+		position: relative;
+		padding: 4px 0 4px 30px;
+
+		&:before {
+			background: {
+				image: url(/assets/lcp/tick_circle.svg);
+				size: 1.5em;
+				repeat: no-repeat;
+				position: center center;
+			}
+			border-radius: 50%;
+			content: '';
+
+			position: absolute;
+			top: 5px;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			height: 23px;
+			width: 23px;
+		}
+	}
+
+	&__price-button-wrapper {
+		display: flex;
+		align-items: center;
+	}
+
+	&__price {
+		display: flex;
+		align-items: center;
+	}
+
+	&__price-actual {
+		font-size: 3.15rem;
+		line-height: 1.2em;
+		@include medium-weight;
+		color: $orange-2;
+	}
+
+	&__price-frequency {
+		padding-left: 10px;
+		@include medium-weight;
+	}
+
+	&__button {
+		margin-left: auto;
+
+		@include breakpoint($button-breakpoint, up) {
+			.Btn {
+				padding: 1em;
+				min-width: 8.65em;
+				font-size: 1.2em;
+			}
+		}
+	}
+
+	&__button-link {
+		display: block;
+	}
+}

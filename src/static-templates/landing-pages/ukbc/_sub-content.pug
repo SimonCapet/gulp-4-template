@@ -1,0 +1,23 @@
+block sub-content
+	.SiteWrapper.SiteWrapper--large-header.SiteWrapper--landing
+		include ../../components/Banners/_banner-breakdown-cover
+		include ../../components/Banners/_OfferBanner
+		include ../../components/_seo-paragraph
+		.Container
+			include ../../components/Offer/_products
+			include ../../components/Offer/_vbm-packages
+			include ../../components/Offer/_Offer
+			+offer({products, mobilePackages: vbmPackages, packages: vbmPackages, monthlyPrices: ['mobile', 'tablet', 'desktop']})
+			.Banner
+				.Banner__inner
+					p(style="text-align: center; margin: 1em 0;")
+						small *The RAC are the only direct breakdown provider to offer the breakdown extra insurance products of Key Replace, Battery Replace, and Tyre Replace to new customers.
+					h2.great-primer(style="text-align: center; margin: 2em 0 1em;") Or get cover in any vehicle you travel in with our Personal breakdown cover
+		.WebPartWrapper(style="padding: 0 0 50px 0;")
+			.Container
+				include ../../components/Cover/_personal-cover
+		.WebPartWrapper
+			include ../../components/PeaceOfMind/_peace-of-mind
+		include ../../components/Banners/_banner-background
+	include ../../components/Site/_SiteFooter
+	include ../../_chat-now

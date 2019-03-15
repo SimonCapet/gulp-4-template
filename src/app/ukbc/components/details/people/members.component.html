@@ -1,0 +1,36 @@
+<div class="SectionCard__row">
+	<ukbc-details-person 
+		#contact0 
+		[contact]="primaryMember" 
+		[index]="0" 
+		(setField)="setField.emit($event)"
+		[isOpen]="isOpen" 
+		[isContactOpen]="contactCardStatus.openContact === primaryMember.model.Id" 
+		[isContactComplete]="isContactComplete(primaryMember.model.Id)"
+		[forceShowValidationErrors]="forceShowValidationErrors" 
+		(onFocus)="onFocus.emit($event)" 
+		(onSaveContact)="completeContact.emit($event)"
+		(onEditContact)="EditContact($event)" 
+		(showDataHandlingDialog)="ShowDataHandlingDialog()" 
+		[dataHandlingLinkLabel]="(Content$ | async).ContentInformation.GeneralInfo.LookAfterLinkLabel"
+		[shouldShowDataHandlingLink]="((ShouldShowDataHandlingLink$ | async) && !((JourneyContent$ | async).HideHowWeLookAfterDataLink))">
+	</ukbc-details-person>
+</div>
+<div class="SectionCard__row" *ngFor="let contact of additionalMembers; let i = index; trackBy:ContactsChanged">
+	<ukbc-details-person 
+		#contact{{i}} 
+		[contact]="contact" 
+		[index]="i + 1" 
+		(setField)="setField.emit($event)"
+		[isOpen]="isOpen" 
+		[isContactOpen]="contactCardStatus.openContact === contact.model.Id" 
+		[isContactComplete]="isContactComplete(contact.model.Id)"
+		[forceShowValidationErrors]="forceShowValidationErrors" 
+		(onFocus)="onFocus.emit($event)" 
+		(onSaveContact)="completeContact.emit($event)"
+		(onEditContact)="EditContact($event)" 
+		(showDataHandlingDialog)="ShowDataHandlingDialog()" 
+		[dataHandlingLinkLabel]="(Content$ | async).ContentInformation.GeneralInfo.LookAfterLinkLabel"
+		[shouldShowDataHandlingLink]="false">
+	</ukbc-details-person>
+</div>

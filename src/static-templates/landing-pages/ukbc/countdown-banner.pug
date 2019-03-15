@@ -1,0 +1,27 @@
+include ../../components/_Countdown
+
+if debug
+	meta(name="viewport" content="width=device-width, initial-scale=1")
+	link(type="text/css" rel="stylesheet" href="//localhost:8080/dist/static/styles/core.css")
+	link(type="text/css" rel="stylesheet" href="//localhost:8080/dist/static/styles/components/Countdown/CountdownBanner.css")
+
+	<script>
+		| document.write('<script src="//' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js" defer></' + 'script>');
+		| document.write('<script src="//' + (location.host || 'localhost').split(':')[0] + ':8080/js/polyfills.js" defer></' + 'script>');
+		| document.write('<script src="//' + (location.host || 'localhost').split(':')[0] + ':8080/js/landing.js" defer></' + 'script>');
+	</script>
+
+else
+	link(type="text/css" rel="stylesheet" href="/styles/components/Countdown/CountdownBanner.css")
+
+
+.CountdownBanner
+	.CountdownBanner__inner
+		.CountdownBanner__content
+			//- HTML Content Start
+			h1(style="margin-bottom: 0;") JANUARY SALE
+			p.double-pica.medium(style="margin: 0 0 10px;") 25% off personal breakdown cover<br>for new customers<sup>*</sup>
+			p.double-pica.medium(style="margin-top: 0; margin-bottom: 20px;")
+				a(href="#" style="color: #fff;") Buy now &gt;
+			//- HTML Content End
+		+Countdown("30/01/2019 07:00:00", true)

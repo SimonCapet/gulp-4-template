@@ -1,0 +1,54 @@
+@import '../../../../styles/core-variables-and-helpers';
+
+.PaymentFrequencyDurationBtn {
+	$c: &;
+	width: 100%;
+	
+	@include breakpoint(tablet, up) {
+		margin-top: 0;
+	}
+
+	&:last-of-type {
+		@include margin-bottom;
+	}
+
+	&__label {
+		@include medium-weight;
+	}
+
+	&__price {
+		@include normal-weight;
+
+		@include breakpoint(tablet, up) {
+			display: block;
+		}
+		@include breakpoint(tablet, down) {
+			margin-left: 0.5em;
+		}		
+
+		&--monthlyInstallment {
+			@include light-weight;
+			@include fluid-property(font-size, 12px, 16px);
+			@include fluid-property(line-height, 20px, 25px);
+			display: block;
+			margin-top: 0;
+		}
+	}
+
+	&__installmentMessage {		
+		display: block;
+		margin-top: 0;
+	}
+
+	&--show-prices {
+		@include pica;
+	}
+	
+	@include breakpoint(tablet, up) {
+		&__price {
+			display: block;
+
+			float: none;
+		}
+	}
+}

@@ -1,0 +1,42 @@
+@import '../../../../styles/core-variables-and-helpers';
+
+$increase-card-logo-size-breakpoint: 480px;
+:host {
+	flex: 1 0 auto;
+}
+
+.PaymentMethod {
+	display: flex;
+	flex-direction: row;
+	
+	&__title {
+		margin-top: 1.25em;
+		@include margin-bottom($narrow: true);
+		
+		@include breakpoint(tablet, down) {
+			margin-top: 1.75em;
+		}
+	}
+
+	&__buttons {
+		display: flex;
+		flex-flow: row wrap;
+		margin-top: -0.526em;
+		@include margin-bottom;
+	}
+	
+	&__button {
+		@include pica;
+		@include medium-weight;
+		
+		display: inline-block;
+		flex: 1 0 0;
+		width: inherit;
+		
+		margin-top: 0.526em;
+
+		&:not(:last-of-type) {
+			margin-right: 1.042em;
+		}
+	}
+}

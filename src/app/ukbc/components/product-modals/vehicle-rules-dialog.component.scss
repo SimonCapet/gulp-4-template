@@ -1,0 +1,14 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+.VehicleRulesDialog {
+	&__add {
+		@include margin-top;
+	}
+
+	&__error {
+		@include medium-weight;
+
+		color: $form-field-invalid;
+	}
+}

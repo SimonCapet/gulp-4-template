@@ -1,0 +1,83 @@
+.TrustpilotReview {
+	display: flex;
+	flex-direction: column;
+	min-height: 120px;
+	padding: 12px;
+	background: $white;
+	border-radius: 5px;
+	box-shadow: 0 2px 3px rgba($black, 0.2);
+
+	&:not(:last-child) {
+		@include fluid-property(margin-bottom, 12px, 20px);
+	}
+
+	&__stars {
+		display: flex;
+	}
+
+	&__star {
+		position: relative;
+		width: 18px;
+		height: 18px;
+		background: #d2d1d2;
+		border-radius: 3px;
+
+		background-image: url('/assets/star.svg');
+		background-size: 70%;
+		background-position: center center;
+		background-repeat: no-repeat;
+
+		&:not(:last-child) {
+			margin-right: 5px;
+		}
+	}
+
+	&__content {
+		@include fluid-property(padding, 5px, 10px);
+		display: flex;
+		flex-grow: 1;
+		flex-direction: column;
+	}
+
+	&__title,
+	&__name {
+		display: inline-block;
+		min-height: 1em;
+		margin-top: 0;
+	}
+
+	&__title {
+		@include fluid-property(font-size, 18px, 24px);
+		color: $dark-grey;
+		margin: 0;
+	}
+
+	&__text {
+		display: block;
+		flex-grow: 1;
+		color: $grey-7;
+	}
+
+	&__name {
+		display: inline-block;
+		font-size: 14px;
+		color: $grey-7;
+	}
+
+	&__footer {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__stars--4 & {
+		&__star:not(:nth-child(5)) {
+			background-color: #85bb5d;
+		}
+	}
+
+	&__stars--5 & {
+		&__star {
+			background-color: #008f60;
+		}
+	}
+}

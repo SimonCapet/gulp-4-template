@@ -1,0 +1,32 @@
+-
+	var iconTileConfig = [
+		{
+			imgPath: '/assets/lcp/hand.svg',
+			extraClass: 'LcpLandingBody__title',
+			iconExtraClass: 'LcpLandingBody__icon--hand',
+			text: 'Up to £100,000 cover for legal expenses'
+		},
+		{
+			imgPath: '/assets/lcp/arrow.svg',
+			extraClass: 'LcpLandingBody__title',
+			iconExtraClass: 'LcpLandingBody__icon--arrow',
+			text: 'Just £15 a year - you could pay twice that elsewhere*'
+		},
+		{
+			imgPath: '/assets/lcp/call.svg',
+			extraClass: 'LcpLandingBody__title',
+			iconExtraClass: 'LcpLandingBody__icon--call',
+			text: '24/7 advice on personal legal matters within the UK'
+		},
+	]
+	
+.LcpLandingBody
+	p.LcpLandingBody__intro <strong>Legal Care  Plus</strong> is the RAC's legal expenses insurance, providing the cover you'll need to claim back your losses following a non-fault accident. It also provides you with help if you're facing a motoring prosecution or motoring consumer dispute.
+	p.LcpLandingBody__follow-up-text Our Legal Care Plus cover is nearly 50% cheaper than the average cost of legal expenses insurance policy typically purchased as an add-on to motor insurance policies. *We cover you and your passenger when you're driving any car, with your policy covering up to 5 members of your household too.
+	
+	.LcpLandingBody__services
+		each val in iconTileConfig
+			include ../_icon-tile
+			+IconTile(val)
+	
+	

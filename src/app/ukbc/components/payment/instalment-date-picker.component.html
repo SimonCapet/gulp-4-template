@@ -1,0 +1,19 @@
+<div class="InstalmentDatePicker">
+	<div class="InstalmentDatePicker__selection">
+		<h3 class="InstalmentDatePicker__label">{{ label }}</h3>
+		<app-input-select 
+			class="CardForm__input" 
+			[options]="options" 
+			[value]="value" 
+			[model]="model" 
+			[fixed]="true"
+			[validationErrors]="ValidationErrors" 
+			[forceShowValidationErrors]="forceShowValidationErrors" 
+			[hideErrorMessage]="true"
+			(onChange)="OnChange($event)" 
+			(onFocus)="OnFocus()" 
+			(onBlur)="OnBlur()">
+		</app-input-select>
+	</div>
+	<div class="InstalmentDatePicker__error">{{ ValidationError }}</div>
+</div>

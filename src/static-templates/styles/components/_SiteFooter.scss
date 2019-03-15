@@ -1,0 +1,80 @@
+.SiteFooter {
+	background: $black;
+	color: $white;
+
+	&__top {
+		@include padding-vertical;
+	}
+
+	&__bottom {
+		@include padding-vertical;
+
+		background: $dark-grey;
+	}
+
+	&__inner {
+		@include container(1130px);
+	}
+
+	&__title {
+		@include great-primer;
+	}
+
+	&__newsletter {
+		@include breakpoint($col-md-start, below) {
+			@include margin-top;
+		}
+	}
+
+	&__social {
+		@include margin-top;
+
+		@include breakpoint($col-sm-start, below) {
+			text-align: center;
+		}
+	}
+
+	&__call-charges {
+		display: block;
+		@include padding-top;
+	}
+
+	&__terms {
+		@include brevier;
+		@include padding-bottom;
+		@include margin-bottom;
+
+		border-bottom: 1px solid currentColor;
+
+		h1 {
+			@include pica;
+		}
+
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			@include long-primer;
+		}
+
+		ol ul li {
+			list-style: disc;
+		}
+
+		p:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&__copyright {
+		@include brevier;
+
+		text-align: right;
+
+		@include breakpoint($tablet, down) {
+			padding-top: 20px;
+			text-align: center;
+		}
+	}
+}

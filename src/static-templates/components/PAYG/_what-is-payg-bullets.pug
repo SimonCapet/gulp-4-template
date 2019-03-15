@@ -1,0 +1,7 @@
+mixin PaygBullets(bullets)
+	.WhatIsPayg__bullets
+		each val in bullets
+			.WhatIsPayg__bullet
+				.WhatIsPayg__bullet-chevron
+					include ../../../assets/chevron-mint-green.svg
+				.WhatIsPayg__bullet-text #{val}

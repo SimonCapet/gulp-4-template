@@ -1,0 +1,28 @@
+include _CoverBundlesConfig
+include _CoverBundlesCarousel
+
+link(rel="stylesheet" href="/static/styles/components/CoverBundles.css")
+- const stackedClass = !coverBundlesConfig.carouselEnabled ? 'CoverBundles--stacked' : '';
+.CoverBundles(class=stackedClass)
+	.CoverBundles__sticky(data-component="cover-bundles-sticky")
+		.CoverBundles__bg(style="background-color: #ef6c00;")
+		a.Btn.Btn--green.Btn--chevron-right.pica(href="#") Build your own cover from
+			span.hidden-xs.hidden-sm.hidden-md &nbsp;&pound;34.99
+			span.hidden-lg.hidden-xl &nbsp;&pound;4.50
+	.CoverBundles__cta
+		//- CMS Content would begin here
+		div(style="color: #ffffff; text-align: center; background: linear-gradient(#e25709, #ebb217);")
+			.Container(style="max-width: 1260px")
+				h1.medium.double-pica(style="padding-top: 1.5em;") Build breakdown cover with complete peace of mind
+				p
+					a.Btn.Btn--green.Btn--chevron-right.pica(href="#") Build your own cover from
+						span.hidden-xs.hidden-sm.hidden-md &nbsp;&pound;34.99
+						span.hidden-lg.hidden-xl &nbsp;&pound;4.50
+				h2.great-primer.normal Some examples of our product combinations.
+
+				button.LinkBtn.LinkBtn--info.LinkBtn--white.pica(type="button" data-dialog="learn-more") Learn more
+	
+	.CoverBundle__modal(data-component="dialog" data-id="learn-more" data-content="<h2>About things</h2><ul><li>orem ipsum dolor sit amet, consectetuer adipiscing elit.</li><li>Aliquam tincidunt mauris eu risus.</li><li>Vestibulum auctor dapibus neque.</li>")
+	+CoverBundlesCarousel(coverBundlesConfig.items, true, coverBundlesConfig.carouselEnabled)
+	
+	

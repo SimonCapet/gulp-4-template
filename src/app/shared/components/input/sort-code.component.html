@@ -1,0 +1,54 @@
+<div class="Input SortCode" [id]="ComponentId" [ngClass]="Classes">
+	<label class="Input__label" (click)="OnLabelClick($event)">
+		<span class="Input__title" *ngIf="!!title" [ngClass]="TitleClass">
+			<span class="Input__title-inner">{{ title }}</span>
+		</span>
+		<div class="SortCode__inputs">
+			<div class="SortCode__input-container SortCode__input-one">
+				<input 
+					class="Input__input SortCode__input" 
+					#inputOne 
+					type="tel" 
+					[ngModel]="sortCode[0]" 
+					(ngModelChange)="SetValue(0, $event)" 
+					(keydown)="OnKeyDown(0, $event)" 
+					(blur)="Blurred(0)"
+					(focus)="OnFocus(0)" 
+					(change)="OnFieldChange(0, $event)" 
+					maxlength="2" 
+					novalidate />
+			</div>
+			<div class="SortCode__input-container SortCode__input-two">
+				<input 
+					class="Input__input SortCode__input" 
+					#inputTwo 
+					type="tel" 
+					[(ngModel)]="sortCode[1]" 
+					(ngModelChange)="SetValue(1, $event)" 
+					(keydown)="OnKeyDown(1, $event)" 
+					(blur)="Blurred(1)"
+					(focus)="OnFocus(1)" 
+					(change)="OnFieldChange(1, $event)" 
+					maxlength="2" 
+					novalidate="novalidate" />
+			</div>
+			<div class="SortCode__input-container SortCode__input-three">
+				<input 
+					class="Input__input  SortCode__input" 
+					#inputThree 
+					type="tel" 
+					[(ngModel)]="sortCode[2]" 
+					(ngModelChange)="SetValue(2, $event)" 
+					(keydown)="OnKeyDown(2, $event)" 
+					(blur)="Blurred(2)"
+					(focus)="OnFocus(2)" 
+					(change)="OnFieldChange(2, $event)" 
+					maxlength="2" 
+					novalidate="novalidate" />
+			</div>
+			<img class="Input__valid-indicator-image" src="/assets/tick-green.svg" alt="Valid" />
+			<img class="Input__invalid-indicator-image" src="/assets/exclamation.svg" alt="Invalid" />
+		</div>
+	</label>
+	<div class="Input__error" *ngIf="!!ErrorMessage">{{ ErrorMessage }}</div>
+</div>

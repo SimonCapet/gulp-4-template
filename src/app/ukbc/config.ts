@@ -1,0 +1,9 @@
+export const CONFIG = {
+	RAC_API: {
+		USERNAME: 'raccovertwouser',
+		PASSWORD: 'R4C!c053r?t00',
+	},
+	MOBILE_BREAKPOINT: 767,
+	DESKTOP_BREAKPOINT: 1365,
+	ANIMATION_FAST_DURATION: 200,
+};

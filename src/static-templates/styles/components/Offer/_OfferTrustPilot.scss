@@ -1,0 +1,36 @@
+.OfferTrustPilot {
+	padding-top: 0;
+	height: auto;
+
+	&__title {
+		// Naughty. Shouldn't really go lower than 14px...
+		@include fluid-property(font-size, 8.1px, 12.4px, $tablet, $offer-max-width-3, $clip-at-start: false);
+
+		margin: 0 0 0.5em;
+		text-transform: uppercase;
+	}
+
+	.Offer--3 & {
+		&__title {
+			@include fluid-property(font-size, 9.7px, 11.9px, $tablet, $offer-max-width-3, $clip-at-start: false);
+		}
+	}
+
+	&__logo {
+		position: relative;
+		width: 100%;
+
+		&:before {
+			content: '';
+			display: block;
+			padding-bottom: percentage(34.2 / 486.4);
+		}
+	}
+
+	&__svg {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 100%;
+	}
+}

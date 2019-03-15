@@ -1,0 +1,58 @@
+<div class="Input Date" [ngClass]="Classes">
+	<label class="Input__title" *ngIf="!!title" [ngClass]="TitleClass">
+		<span class="Input__title-inner">{{ title }}</span>
+	</label>
+	<div class="Date__inputs">
+		<div class="Date__day">
+			<input 
+				class="Input__input Date__input" 
+				#dayField
+				type="tel" 
+				[ngModel]="Day"
+				(keydown)="OnKeyDown(EDateField.Day, $event)" 
+				(blur)="OnBlur(EDateField.Day, $event)" 
+				(focus)="OnFocus(EDateField.Day, $event)"
+				(change)="OnFieldChange(EDateField.Day, $event)" 
+				(keyup)="OnKeyUp(EDateField.Day, $event)" 
+				placeholder="{{ ShowPlaceholder ? 'DD' : '' }}"
+				[attr.autocomplete]="autocomplete" 
+				[disabled]="disabled" 
+				novalidate />
+		</div>
+		<div class="Date__month">
+			<input 
+				class="Input__input Date__input" 
+				#monthField
+				type="tel" 
+				[ngModel]="Month"
+				(keydown)="OnKeyDown(EDateField.Month, $event)" 
+				(blur)="OnBlur(EDateField.Month, $event)" 
+				(focus)="OnFocus(EDateField.Month, $event)"
+				(change)="OnFieldChange(EDateField.Month, $event)" 
+				(keyup)="OnKeyUp(EDateField.Month, $event)" 
+				placeholder="{{ ShowPlaceholder ? 'MM' : '' }}"
+				[attr.autocomplete]="autocomplete" 
+				[disabled]="disabled" 
+				novalidate />
+		</div>
+		<div class="Date__year">
+			<input 
+				class="Input__input Date__input" 
+				#yearField 
+				type="tel" 
+				[ngModel]="Year"
+				(keydown)="OnKeyDown(EDateField.Year, $event)" 
+				(blur)="OnBlur(EDateField.Year, $event)" 
+				(focus)="OnFocus(EDateField.Year, $event)"
+				(change)="OnFieldChange(EDateField.Year, $event)" 
+				(keyup)="OnKeyUp(EDateField.Year, $event)" 
+				placeholder="{{ ShowPlaceholder ? 'YYYY' : '' }}"
+				[attr.autocomplete]="autocomplete" 
+				[disabled]="disabled" 
+				novalidate />
+		</div>
+		<img class="Input__valid-indicator-image" src="/assets/tick-green.svg" alt="Valid" />
+		<img class="Input__invalid-indicator-image" src="/assets/exclamation.svg" alt="Invalid" />
+	</div>
+	<div class="Input__error">{{ ErrorMessage }}</div>
+</div>

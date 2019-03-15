@@ -1,0 +1,117 @@
+@import '../sass-helpers/core-variables-and-helpers';
+$bg-colour: #F8F8F8;
+$text-padding-mobile: 0.8em;
+$text-padding-desktop: 1.5em;
+$img-min-width-desktop: 555;
+
+.Serpentines {
+	padding-top: 1.2em;
+	padding-bottom: 1.2em;
+	> div {
+		&:nth-of-type(2n) { // Each even .Serpentine
+			background-color: $bg-colour;
+			@include breakpoint(tablet-landscape, up) {
+				flex-direction: row-reverse;
+			}
+		}
+	}
+}
+
+.Serpentine {
+	margin-bottom: 2em;
+	display: flex;
+	flex-direction: column;
+	@include breakpoint(tablet-landscape, up) {
+		flex-direction: row;
+	}
+}
+
+.Serpentine__text {
+	position: relative;
+	padding: $text-padding-mobile $text-padding-mobile 0;
+	@include breakpoint(tablet-landscape, up) {
+		padding: $text-padding-desktop $text-padding-desktop 0;
+	}
+
+	&:before {
+		content: '';
+		position: absolute;
+		top: 10px;
+		left: 0;
+		background-color: $orange-2;
+		width: 3px;
+		height: 100px;	
+		@include breakpoint(tablet-landscape, up) {
+			top: $text-padding-desktop;
+			height: calc(100% - #{$text-padding-desktop});	
+		}
+	}
+}
+
+.Serpentine__title,
+.Serpentine__copy,
+.Serpentine__description {
+	line-height: 1.2em;
+}
+
+.Serpentine__title {
+	font-size: 2.75em;
+	margin-bottom: 0.25em;
+}
+
+.Serpentine__description {
+	font-size: 1.3em;
+	margin-bottom: 1em;
+}
+
+.Serpentine__copy {
+	display: block;
+	font-size: 0.75em;
+}
+
+.Serpentine__img,
+.Serpentine__col {
+	@include breakpoint(tablet-landscape, up) {
+		order: inherit;
+	}
+}
+
+.Serpentine__col {
+	order: 2;
+	padding-bottom: $text-padding-mobile;
+	@include breakpoint(tablet-landscape, up) {
+		padding-bottom: $text-padding-desktop;
+	}
+	.Serpentines > div:nth-of-type(2n) & { // Each .Serpentine__col inside an even .Serpentine
+		@include breakpoint(tablet-landscape, up) {
+			padding-left: 3em;
+		}
+	}
+	.Serpentines > div:nth-of-type(2n + 1) & { // Each .Serpentine__col inside an odd .Serpentine
+		@include breakpoint(tablet-landscape, up) {
+			padding-right: 3em;
+		}
+	}
+}
+
+.Serpentine__img {
+	@include aspect-ratio($img-min-width-desktop, 280);
+	order: 1;
+	background-size: cover;
+	background-position: center;
+	@include breakpoint(mobile, up) {
+		max-height: 200px;
+		overflow: hidden;
+	}
+	@include breakpoint(tablet-landscape, up) {
+		flex: 0 0 #{$img-min-width-desktop}px;
+		max-height: 100%;
+	}
+}
+
+.Serpentine__btn {
+	margin: 0 $text-padding-mobile;
+	@include breakpoint(tablet-landscape, up) {
+		margin: 0 $text-padding-desktop;
+	}
+}

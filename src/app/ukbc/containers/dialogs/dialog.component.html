@@ -1,0 +1,10 @@
+<div class="Dialog Dialog--display" #overlay *ngIf="IsOpen" [id]="config.id" [ngClass]="Classes" (click)="Close($event)">
+	<dialog class="Dialog__dialog" #dialog [attr.open]="IsOpen">
+		<div class="Dialog__outer" [ngStyle]="{ height: OuterHeight }"><button class="Dialog__close" #close *ngIf="ShowCloseButton" type="button" title="Close" (click)="Close($event)"></button>
+			<div class="Dialog__inner" #inner [ngStyle]="{ maxHeight: InnerMaxHeight }">
+				<div *ngIf="!ContentIsComponent" [innerHTML]="config.content | safeHTML"></div>
+				<ng-template #dynamic *ngIf="ContentIsComponent"></ng-template>
+			</div>
+		</div>
+	</dialog>
+</div>

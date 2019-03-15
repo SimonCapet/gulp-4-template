@@ -1,0 +1,153 @@
+<div class="VehiclePicker" *ngIf="isVehicleOpen">
+	<form class="VehiclePicker__lookup">
+		<p class="VehiclePicker__error" *ngIf="NoResults">{{ config.ErrorVehicleNotFound }}</p>
+		<div class="CardForm__inputs">
+			<app-input-text 
+				class="CardForm__input VehiclePicker__input VehiclePicker__input--vrm" 
+				[title]="config.RegistrationTitle"
+				[value]="Vehicle.Vrm" 
+				[model]="{ vehicle: Vehicle, field: 'Vrm'}" 
+				(onChange)="InputChanged($event)" 
+				(onFocus)="onFocus.emit($event)"
+				(keypress)="HandleKeyPress($event)" 
+				[validationErrors]="ValidationErrors.Vrm" 
+				[forceShowValidationErrors]="ShowErrors"
+				[disabled]="VehicleLoading" 
+				[trackingFieldName]="GetTrackingFieldName('Registration')">
+			</app-input-text>
+			<app-input-text 
+				class="CardForm__input" 
+				*ngIf="!ManualMode && Vehicle.RequestMileage" 
+				type="number" 
+				[title]="config.MileageTitle"
+				[value]="Vehicle.Mileage" 
+				[model]="{ vehicle: Vehicle, field: 'Mileage'}" 
+				(onChange)="InputChanged($event)"
+				(onFocus)="onFocus.emit($event)" 
+				(onBlur)="onBlur.emit($event)" 
+				[validationErrors]="ValidationErrors.Mileage"
+				[forceShowValidationErrors]="ShowErrors" 
+				[trackingFieldName]="GetTrackingFieldName('Mileage')" 
+				min="0" 
+				pattern="\d*"
+				[disabled]="VehicleLoading">
+			</app-input-text>
+			<div class="VehiclePicker__button" *ngIf="!ManualMode">
+				<button 
+					class="VehiclePicker__lookup-vehicle Btn Btn--search" 
+					type="button" 
+					[ngClass]="ButtonClasses" 
+					(click)="LookupVehicle()" 
+					[disabled]="(ValidationErrors.Vrm && ShowErrors) || MileageErrorTypeMax">
+					<span class="Btn__inner">{{ config.FindVehicleTitle }}</span>
+					<div class="Btn__loader Loader">
+						<div class="Loader__chevron"></div>
+						<div class="Loader__chevron"></div>
+						<div class="Loader__chevron"></div>
+					</div>
+				</button>
+			</div>
+			<app-input-text 
+				class="CardForm__input" 
+				*ngIf="ManualMode" 
+				[title]="config.MakeTitle" 
+				[value]="Vehicle.Make" 
+				[model]="{ vehicle: Vehicle, field: 'Make'}"
+				(onChange)="InputChanged($event)" 
+				(onFocus)="onFocus.emit($event)" 
+				[validationErrors]="ValidationErrors.Make"
+				[forceShowValidationErrors]="ShowErrors" 
+				[trackingFieldName]="GetTrackingFieldName('Make')">
+			</app-input-text>
+			<app-input-text 
+				class="CardForm__input" 
+				*ngIf="ManualMode" 
+				[title]="config.ModelTitle" 
+				[value]="Vehicle.Model"
+				[model]="{ vehicle: Vehicle, field: 'Model'}" 
+				(onChange)="InputChanged($event)" 
+				(onFocus)="onFocus.emit($event)"
+				[validationErrors]="ValidationErrors.Model" 
+				[forceShowValidationErrors]="ShowErrors" 
+				[trackingFieldName]="GetTrackingFieldName('Model')">
+			</app-input-text>
+			<app-input-text 
+				class="CardForm__input" 
+				*ngIf="ManualMode" 
+				type="number" 
+				[title]="config.YearTitle" 
+				[value]="Vehicle.Year"
+				[model]="{ vehicle: Vehicle, field: 'Year'}" 
+				(onChange)="InputChanged($event)" 
+				(onFocus)="onFocus.emit($event)"
+				(onBlur)="onBlur.emit($event)" 
+				[validationErrors]="ValidationErrors.Year" 
+				[forceShowValidationErrors]="ShowErrors"
+				[trackingFieldName]="GetTrackingFieldName('Year')">
+			</app-input-text>
+			<app-input-select 
+				class="CardForm__input" 
+				*ngIf="ManualMode && Vehicle.RequestFuel" 
+				[title]="config.FuelTitle"
+				[options]="FuelTypes" 
+				[value]="Vehicle.Fuel" 
+				[model]="{ vehicle: Vehicle, field: 'Fuel'}" 
+				(onChange)="InputChanged($event)"
+				(onFocus)="onFocus.emit($event)" 
+				(onBlur)="onBlur.emit($event)" 
+				[validationErrors]="ValidationErrors.Fuel"
+				[forceShowValidationErrors]="ShowErrors" 
+				[trackingFieldName]="GetTrackingFieldName('Fuel')">
+			</app-input-select>
+			<app-input-text 
+				class="CardForm__input" 
+				*ngIf="ManualMode && Vehicle.RequestMileage" 
+				type="number" 
+				[title]="config.MileageTitle"
+				[value]="Vehicle.Mileage" 
+				[model]="{ vehicle: Vehicle, field: 'Mileage'}" 
+				(onChange)="InputChanged($event)"
+				(onFocus)="onFocus.emit($event)" 
+				(onBlur)="onBlur.emit($event)" 
+				[validationErrors]="ValidationErrors.Mileage"
+				[forceShowValidationErrors]="ShowErrors" 
+				[trackingFieldName]="GetTrackingFieldName('Mileage')" 
+				min="0" 
+				pattern="\d*">
+			</app-input-text>
+		</div>
+		<div class="CardForm__save" *ngIf="ManualMode">
+			<div class="VehiclePicker__button">
+				<button class="CardForm__save-button Btn" type="button" (click)="SaveVehicle()">{{ config.SaveVehicleTitle }}</button>
+			</div>
+		</div>
+		<button 
+			class="LinkBtn LinkBtn--blue VehiclePicker__manual-toggle" 
+			type="button" 
+			(click)="ToggleManualInput()" 
+			[disabled]="VehicleLoading">
+			{{ ManualMode ? config.LookupModeTitle : config.ManualModeTitle }}
+		</button>
+	</form>
+</div>
+<div class="VehiclePicker__result" *ngIf="isVehicleComplete && !isVehicleOpen">
+	<div class="VehiclePicker__vehicle-registration">{{ Vehicle.Vrm }}</div>
+	<div class="VehiclePicker__value">
+		<strong class="VehiclePicker__value-label">Vehicle make:</strong> {{ Vehicle.Make }}
+	</div>
+	<div class="VehiclePicker__value">
+		<strong class="VehiclePicker__value-label">Vehicle model:</strong> {{ Vehicle.Model }}
+	</div>
+	<div class="VehiclePicker__value">
+		<strong class="VehiclePicker__value-label">Year:</strong> {{ Vehicle.Year }}
+	</div>
+	<div class="VehiclePicker__value" *ngIf="Vehicle.RequestFuel && Vehicle.Fuel">
+		<strong class="VehiclePicker__value-label">Fuel:</strong> {{ FuelType }}
+	</div>
+	<div class="VehiclePicker__value" *ngIf="Vehicle.RequestMileage && Vehicle.Mileage">
+		<strong class="VehiclePicker__value-label">Mileage:</strong> {{ Vehicle.Mileage }}
+	</div>
+	<button class="VehiclePicker__edit LinkBtn LinkBtn--blue" type="button" (click)="OpenVehicle()">
+		{{ config.EditVehicleTitle }}
+	</button>
+</div>

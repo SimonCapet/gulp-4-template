@@ -1,0 +1,385 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+$basket-desktop-margin-top: 30px;
+$basket-header-mobile-vertical-padding: 12px;
+$basket-icon-fill: #7a7a7a;
+$basket-icon-width: 35px;
+$basket-icon-height: 32px;
+$basket-icon-width-desktop: 20px;
+$basket-icon-height-desktop: 18px;
+$basket-icon-discount-width: 17px;
+$basket-icon-discount-height: 14px;
+$basket-border-radius: 10px;
+$item-count-pos-y: 3px;
+
+:host {
+	@include breakpoint(tablet, below) {
+		z-index: 2;
+		display: block;
+		position: sticky;
+		top: 0;
+
+		.input-focused & {
+			transform: translateY(-100%);
+		}
+	}
+
+	@include breakpoint(tablet, up) {
+		display: flex;
+		position: fixed;
+		margin-top: $checkout-main-padding-top;
+		width: $desktop-basket-width;
+	}
+
+	.Checkout--questions & {
+		@include breakpoint(tablet, up) {
+			@include margin-top(
+				$checkout-main-padding-top + $question-desktop-padding-top-small + $question-progress-height-desktop + $basket-desktop-margin-top,
+				$checkout-main-padding-top + $question-desktop-padding-top-large + $question-progress-height-desktop + $basket-desktop-margin-top,
+				$vertical: true,
+				$clip-at-start: false
+			);
+		}
+	}
+}
+.Basket {
+	$c: &;
+	@include breakpoint(tablet, up) {
+		margin-left: calc(100% - #{$desktop-basket-width});
+		width: $desktop-basket-width;
+		box-shadow: $ukbc-header-box-shadow;
+		border-radius: $basket-header-mobile-vertical-padding;
+	}
+	&--initialised {
+		transition: opacity $transition-slow, transform $transition-slow;
+	}
+	&--hide {
+		@include breakpoint(tablet, below) {
+			transform: translateY(-100%);
+		}
+
+		@include breakpoint(tablet, up) {
+			transform: translateY(100%);
+		}
+		opacity: 0;
+	}
+	&--discount {
+		@include breakpoint(tablet, below) {
+			#{$c}__header {
+				display: grid;
+				grid-gap: 10px;
+				grid-template-columns: calc(50% - 10px) repeat(4, calc(10% - 10px)) 10%;
+				justify-content: space-between;
+			}
+			#{$c}__pricing {
+				min-width: inherit;
+				grid-column: 1;
+				grid-row: 1 / 3;
+			}
+			#{$c}__price {
+				flex: 0 0 100%;
+			}
+			#{$c}__toggle,
+			#{$c}__icon {
+				justify-self: flex-end;
+			}
+			#{$c}__toggle {
+				grid-column: 5;
+				grid-row: 1;
+			}
+			#{$c}__icon {
+				grid-column: 6;
+				grid-row: 1;
+			}
+			#{$c}__frequency {
+				grid-column: 2 / 7;
+				grid-row: 2;
+				justify-content: flex-end;
+			}
+		}
+	}
+	&__info {
+		@include container($padding-small: $main-collapse-padding-small);
+		background-color: $red-3;
+		position: relative;
+	}
+	&__info-link {
+		padding: 0.5em 0.5em 0.5em 1.6em;
+		position: relative;
+		display: block;
+		text-decoration: underline;
+		font-size: px-to-rem(14px);
+		&, &:hover {
+			color: $white;
+		}
+		svg {
+			width: 1.2em;
+			height: 1.2em;
+			fill: $white;
+			display: block;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			left: 0;
+		}
+	}
+	&__overlay {
+		@include breakpoint(tablet, below) {
+			position: fixed;
+			top: $header-height;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			background: rgba($black, 0.8);
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity $transition-fast;
+		}
+	}
+	&--open &__overlay {
+		@include breakpoint(tablet, below) {
+			opacity: 1;
+			pointer-events: initial;
+		}
+	}
+	&__header {
+		@include container($padding-small: $main-collapse-padding-small);
+		display: flex;
+		align-items: center;
+		position: relative;
+		background: $black;
+		color: $white;
+		@include breakpoint(tablet, below) {
+			z-index: 2;
+			padding-top: $basket-header-mobile-vertical-padding;
+			padding-bottom: $basket-header-mobile-vertical-padding;
+		}
+		@include breakpoint(tablet, up) {
+			padding-top: $basket-header-desktop-top-padding;
+			padding-bottom: $basket-header-desktop-bottom-padding;
+			border-top-left-radius: $basket-border-radius;
+			border-top-right-radius: $basket-border-radius;
+		}
+	}
+	&--eagle-eye-tokens & {
+		&__header {
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+		}
+		&__frequency {
+			margin-top: 1em;
+			margin-left: 0;
+		}
+	}
+	&__eagle-eye-token-header {
+		@include container($padding-small: $main-collapse-padding-small);
+		background: $basket-eagle-eye-token-header-blue;
+		color: $white;
+		@include breakpoint(tablet, up) {
+			border-top-left-radius: $basket-border-radius;
+			border-top-right-radius: $basket-border-radius;
+		}
+	}
+	&__eagle-eye-token-header {
+		@include medium-weight;
+		padding-top: 0.35em;
+		padding-bottom: 0.35em;
+		position: relative;
+		z-index: 2;
+	}
+	&__pricing {
+		display: flex;
+		align-items: center;
+		min-width: 4.5em;
+	}
+	&__price {
+		flex: 1 0 auto;
+	}
+	&__total {
+		color: $grey-9;
+		svg {
+			width: $basket-icon-width-desktop;
+			height: $basket-icon-height-desktop;
+			display: inline-block;
+			fill: $basket-icon-fill;
+			margin-right: 5px;
+		}
+		@include breakpoint(tablet, below) {
+			@include brevier;
+			display: none;
+			svg {
+				display: none;
+			}
+		}
+		#{$c}--discount &,
+		#{$c}--eagle-eye-tokens & {
+			@include breakpoint(tablet, below) {
+				display: block;
+			}
+		}
+		#{$c}--discount & {
+			font-size: px-to-rem(12px);
+			color: $white;
+			svg {
+				width: $basket-icon-discount-width;
+				height: $basket-icon-discount-height;
+				margin-right: 0;
+			}
+		}
+	}
+	&__token {
+		align-self: flex-end;
+	}
+	&--prices-updated &__price {
+		animation: basket-price-pulse 1s infinite;
+	}
+	&__frequency {
+		@include breakpoint(tablet, below) {
+			flex-grow: 1;
+			display: flex;
+			justify-content: center;
+			font-size: px-to-rem(14px);
+		}
+		@include breakpoint(tablet, up) {
+			margin-left: auto;
+		}
+	}
+	&__toggle {
+		@include breakpoint(tablet, up) {
+			display: none;
+		}
+
+		@include button-reset;
+		padding: 0;
+		margin: 0 1em 0 auto;
+		width: 15px;
+		height: 30px;
+		background: {
+			color: transparent;
+			image: url(/assets/arrow-down.svg);
+			repeat: no-repeat;
+			position: center center;
+		}
+		transition: transform $transition-fast;
+	}
+	&--open &__toggle {
+		transform: rotateX(180deg);
+	}
+	&__icon {
+		@include breakpoint(tablet, up) {
+			display: none;
+		}
+
+		display: flex;
+		align-content: center;
+		justify-content: center;
+		position: relative;
+		width: $basket-icon-width;
+		height: $basket-icon-height;
+		svg {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: inherit;
+			height: inherit;
+			fill: $basket-icon-fill;
+		}
+	}
+	&--items-updated &__icon svg {
+		animation: basket-icon-pulse 1s infinite;
+	}
+	&__item-count {
+		@include bold-weight;
+		font-size: px-to-rem(12px);
+		position: absolute;
+		top: $item-count-pos-y;
+		left: #{$basket-icon-width / 2};
+	}
+	&__items-container {
+		@include container;
+		@include minimal-scrollbar;
+		@include breakpoint(tablet, below) {
+			display: none;
+			position: absolute;
+			width: 100%;
+			transform: translateY(-100%);
+			transition: transform $transition-fast;
+		}
+		@include breakpoint(tablet, up) {
+			border-bottom-left-radius: $basket-border-radius;
+			border-bottom-right-radius: $basket-border-radius;
+		}
+
+		background: $white;
+		overflow: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+	&--items-display &__items-container {
+		display: block;
+	}
+	&--open &__items-container {
+		transform: translateY(0);
+	}
+
+	&__comparison-saving {
+		@include container($padding-small: $main-collapse-padding-small);
+		@include brevier;
+		background-color: $red-3;
+		color: $white;
+		position: relative;
+		padding-top: 0.5em;
+		padding-bottom: 0.5em;
+
+		@include breakpoint(tablet, below) {
+			z-index: 2;
+		}
+	}
+	&__suffix {
+		font-size: px-to-rem(12px);
+		line-height: 1.3em;
+		@include breakpoint(tablet, below) {
+			padding-top: 3px;
+		}
+	}
+}
+@keyframes basket-price-pulse {
+	0%,
+	100% {
+		color: $white;
+	}
+	50% {
+		color: $orange-2;
+	}
+}
+@keyframes basket-icon-pulse {
+	0%,
+	100% {
+		fill: $basket-icon-fill;
+	}
+	50% {
+		fill: $orange-2;
+	}
+}
+.EaglePartPay {
+	@include container($padding-small: $main-collapse-padding-small);
+	background-color: $grey-3;
+	display: flex;
+	align-items: center;
+	position: relative;
+	z-index: 2;
+	&__link {
+		@include medium-weight;
+		margin-top: 0.2em;
+		margin-bottom: 0.35em;
+		svg {
+			display: inline-block;
+			transform: translateY(0.25em);
+			margin: 0 0.25em 0 0;
+
+			width: 1.2em;
+			height: 1.2em;
+			fill: currentColor;
+		}
+	}
+}

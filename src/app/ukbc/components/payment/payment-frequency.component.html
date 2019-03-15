@@ -1,0 +1,8 @@
+<div class="SectionCard__row" *ngIf="isOpen">
+	<h3 class="Payment__section-title PaymentFrequency__title">{{ Content.HowWouldYouLikeToPayHeading }}</h3>
+	<ukbc-payment-frequency-buttons (onFocus)="onFocus.emit($event)"></ukbc-payment-frequency-buttons>
+</div>
+<div class="SectionCard__values" *ngIf="!isOpen && isComplete">
+	<span class="SectionCard__value-label">{{ Content.PaymentFrequency }}:</span>
+	<span class="SectionCard__value"> {{ (contentService.getPriceLabel() | async).basketPriceLabel }}</span>
+</div>

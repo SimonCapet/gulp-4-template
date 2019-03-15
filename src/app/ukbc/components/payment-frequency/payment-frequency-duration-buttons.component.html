@@ -1,0 +1,24 @@
+<button 
+	class="Btn Btn--align-left Btn--shadow Payment__button PaymentFrequencyDurationBtn" 
+	type="button" 
+	[ngClass]="ButtonClassOneYear"
+	(click)="ToggleDuration(EPolicyDuration.OneYear)"
+	(focus)="onFocus.emit($event)" >
+	 <span class="PaymentFrequencyDurationBtn__label">{{ PolicyDetailsOneYearLabel }}</span>
+	 <span class="PaymentFrequencyDurationBtn__price" *ngIf="!JourneyContent.HidePaymentOptionPrice">
+		{{ AnnualTotal | toPounds }} 
+	</span>
+</button>
+
+<button 
+	class="Btn Btn--align-left Btn--shadow Payment__button PaymentFrequencyDurationBtn" 
+	type="button" 
+	[ngClass]="ButtonClassTwoYears"
+	(click)="ToggleDuration(EPolicyDuration.TwoYears)" 
+	(focus)="onFocus.emit($event)">
+	<span class="PaymentFrequencyBtn__label">{{ PolicyDetailsTwoYearLabel }}</span>
+	<span class="PaymentFrequencyBtn__price" *ngIf="!JourneyContent.HidePaymentOptionPrice">
+		{{ TwoYearTotal | toPounds }}		
+	</span>
+</button>
+

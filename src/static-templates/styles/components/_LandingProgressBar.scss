@@ -1,0 +1,63 @@
+$circle-width-height: 30px;
+$chevron-size: 13px 14px;
+
+.LandingProgressBar {
+	padding: 10px 0;
+	margin: 0;
+	text-align: center;
+
+	@include breakpoint(tablet, up) {
+		padding: 25px 0;
+	}
+}
+.LandingProgressBar__item {
+	display: none;
+	font-weight: 400;
+
+	&.LandingProgressBar__item--active {
+		display: inline-block;
+		color: $green;
+		@include breakpoint(tablet, up) {
+			background-image: url('../../../assets/chevron-right-light-green.svg');
+		}
+
+		&:before {
+			border: 1px solid $green;
+		}
+	}
+
+	@include breakpoint(tablet, up) {
+		display: inline-block;
+		position: relative;
+		padding-left: calc(#{$circle-width-height} + 10px);
+		background-image: url('../../../assets/chevron-right-light-grey.svg');
+		background-repeat: no-repeat;
+		background-size: $chevron-size;
+		background-position: top 4px left 10px;
+		&:not(:last-of-type) {
+			margin-right: 2%;
+		}
+	}
+
+	&:before {
+		@include breakpoint(tablet, up) {
+			content: ' ';
+			width: $circle-width-height;
+			height: $circle-width-height;
+			display: block;
+			position: absolute;
+			border: 1px solid $grey-2;
+			border-radius: 50%;
+			top: -5px;
+			left: 0;
+		}
+	}
+}
+
+.LandingProgressBar__text {
+	opacity: 0.4;
+
+	.LandingProgressBar__item--active & {
+		opacity: 1;
+	}
+}

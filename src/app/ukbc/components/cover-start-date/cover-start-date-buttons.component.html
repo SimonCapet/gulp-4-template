@@ -1,0 +1,27 @@
+<div class="CoverStartBtn__wrapper">
+	<button 
+		class="Btn Btn--shadow Btn--align-left Payment__button CoverStartBtn" 
+		type="button"[ngClass]="ButtonClassToday" 
+		(click)="SetCoverDate(ECoverStartDateValue.Today, TodayDate)">
+		{{ TodayLabel }}
+		<span class="CoverStartBtn__label">{{ TodayDate | date: 'dd/MM/y' }} </span>
+	</button>
+	<button 
+		class="Btn Btn--shadow Btn--align-left Payment__button CoverStartBtn" 
+		*ngIf="!TodayOnly" 
+		type="button"
+		[ngClass]="ButtonClassTomorrow" 
+		(click)="SetCoverDate(ECoverStartDateValue.Tomorrow, TomorrowDate)">
+		{{ TomorrowLabel}}
+		<span class="CoverStartBtn__label">{{ TomorrowDate | date: 'dd/MM/y' }} </span>
+	</button>
+	<button 
+		class="Btn Btn--shadow Btn--align-left Payment__button CoverStartBtn"
+		*ngIf="!TodayOnly" 
+		type="button" 
+		[ngClass]="ButtonClassAnother" 
+		(click)="SetCoverDate(ECoverStartDateValue.AnotherDate, AnotherDate)">
+		{{ AnotherDateLabel }}
+		<span class="CoverStartBtn__label">Choose </span>
+	</button>
+</div>

@@ -1,0 +1,20 @@
+<div class="Vehicles" *ngIf="isOpen || isComplete">
+	<div class="SectionCard__row Vehicles__vehicle" *ngFor="let vehicle of vehiclesState.vehicles; let i = index; trackBy:VehiclesChanged">
+		<ukbc-details-vehicle 
+			[vehicle]="vehicle" 
+			[vehicles]="vehiclesState.vehicles" 
+			[content]="Content" 
+			[index]="i"
+			[isOpen]="isOpen" 
+			[isVehicleOpen]="vehiclesState.openVehicle === vehicle.model.Id" 
+			[isVehicleComplete]="isVehicleComplete(vehicle.model.Id)"
+			[isFocused]="IsFocused(vehicle)" 
+			[forceShowValidationErrors]="forceShowValidationErrors" 
+			(onFocus)="OnVehicleFocus($event, vehicle)"
+			(onVehicleLoading)="onVehicleLoading.emit($event)" 
+			(onVehicleLookupComplete)="OnVehicleLookupComplete($event)"
+			(saveVehicle)="SaveVehicle($event)" 
+			(openCard)="OpenCard()">
+		</ukbc-details-vehicle>
+	</div>
+</div>

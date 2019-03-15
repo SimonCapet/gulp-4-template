@@ -1,0 +1,20 @@
+if debug
+	meta(name="viewport" content="width=device-width, initial-scale=1")
+style
+	include ../../../../dist/static/styles/styles-landing-page.css
+	include ../../../../dist/static/styles/styles-category-page-export.css
+
+block content
+	.SiteWrapper(style="padding-top: 0")
+		.LandingHeader
+			include ../../components/Banners/_OfferBannerBg
+
+		div(style="position: relative;")
+			include ../../components/Landing/_landing-progress-bar
+
+		include ../../components/ProductBasis/_ProductBases
+		.container
+			.row
+				div.col-md(style="padding-bottom: 20px")
+					include ../../components/_seo-paragraph
+

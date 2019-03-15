@@ -1,0 +1,9 @@
+<div class="BasketToken" *ngIf="!eagleEyeTokenValue">
+	<span>{{ journeyContent.EagleEyeTokensEquivalentValuePrefix }}</span>
+	<span class="BasketToken__price"> {{ TokensEquivalentValue }} </span>
+	<span>{{ journeyContent.EagleEyeTokensEquivalentValueSuffix }}</span>
+</div>
+<div class="BasketToken" *ngIf="eagleEyeTokenValue">
+	<span class="BasketToken__price-label">{{ journeyContent.OriginalRacPriceLabel }} </span>
+	<span class="BasketToken__price">{{ RACPrice }}</span>
+</div>

@@ -1,0 +1,61 @@
+<div class="PaymentCard">
+	<div class="PaymentCard__buttons" *ngIf="ShowDirectDebitCards()">
+		<button 
+			class="Payment__button PaymentCard__button Btn"
+		 	ngClass="{{ paymentDetails.model.directDebitPaymentType === DirectDebitPaymentType.DebitCard ? 'Btn--green Btn--tick' : 'Btn--white Btn--circle' }}"
+			(click)="SetDirectDebitPaymentMethod(DirectDebitPaymentType.DebitCard)">
+			Debit Card
+		</button>
+		<button 
+			class="Payment__button PaymentCard__button Btn" 
+			ngClass="{{ paymentDetails.model.directDebitPaymentType === DirectDebitPaymentType.CreditCard ? 'Btn--green Btn--tick' : 'Btn--white Btn--circle' }}"
+			(click)="SetDirectDebitPaymentMethod(DirectDebitPaymentType.CreditCard)">
+			Credit Card 
+		</button>
+	</div>
+	<div class="PaymentCard__iframe-container" ngClass="{{ (IframeLoading$ | async) ? 'PaymentCard__iframe-container--loading' : '' }}">
+		<form 
+			id="realex_config" 
+			*ngIf="!!options && !!options.RealexModel" 
+			method="POST" action="{{ options.RealexModel.PaymentGatewayURL }}"
+			target="{{ options.RealexModel.IframeId }}">
+			<input id="TIMESTAMP" type="hidden" name="TIMESTAMP" [value]="options.RealexModel.TimeStamp" />
+			<input id="MERCHANT_ID" type="hidden" name="MERCHANT_ID" [value]="options.RealexModel.MerchantId" />
+			<input id="ACCOUNT" type="hidden" name="ACCOUNT" [value]="options.RealexModel.Account" />
+			<input id="ORDER_ID" type="hidden" name="ORDER_ID" [value]="options.RealexModel.OrderId" />
+			<input id="AMOUNT" type="hidden" name="AMOUNT" [value]="options.RealexModel.Amount" />
+			<input id="CURRENCY" type="hidden" name="CURRENCY" [value]="options.RealexModel.Currency" />
+			<input id="SHA1HASH" type="hidden" name="SHA1HASH" [value]="options.RealexModel.Shah1hash" />
+			<input id="AUTO_SETTLE_FLAG" type="hidden" name="AUTO_SETTLE_FLAG" [value]="options.RealexModel.AutoSettle" />
+			<input id="HPP_VERSION" type="hidden" name="HPP_VERSION" [value]="options.RealexModel.HppVersion" />
+			<input id="HPP_LANG" type="hidden" name="HPP_LANG" [value]="options.RealexModel.HppLang" />
+			<input id="HPP_POST_RESPONSE" type="hidden" name="HPP_POST_RESPONSE" [value]="options.RealexModel.HppPostResponse" />
+			<input id="HPP_CUSTOMER_FIRSTNAME" type="hidden" name="HPP_CUSTOMER_FIRSTNAME" [value]="options.RealexModel.CardHolderFirstName" />
+			<input id="HPP_CUSTOMER_LASTNAME" type="hidden" name="HPP_CUSTOMER_LASTNAME" [value]="options.RealexModel.CardHolderLastName" />
+			<input id="COMMENT1" type="hidden" name="COMMENT1" [value]="options.RealexModel.AmountValue" />
+			<input id="HPP_DISPLAY_CARDHOLDERNAME" type="hidden" name="HPP_DISPLAY_CARDHOLDERNAME" value="FALSE" />
+			<input id="CARD_STORAGE_ENABLE" type="hidden" name="CARD_STORAGE_ENABLE" [value]="options.RealexModel.CardStorage" />
+			<input id="OFFER_SAVE_CARD" type="hidden" name="OFFER_SAVE_CARD" [value]="options.RealexModel.OfferSaveCard" />
+			<input id="PAYER_EXIST" type="hidden" name="PAYER_EXIST" [value]="options.RealexModel.PayerExist" />
+			<input id="PAYER_REF" type="hidden" name="PAYER_REF" [value]="options.RealexModel.PayerRef" />
+			<input id="PMT_REF" type="hidden" name="PMT_REF" [value]="options.RealexModel.PmtRef" />
+			<input type="hidden" [id]="options.RealexModel.IframeId" name="CARD_PAYMENT_BUTTON" value="Pay now" />
+		</form>
+		<div id="realexIframeContainer" #iframeContainer></div>
+		<!-- RETRY Message including button to reload iframe-->
+		<div class="PaymentCard__retry" *ngIf="(Retry$ | async).show">
+			<p class="PaymentCard__retry-message">
+				{{ (Retry$ | async).message }}
+			</p>
+			<button class="Btn" (click)="TryAgain()">Try again</button>
+		</div>
+	</div>
+	<div class="PaymentCard__loading" *ngIf="IframeLoading$ | async">
+		<h1 class="PaymentCard__loading-message" innerHTML="{{ content.DoNotRefreshMessage }}"></h1>
+		<div class="PaymentCard__loader Loader Loader--grey Loader--loading">
+			<div class="Loader__chevron"></div>
+			<div class="Loader__chevron"></div>
+			<div class="Loader__chevron"></div>
+		</div>
+	</div>
+</div>

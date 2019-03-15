@@ -1,0 +1,192 @@
+$banner-padding-min: 10px;
+$banner-padding-max: 50px;
+$banner-background-padding-min: 20px;
+$banner-background-padding-max: 100px;
+$banner-triangle-height-min: 86px;
+$banner-triangle-height-max: 860px;
+$banner-thin-pad-padding-min: 20px;
+$banner-thin-pad-padding-max: 50px;
+
+.Banner {
+  $c: &;
+  position: relative;
+
+  &__background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center center;
+
+    opacity: 0;
+
+    transition: opacity 1s ease;
+
+    &--loaded {
+      opacity: 1;
+    }
+  }
+
+  &--background-image {
+    @include fluid-property(padding-top, $banner-background-padding-min, $banner-background-padding-max);
+    @include fluid-property(padding-bottom, $banner-background-padding-min, $banner-background-padding-max);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &--white-text {
+    color: $white;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  }
+
+  &__half-width {
+    @include breakpoint(tablet, up) {
+      max-width: 55%;
+    }
+  }
+
+  &__header {
+    @include pargon();
+    line-height: 1.1;
+    margin-bottom: 0.2em;
+    font-weight: 500;
+    color: $white;
+
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+
+    &--orange {
+      color: $orange-2;
+    }
+  }
+
+  &__sub-header {
+    color: $white;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+
+    @include fluid-property(font-size, 18px, 43px);
+    margin: 0 0 1em;
+    font-weight: 300;
+
+    strong {
+      font-weight: 500;
+    }
+
+    @include breakpoint(tablet, up) {
+      line-height: 45px;
+    }
+  }
+
+  &__btn {
+    @include pica();
+  }
+
+  &__inner {
+    @include fluid-property(padding-right, $banner-padding-min, $banner-padding-max);
+    @include fluid-property(padding-left, $banner-padding-min, $banner-padding-max);
+
+    position: relative;
+
+    max-width: 1270px;
+    margin: 0 auto;
+
+    .Banner--shallow & {
+      @include fluid-property(padding-right, 0, 0);
+      @include fluid-property(padding-left, 0, 0);
+    }
+  }
+
+  // Modifiers
+  // Banner with background image
+  &--background {
+    @include fluid-property(padding-top, $banner-background-padding-min, $banner-background-padding-max);
+    @include fluid-property(padding-bottom, $banner-background-padding-min, $banner-background-padding-max);
+
+    background: linear-gradient($amber, $orange);
+  }
+
+  &--triangle {
+    @include fluid-property(padding-top, 20px, 70px);
+    @include fluid-property(padding-bottom, 20px, 250px);
+
+    @include breakpoint(tablet, up) {
+      position: relative;
+      overflow: hidden;
+
+      &:before,
+      &:after {
+        @include fluid-property(border-left-width, 160px, 1600px);
+
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-right-width: 0;
+
+        content: '';
+      }
+
+      &:before {
+        @include fluid-property(border-top-width, $banner-triangle-height-min, $banner-triangle-height-max);
+        border-bottom-width: 0;
+        border-color: transparent transparent transparent $grey-4;
+
+        transform: translateX(-100%);
+      }
+
+      &:after {
+        @include fluid-property(border-bottom-width, $banner-triangle-height-min, $banner-triangle-height-max);
+        border-top-width: 0;
+        border-color: transparent transparent $grey-4 transparent;
+      }
+    }
+  }
+
+  &--triangle & {
+    &__inner {
+      @include fluid-property(max-width, 300px, 500px);
+    }
+  }
+
+  &--thin-pad {
+    @include fluid-property(padding-top, $banner-thin-pad-padding-min, $banner-thin-pad-padding-max);
+    @include fluid-property(padding-bottom, $banner-thin-pad-padding-min, $banner-thin-pad-padding-max);
+  }
+
+  &--large-pad {
+    @include fluid-property(padding-top, $banner-thin-pad-padding-min, $banner-thin-pad-padding-max);
+    @include fluid-property(padding-bottom, $banner-thin-pad-padding-min, $banner-thin-pad-padding-max);
+  }
+
+  &--payg {
+    #{$c}__header {
+      @include fluid-property(padding-bottom, 15px, 25px);
+    }
+
+    #{$c}__sub-header {
+      @include pica();
+      @include fluid-property(padding-bottom, 15px, 25px);
+    }
+  }
+}
+
+.Banner--blazy {
+  background-size: cover;
+  background-position: center;
+  padding: 20px 20px 100px;
+  @include breakpoint(mobile-large, up) {
+    padding: 30px 0 60px;
+  }
+}
+
+.Banner--shallow.Banner--blazy {
+  padding: 0 0 230px;
+  @include breakpoint(tablet, up) {
+    padding: 0;
+  }
+}

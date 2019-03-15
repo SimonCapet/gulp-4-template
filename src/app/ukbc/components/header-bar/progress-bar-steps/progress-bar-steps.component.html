@@ -1,0 +1,19 @@
+<div class="ProgressBarSteps__wrapper">
+	<div class="ProgressBarSteps__step"
+		 *ngFor="let step of steps;let i = index;"
+		 [class.ProgressBarSteps__step--current]='step.status.current'
+		 [class.ProgressBarSteps__step--completed]='step.status.completed'>
+		<span class="ProgressBarSteps__number-circle">
+			<span class="ProgressBarSteps__number"
+				  *ngIf="!step.status.completed">
+				{{i+1}}
+			</span>
+			<span class="ProgressBarSteps__tick"
+				  *ngIf="step.status.completed"></span>
+		</span>
+		<span class="ProgressBarSteps__step-label">
+			{{step.data.ProgressBarLabel}}
+		</span>
+	</div>
+</div>
+	

@@ -1,0 +1,3 @@
+[submodule "src/static-templates/styles/sass-helpers"]
+	path = src/static-templates/styles/sass-helpers
+	url = https://scapet@bitbucket.org/racdigital/sass-helpers.git

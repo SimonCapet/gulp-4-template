@@ -1,0 +1,241 @@
+$offer-packages-grid: 990px;
+$offer-package-border-radius: 7px;
+$offer-description-tablet-height: 106px;
+$offer-description-desktop-height: 85px;
+$flag-height: 36px;
+$flag-height-ie: 25px;
+$package-icon-width-height: 60px;
+$package-title-padding: 20px;
+$package-title-max-height: 63px;
+$package-svg-height: 35px;
+$package-svg-top-pos: 5px;
+$cta-height: 115px;
+$price-frequency-width: 50px;
+
+.Offer-packages {
+	@include breakpoint(tablet, up) {
+		display: flex;
+		max-width: $offer-packages-grid;
+		margin: 0 auto;
+	}
+}
+
+.Offer-package {
+	@include breakpoint(tablet, up) {
+		width: 45%;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.text--uppercase {
+		text-transform: uppercase;
+		font-weight: 500;
+	}
+
+	strong {
+		font-weight: 500;
+	}
+}
+
+.Offer-package__flag,
+.Offer-package__inner {
+	border-top-left-radius: $offer-package-border-radius;
+	border-top-right-radius: $offer-package-border-radius;
+}
+
+.Offer-package__flag + .Offer-package__inner {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.Offer-package__flag {
+	background-color: $red-2;
+	color: white;
+	text-align: center;
+	padding: 7px 10px;
+	flex: 0 0 $flag-height;
+
+	.IE & {
+		flex: 0 0 $flag-height-ie;
+	}
+}
+
+.Offer-package__inner {
+	background-color: $grey;
+	color: white;
+	padding: 1.5em 1.2em 1.2em 1.2em;
+	flex: 1 1 auto;
+
+	@include breakpoint(tablet, up) {
+		padding: 1.5em 1.2em 1.2em 1.5em;
+	}
+}
+
+.Offer-package__title {
+	@include fluid-property(font-size, 17px, 27px);
+
+	width: calc(100% - #{$package-icon-width-height} - 10px); // 10px for spacing
+	float: right;
+	padding: $package-title-padding 0;
+	margin: 0;
+	line-height: 1em;
+	max-height: $package-title-max-height;
+
+	color: $white;
+}
+
+.Offer-package__description {
+	margin: 0;
+	padding: 20px 0;
+	clear: both;
+	@include fluid-property(font-size, 18px, 20px);
+	@include breakpoint(tablet, up) {
+		min-height: $offer-description-tablet-height;
+	}
+	@include breakpoint(tablet, above) {
+		min-height: $offer-description-desktop-height;
+	}
+}
+
+.Offer-package__icon {
+	width: $package-icon-width-height;
+	height: $package-icon-width-height;
+	border-radius: 50%;
+	float: left;
+	background-color: $green;
+
+	&.Offer-package__icon--people {
+		padding: 7px 10px;
+	}
+
+	&.Offer-package__icon--vehicle {
+		padding: 8px;
+	}
+
+	svg {
+		width: 100%;
+		height: $package-svg-height;
+		fill: white;
+		position: relative;
+		top: $package-svg-top-pos;
+	}
+}
+
+.Offer-package__contents {
+	padding: 20px 0;
+	margin: 0;
+	clear: both;
+
+	li {
+		display: block;
+		margin-bottom: 5px;
+		position: relative;
+	}
+
+	svg {
+		width: 20px;
+		height: 20px;
+		position: absolute;
+		top: 2px;
+	}
+
+	span {
+		display: block;
+		padding-left: 27px;
+		@include fluid-property(font-size, 15px, 16px);
+	}
+}
+
+.Offer-package__suitability {
+	color: $grey-3;
+	p {
+		margin: 0 0 7px;
+		font-weight: bold;
+	}
+	ul {
+		margin: 0;
+		padding: 0 0 0 18px;
+	}
+}
+
+.Offer-package__cta {
+	display: flex;
+	background: linear-gradient(to bottom, #fbfbfb 0%, #f5f5f5 100%);
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+	box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
+	flex: 0 0 $cta-height;
+}
+
+.Offer-package__price,
+.Offer-package__action {
+	width: 50%;
+}
+
+.Offer-package__price {
+	padding: 1em 0 1.2em 1.2em;
+
+	@media (min-width: $tablet) and (max-width: $tablet-landscape) {
+		padding: 1.3em 0 1.2em 1.2em;
+	}
+
+	@include breakpoint(tablet, up) {
+		padding: 1em 0 1.2em 1.5em;
+	}
+}
+
+.Offer-package__action {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-end;
+	padding: 0 1.2em 0 0;
+}
+
+.Offer-package__price__highlighted,
+.Offer-package__price__frequency {
+	color: $orange-2;
+	display: inline-block;
+}
+
+.Offer-package__price__highlighted {
+	@include fluid-property(font-size, 25px, 48px);
+	line-height: 1.1em;
+	font-weight: 500;
+
+	@media (min-width: $tablet) and (max-width: $tablet-landscape) {
+		font-size: 34px;
+	}
+}
+
+.Offer-package__price__frequency {
+	width: $price-frequency-width;
+	line-height: 1em;
+	@include fluid-property(font-size, 13px, 18px);
+
+	@media (min-width: $tablet) and (max-width: $tablet-landscape) {
+		font-size: 14px;
+	}
+}
+
+.Offer-package__price__alternative {
+	color: $grey;
+	font-weight: bold;
+	@include fluid-property(font-size, 14px, 17px);
+}
+
+.Offer-packages__separator {
+	font-size: 30px;
+	font-weight: bold;
+	color: $grey;
+	text-align: center;
+	padding: 1.2em;
+
+	@include breakpoint(tablet, up) {
+		padding: 0;
+		width: 10%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+}

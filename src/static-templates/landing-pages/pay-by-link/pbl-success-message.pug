@@ -1,0 +1,21 @@
+extend ../../components/_masterSimpleNav
+block content
+	include ../../components/Site/_site-header
+		link(rel="stylesheet" href="/static/styles/pay-by-link/styles.css")
+		
+	.PayByLink__body
+
+		.PayByLink__content
+			
+			.PayByLink__image(style="background-image: url('https://fillmurray.com/602/293');")
+			
+			.PayByLink__icon-container
+				img(src='../../../assets/tick-circle-green.svg').PayByLink__success-icon
+			
+			ul.PayByLink__list
+				li Thank you, your payment was successful.
+				li Now you have breakdown cover with the UK's most experienced provider.
+				
+			.PayByLink__total
+				span Total paid:
+				span &pound;84.88

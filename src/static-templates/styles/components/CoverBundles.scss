@@ -1,0 +1,455 @@
+@import '../sass-helpers/core-variables-and-helpers';
+
+// cb = cover bundles
+$cb-border-radius: 7px;
+$cb-margin-bottom: 50px;
+$cb-prices-height: 100px;
+$cb-info-icon-width-height: 20px;
+$cb-info-icon-pos-y: 3px;
+$cb-excluded-icon-width-height: 20px;
+$cb-excluded-icon-pos: 0 15px;
+$cb-free-lozenge-width: 50px;
+$cb-free-lozenge-height: 30px;
+$cb-free-lozenge-m-width: 35px;
+$cb-free-lozenge-m-height: 20px;
+$cb-free-pos-y: 11px;
+$cb-free-pos-y-mob: 15px;
+$cb-transition: 0.3s ease-out;
+$cb-box-shadow-offset: 5px;
+$cb-prev-next-height: 60px;
+$cb-prev-next-width: 35px;
+$cb-arrow-width: 15px;
+$cb-info-size: 18px;
+$cb-dot-size: 20px;
+$cb-cta-offset-bottom: 25px;
+$header-height: 69px;
+$header-height-m: 44px;
+
+@keyframes shake {
+	10%,
+	90% {
+		transform: translate3d(-1px, 0, 0);
+	}
+
+	20%,
+	80% {
+		transform: translate3d(2px, 0, 0);
+	}
+
+	30%,
+	50%,
+	70% {
+		transform: translate3d(-4px, 0, 0);
+	}
+
+	40%,
+	60% {
+		transform: translate3d(4px, 0, 0);
+	}
+}
+
+.CoverBundles {
+	$c: &;
+	position: relative;
+	background: $grey-5;
+
+	&__cta {
+		> div {
+			@include breakpoint(tablet-landscape, below) {
+				padding-bottom: $cb-cta-offset-bottom + $cb-prices-height;
+			}
+
+			@include breakpoint(tablet-landscape, up) {
+				padding-bottom: $cb-cta-offset-bottom + $cb-prices-height;
+			}
+		}
+	}
+
+	&--stacked &__cta > div {
+		@include breakpoint(tablet-landscape, below) {
+			padding-bottom: $cb-cta-offset-bottom;
+		}
+	}
+
+	&__Btn {
+		&--hidden {
+			visibility: hidden;
+		}
+	}
+
+	&__carousel {
+		$carousel: &;
+		@include container;
+		overflow-x: hidden;
+		padding-bottom: $cb-box-shadow-offset;
+		position: relative;
+
+		&[data-component='cover-bundles'] {
+			opacity: 0;
+
+			&#{$carousel}--initialised,
+			&#{$carousel}--one {
+				opacity: 1;
+			}
+		}
+	}
+
+	&__cta ~ &__carousel {
+		&[data-component='cover-bundles'] {
+			margin-top: -#{$cb-prices-height};
+		}
+		@include breakpoint(tablet-landscape, up) {
+			margin-top: -#{$cb-prices-height};
+		}
+	}
+
+	&__intro {
+		@include pica;
+		text-align: center;
+		@include breakpoint(tablet-landscape, up) {
+			display: none;
+		}
+	}
+
+	&__items {
+		overflow: visible !important; // To override the carousel inline styling
+		width: 80%;
+		margin: auto;
+		transform: translateZ(0);
+		backface-visibility: hidden;
+		perspective: 1000px;
+
+		@include breakpoint(tablet, up) {
+			width: 50%;
+		}
+
+		@include breakpoint(tablet-landscape, up) {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+		}
+	}
+
+	&__cta ~ &__carousel > &__items {
+		@include breakpoint(tablet-landscape, up) {
+			padding-bottom: $cb-margin-bottom;
+			margin-bottom: $cb-margin-bottom;
+			border-bottom: 1px solid rgba($black, 0.2);
+		}
+	}
+
+	&__carousel--initialised &__items {
+		@include breakpoint(tablet-landscape, below) {
+			animation: shake 1.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+		}
+	}
+
+	&__prev,
+	&__next {
+		background: $black;
+		height: $cb-prev-next-height;
+		width: $cb-prev-next-width;
+		position: absolute;
+		top: #{$cb-prices-height - $cb-prev-next-height/2};
+		border: 0;
+		padding: 0;
+		z-index: 2;
+		cursor: pointer;
+		opacity: 0;
+
+		transition: opacity $transition-normal;
+
+		&:focus {
+			outline: none;
+		}
+
+		@include breakpoint(tablet-landscape, up) {
+			display: none;
+		}
+
+		svg {
+			width: $cb-arrow-width;
+			height: auto;
+			position: relative;
+		}
+	}
+
+	&__carousel--initialised & {
+		&__prev,
+		&__next {
+			opacity: 1;
+
+			&:disabled {
+				opacity: 0.3;
+			}
+		}
+	}
+
+	&__prev {
+		border-radius: 0 50px 50px 0;
+		left: 0;
+
+		svg {
+			right: 4px;
+		}
+	}
+
+	&__next {
+		border-radius: 50px 0 0 50px;
+		right: 0;
+
+		svg {
+			left: 4px;
+		}
+	}
+
+	&__dots {
+		padding: 20px 0;
+		text-align: center;
+		margin: 0;
+		clear: both;
+
+		@include breakpoint(tablet-landscape, up) {
+			display: none;
+		}
+	}
+
+	&__carousel--one & {
+		&__prev,
+		&__next,
+		&__dots {
+			display: none;
+		}
+	}
+
+	&__dot {
+		display: inline-block;
+		width: $cb-dot-size;
+		height: $cb-dot-size;
+		border-radius: 50%;
+		background-color: $white;
+		box-shadow: 0 2px 5px $grey-2;
+		transition: background-color $cb-transition;
+		margin-right: 10px;
+		border: 0;
+		padding: 0;
+		cursor: pointer;
+
+		&:last-of-type {
+			margin-right: 0;
+		}
+
+		&--active {
+			background-color: $black;
+		}
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	&__sticky {
+		position: fixed;
+		z-index: 1;
+		width: 100%;
+		top: $header-height-m;
+		text-align: center;
+		padding: 1em;
+		visibility: hidden;
+
+		&--visible {
+			visibility: visible;
+
+			#{$c}__bg {
+				opacity: 1;
+			}
+		}
+
+		@include breakpoint(tablet, up) {
+			top: $header-height;
+		}
+	}
+
+	&__bg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		transition: opacity $cb-transition;
+	}
+}
+
+.CoverBundle {
+	position: relative;
+	margin-bottom: 20px;
+
+	.CoverBundles__carousel--initialised &,
+	.CoverBundles__carousel--one & {
+		margin-right: 5px;
+
+		&:first-child {
+			margin-left: 5px;
+		}
+	}
+
+	@include breakpoint(tablet-landscape, up) {
+		margin-right: 10px;
+	}
+
+	&:first-child {
+		@include breakpoint(tablet-landscape, up) {
+			margin-left: 10px;
+		}
+	}
+
+	.CoverBundles__carousel--initialised &:before {
+		content: ' ';
+		position: absolute;
+		display: block;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border-radius: 6px;
+		opacity: 0.5;
+		transition: opacity $cb-transition;
+		z-index: 1;
+		background-color: $white;
+		@include breakpoint(tablet-landscape, up) {
+			display: none;
+		}
+	}
+
+	.CoverBundles__carousel--initialised &.CoverBundle--active:before {
+		opacity: 0;
+	}
+
+	@include breakpoint(tablet-landscape, up) {
+		flex: 0 1 270px;
+		opacity: 1;
+	}
+
+	&__info {
+		@include button-reset;
+		background-image: url('/assets/info-grey.svg');
+		background-color: transparent;
+		background-repeat: no-repeat;
+		background-position: 0 0;
+		width: $cb-info-size;
+		height: $cb-info-size;
+		display: block;
+		float: right;
+		padding: 0;
+	}
+
+	&__price {
+		background: $black;
+		border-radius: $cb-border-radius $cb-border-radius 0 0;
+		color: $white;
+		padding: 25px;
+		height: $cb-prices-height;
+	}
+
+	&__primary-price {
+		font-size: px-to-rem(30px);
+		line-height: px-to-rem(25px);
+		font-weight: 400;
+
+		[data-component='cover-bundles'] & {
+			font-size: px-to-rem(36px);
+		}
+	}
+
+	&__secondary-price,
+	&__price-frequency {
+		font-size: px-to-rem(16px);
+	}
+
+	&__secondary-price {
+		color: $grey-10;
+	}
+
+	&__price-frequency {
+		padding-left: 5px;
+		font-weight: 300;
+	}
+
+	&__features {
+		padding: 4%;
+		background: $white;
+		margin: 0;
+		border-radius: 0 0 #{$cb-border-radius} #{$cb-border-radius};
+		box-shadow: 1px 4px 3px $grey-3;
+
+		@include breakpoint(mobile-large, up) {
+			padding: 0 15px;
+		}
+	}
+
+	&__feature {
+		@include medium-weight;
+		@include fluid-property(font-size, 14px, 16px);
+		padding: 13px 10px 13px #{(10px + $cb-excluded-icon-width-height)};
+		display: block;
+		border-top: 1px solid $grey-3;
+		background-image: url('/assets/cross-circle-light-grey.svg');
+		background-repeat: no-repeat;
+		background-size: $cb-excluded-icon-width-height;
+		background-position: $cb-excluded-icon-pos;
+		color: $grey-3;
+		position: relative;
+		display: none;
+
+		&:first-child {
+			border-top: 0;
+		}
+
+		.CoverBundles__carousel--initialised &,
+		.CoverBundles__carousel--one & {
+			display: block;
+		}
+
+		&.CoverBundle__feature--included {
+			display: block;
+			color: $grey;
+			background-image: url('/assets/tick-circle-green.svg');
+		}
+
+		&.CoverBundle__feature--free {
+			padding: 13px #{(5px + $cb-free-lozenge-m-width)} 13px #{(10px + $cb-excluded-icon-width-height)};
+			@include breakpoint(tablet-landscape, above) {
+				padding: 13px #{(5px + $cb-free-lozenge-width)} 13px #{(10px + $cb-excluded-icon-width-height)};
+			}
+		}
+
+		@include breakpoint(tablet-landscape, up) {
+			display: block;
+		}
+	}
+
+	&__free {
+		display: inline-block;
+		background-image: url('/assets/free-lozenge.svg');
+		background-repeat: no-repeat;
+		width: $cb-free-lozenge-m-width;
+		height: $cb-free-lozenge-m-height;
+		position: absolute;
+		right: 0;
+		top: $cb-free-pos-y-mob;
+
+		@include breakpoint(tablet-landscape, above) {
+			width: $cb-free-lozenge-width;
+			height: $cb-free-lozenge-height;
+			top: $cb-free-pos-y;
+		}
+	}
+	&__modal {
+		display: none;
+
+		&.Modal--open {
+			display: inherit;
+		}
+	}
+}

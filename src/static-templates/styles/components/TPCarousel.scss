@@ -1,0 +1,132 @@
+@import '../sass-helpers/core-variables-and-helpers';
+$carousel-dot: 6px;
+$carousel-nav-bg: linear-gradient(-179deg, #444444 1%, #333333 94%);
+$carousel-nav-bg-hover: linear-gradient(-179deg, #444444 1%, #000000 94%);
+$carousel-nav-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+$carousel-nav-size: 50px;
+$chevron-width: 11px;
+$chevron-height: 14px;
+$carousel-nav-pull-desktop: 60px;
+$carousel-nav-pull-tablet: 15px;
+$animation: .3s ease-out;
+$carousel-gap: 10px;
+
+.TPCarousel {
+	padding: 0 #{$carousel-gap/2};
+}
+
+.TPCarousel__track {
+	display: flex;
+}
+
+.TPCarousel__slide {
+	background-color: $white;
+	margin-right: $carousel-gap;
+}
+
+.TPCarousel__dots {
+	line-height: 1em;
+	margin-top: 1em;
+
+	@include breakpoint(desktop, up) {
+		margin-top: 1.25em;
+	}	
+}
+
+.TPCarousel__dot,
+.TPCarousel__arrow {
+	border: 0;
+	padding: 0;
+}
+
+.TPCarousel__dot {
+	background: $white;
+	width: $carousel-dot;
+	height: $carousel-dot;
+	border-radius: 50%;
+	margin-right: $carousel-dot;
+	cursor: pointer;
+	opacity: 0.5;
+	transition: opacity $animation;
+}
+
+.TPCarousel__dot--active {
+	opacity: 1;
+}
+
+.TPCarousel__arrow {
+	width: $carousel-nav-size;
+	height: $carousel-nav-size;
+	background: $carousel-nav-bg;
+	box-shadow: $carousel-nav-shadow;
+	transition: all $animation;
+	cursor: pointer;
+	margin-top: 0.65em;
+
+	&:hover:not(:disabled) {
+		background: $carousel-nav-bg-hover;
+	}
+
+	&:disabled {
+		opacity: 0.3;
+		&:hover {
+			cursor: not-allowed;
+		}
+	}
+
+	@include breakpoint(desktop, up) {
+		margin-top: 0;
+	}
+
+	svg {
+		fill: $white;
+		width: $chevron-width;
+		height: $chevron-height;
+	}
+}
+
+.TPCarousel__arrow--right { 
+	svg {
+		transform: rotate(180deg);
+	}
+}
+
+.TPCarousel__container {
+	position: relative;
+}
+
+.TPCarousel__arrow {
+	@include breakpoint(tablet, up) {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%) scale(0.7);
+	}
+
+	@include breakpoint(desktop, up) {
+		transform: translateY(-50%) scale(1);
+	}
+}
+
+.TPCarousel__arrow--left {
+	left: 0;
+
+	@include breakpoint(tablet, up) {
+		left: -#{$carousel-nav-pull-tablet};
+	}
+
+	@include breakpoint(desktop, up) {
+		left: -#{$carousel-nav-pull-desktop};
+	}
+}
+
+.TPCarousel__arrow--right {
+	right: 0;
+
+	@include breakpoint(tablet, up) {
+		right: -#{$carousel-nav-pull-tablet};
+	}
+
+	@include breakpoint(desktop, up) {
+		right: -#{$carousel-nav-pull-desktop};
+	}
+}

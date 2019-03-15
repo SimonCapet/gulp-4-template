@@ -1,0 +1,39 @@
+@import '../../../../styles/core-variables-and-helpers';
+
+.InstalmentDatePicker {
+	&__selection {
+		display: flex;
+		align-items: center;
+	}
+
+	&__label {
+		@include pica;
+		color: $grey;
+		margin: 0 0.5em 0 0;
+	}
+
+	&__error {
+		margin-top: 0.25em;
+		font-size: 0.9em;
+		color: $form-field-invalid;
+
+		@include breakpoint(mobile, down) {
+			text-align: end;
+		}
+	}
+
+	&__info {
+		@include long-primer;
+		padding: 0.75em 1.25em;
+		background-color: $blue-5;
+		margin-top: 1.25em;
+
+		strong {
+			white-space: nowrap;
+		}
+	}
+
+	&__info-extra {
+		margin-top: 1em;
+	}
+}

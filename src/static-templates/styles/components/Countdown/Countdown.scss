@@ -1,0 +1,319 @@
+@import '../../sass-helpers/core-variables-and-helpers';
+
+$countdown-number-border-radius: 5px;
+$countdown-top-box-shadow: 0 -2px 5px rgba($black, 0.3);
+$countdown-bottom-box-shadow: 0 2px 5px rgba($black, 0.3);
+$countdown-inset-box-shadow-blur-radius: 0.0625em;
+$countdown-max-width: 1110px;
+
+.Countdown {
+	@include fluid-property(font-size, 39.7px, 130px, $clip-low: 320px, $clip-high: $countdown-max-width + $collapse-padding-large * 2);
+	line-height: 1em;
+
+	display: flex;
+	justify-content: center;
+
+	color: $white;
+
+	@include breakpoint(tablet, below) {
+		flex-direction: column;
+	}
+
+	&--hurry {
+		@include fluid-property(font-size, 70px, 100px, $clip-low: $tablet, $clip-high: $countdown-max-width + $collapse-padding-large * 2, $clip-at-start: false);
+	}
+
+	&__cols {
+		display: flex;
+		justify-content: center;
+	}
+
+	&__col {
+		text-align: center;
+	}
+
+	&__number-pair {
+		display: flex;
+		position: relative;
+	}
+
+	&__numbers {
+		position: relative;
+		text-shadow: 0 1px 3px $black;
+
+		&:first-child {
+			margin-right: 0.05em;
+		}
+
+		&:last-child {
+			margin-left: 0.05em;
+		}
+
+		&:after {
+			content: '';
+			z-index: 10;
+			display: block;
+
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+		}
+	}
+
+	&__label {
+		@include brevier($output-px: true);
+		margin-top: 0.25em;
+		text-transform: uppercase;
+	}
+
+	&__hurry {
+		text-transform: uppercase;
+
+		@include breakpoint(tablet, below) {
+			@include medium-weight;
+			@include great-primer;
+			margin: 0 0 0.5em;
+		}
+
+		@include breakpoint(tablet, up) {
+			margin-right: 0.25em;
+			width: 4.5em;
+			font-size: 0.35em;
+			line-height: 1.2em;
+		}
+	}
+}
+
+.CountdownNumber {
+	@include bold-weight;
+
+	z-index: 1;
+	position: relative;
+
+	width: 0.75em;
+	height: 1.2em;
+	line-height: 1.14em;
+
+	perspective: 3em;
+
+	&:not(&--before):first-child {
+		z-index: 2;
+	}
+
+	&:not(:first-child) {
+		position: absolute;
+		top: 0;
+	}
+
+	&__top,
+	&__bottom {
+		position: absolute;
+		width: 100%;
+		height: 50%;
+
+		overflow: hidden;
+
+		background: $red-3;
+
+		&:before,
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+		}
+
+		&:after {
+			opacity: 0;
+		}
+	}
+
+	&__top {
+		top: 0;
+
+		border-top-right-radius: $countdown-number-border-radius;
+		border-top-left-radius: $countdown-number-border-radius;
+
+		box-shadow: inset 0 $countdown-inset-box-shadow-blur-radius / 2 $countdown-inset-box-shadow-blur-radius rgba($black, 0.8);
+
+		transform-origin: 50% 100%;
+
+		&:after {
+			background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.6) 100%);
+		}
+
+		&:before {
+			top: auto;
+			border-top: 1px solid rgba($black, 0.6);
+		}
+	}
+
+	&__bottom {
+		bottom: 0;
+
+		border-bottom-right-radius: $countdown-number-border-radius;
+		border-bottom-left-radius: $countdown-number-border-radius;
+
+		transform-origin: 50% 0%;
+
+		&:after {
+			background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.1) 100%);
+		}
+
+		&:before {
+			border-radius: inherit;
+			box-shadow: inset 0 $countdown-inset-box-shadow-blur-radius / -5 $countdown-inset-box-shadow-blur-radius rgba($black, 0.8);
+		}
+	}
+
+	&__inner {
+		top: 50%;
+		left: 0;
+		transform: translateY(-53%);
+	}
+
+	&--before {
+		z-index: 3;
+	}
+
+	&--before & {
+		&__top {
+			z-index: 2;
+		}
+	}
+
+	&--before:not(&--inactive) & {
+		&__top,
+		&__bottom {
+			&:after {
+				animation: countdown-show 0.5s linear both;
+			}
+		}
+
+		&__top {
+			animation: countdown-top 0.5s linear both;
+		}
+
+		&__bottom {
+			animation: countdown-bottom-shadow 0.5s 0.5s linear both;
+		}
+	}
+
+	&--active {
+		z-index: 4;
+	}
+
+	&--active:not(&--inactive) {
+		animation: countdown-z-index 0.5s 0.5s linear both;
+	}
+
+	&--active & {
+		&__bottom {
+			z-index: 2;
+		}
+	}
+
+	&--active:not(&--inactive) & {
+		&__top,
+		&__bottom {
+			&:after {
+				animation: countdown-hide 0.5s 0.3s linear both;
+			}
+		}
+
+		&__bottom {
+			animation: countdown-bottom 0.5s 0.5s linear backwards;
+
+			&:before {
+				animation: countdown-bottom-inset-shadow 0.5s 0.5s linear backwards;
+			}
+		}
+	}
+}
+
+@keyframes countdown-z-index {
+	0% {
+		z-index: 2;
+	}
+	20% {
+		z-index: 4;
+	}
+	100% {
+		z-index: 4;
+	}
+}
+
+@keyframes countdown-bottom {
+	0% {
+		transform: rotateX(90deg);
+		box-shadow: none;
+	}
+	50% {
+		box-shadow: $countdown-bottom-box-shadow;
+	}
+	100% {
+		transform: rotateX(0deg);
+		box-shadow: $countdown-bottom-box-shadow;
+	}
+}
+
+@keyframes countdown-top {
+	0% {
+		transform: rotateX(0deg);
+		box-shadow: none;
+	}
+	50% {
+		box-shadow: none;
+	}
+	100% {
+		transform: rotateX(-90deg);
+		box-shadow: $countdown-top-box-shadow;
+	}
+}
+
+@keyframes countdown-show {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes countdown-hide {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes countdown-bottom-shadow {
+	0% {
+		box-shadow: $countdown-bottom-box-shadow;
+	}
+	80% {
+		box-shadow: $countdown-bottom-box-shadow;
+	}
+	100% {
+		box-shadow: none;
+	}
+}
+
+@keyframes countdown-bottom-inset-shadow {
+	0% {
+		opacity: 0;
+	}
+	99% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}

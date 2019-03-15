@@ -1,0 +1,87 @@
+.OfferTooltip {
+	&__button {
+		display: block;
+
+		color: $orange-2;
+
+		&:hover:after {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+		}
+	}
+
+	&__content {
+		z-index: 4;
+		display: none;
+		position: absolute;
+		top: 50%;
+		right: 0;
+		transform: translate(100%, -50%);
+		padding-left: $offer-tooltip-caret-size;
+
+		&:hover {
+			display: block;
+		}
+	}
+
+	&__button:hover + & {
+		&__content {
+			display: block;
+		}
+	}
+
+	&__inner {
+		@include padding;
+		@include fluid-font-size(0.5);
+		@include fluid-property(width, 500px, 600px, $tablet);
+
+		position: relative;
+
+		background: $white;
+		border-radius: $offer-border-radius;
+		box-shadow: 0 0 5px rgba($black, 0.5);
+
+		line-height: 1.4em;
+
+		color: $grey;
+
+		*:last-child {
+			margin-bottom: 0;
+		}
+
+		&:before,
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 50%;
+			left: 0;
+			transform: translate(0, -50%);
+			width: $offer-tooltip-caret-size;
+
+			background: inherit;
+		}
+
+		&:before {
+			transform: translate(-50%, -50%) rotate(45deg);
+			box-shadow: inherit;
+
+			height: $offer-tooltip-caret-size;
+		}
+
+		&:after {
+			height: $offer-tooltip-caret-size * 2;
+		}
+	}
+
+	&__title {
+		@include pica;
+
+		color: $black;
+	}
+}

@@ -1,0 +1,49 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../../styles/components/Input';
+
+.Address {
+	&__manual-toggle {
+		margin-top: 1em;
+		@include brevier;
+	}
+
+	&__summary {
+		@include margin-right;
+		display: inline-block;
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	&__no-results {
+		color: $form-field-invalid;
+	}
+
+	&__edit {
+		@include margin-top;
+		display: block;
+	}
+
+	&__save {
+		display: block;
+	}
+	
+	&__search {
+		@include margin-top;
+	}
+
+	&__picker-error {
+		color: $form-field-invalid;
+		display: block;
+		line-height: 1;
+		margin-top: 0.25em;
+		font-size: 0.75em;
+	}
+
+	&__summary-line {
+		line-height: 1.4em;
+	}
+	
+	&__options .Input__input {
+		min-width: $input-width;
+	}
+}

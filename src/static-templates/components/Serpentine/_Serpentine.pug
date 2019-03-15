@@ -1,0 +1,10 @@
+mixin Serpentine(item)
+	.Serpentine
+		.Serpentine__col
+			.Serpentine__text
+				h3.Serpentine__title !{item.title}
+				.Serpentine__description !{item.description}
+			if item.buttonText && item.buttonURL
+				a.Serpentine__btn.Btn.Btn--chevron-right.Btn--grey(href=item.buttonURL) 
+					span.Serpentine__copy #{item.buttonText}
+		.Serpentine__img.b-lazy(data-src=item.imagePath, data-component="blazy")

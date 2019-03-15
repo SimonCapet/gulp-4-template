@@ -1,0 +1,137 @@
+@import '../sass-helpers/core-variables-and-helpers';
+$overlay-desktop-width: 560px;
+$cta-padding-desktop: 50px;
+$cta-padding-mobile: 40px;
+$quote-cta-width: 1366;
+$feature-image: 255px;
+$reviews-max-width: 280px;
+
+.QuoteCTA {
+	background-color: $tuatara;
+	background-repeat: no-repeat;
+	background-size: 100% auto, auto, auto;
+}
+
+.QuoteCTA__top {
+	.Container {
+		padding-top: $cta-padding-mobile;
+		padding-bottom: $cta-padding-mobile;
+		display: flex;
+		justify-content: center;
+		@include breakpoint(tablet, up) {
+			padding-top: $cta-padding-desktop;
+			padding-bottom: $cta-padding-desktop;
+		}
+	}
+}
+
+.QuoteCTA__bottom {
+	@include breakpoint(tablet, up) {
+		background: linear-gradient(-180deg, rgba(0,0,0,0) 10%, $tuatara 54%);
+	}
+}
+
+.QuoteCTA__overlay {
+	text-align: center;
+
+	@include breakpoint(tablet, up) {
+		background-color: rgba(255, 255, 255, 0.8);
+		width: $overlay-desktop-width;
+		padding: 40px 30px 30px;
+	}
+
+	h1 {
+		@include fluid-property(font-size, 16px, 20px);
+		@include fluid-property(margin-bottom, 15px, 25px);
+	}
+
+	p {
+		@include medium-weight;
+		@include fluid-property(font-size, 25px, 42px);
+		@include fluid-property(line-height, 33px, 57px);
+		margin: 0 0 35px;
+	}
+
+	.Btn {
+		text-align: left;
+		margin-bottom: 25px;
+	}
+}
+
+.QuoteCTA__btn-text {
+	font-size: 1.15em;
+	display: block;
+}
+
+.QuoteCTA__btn-suffix {
+	@include brevier;
+}
+
+.QuoteCTA__reviews {
+	max-width: $reviews-max-width;
+	margin: auto;
+	margin-bottom: 1em;
+	clear: both;
+
+	.TrustPilotLogo {
+		margin-bottom: 10px;
+	}
+}
+
+.QuoteCTA__reviewee {
+	font-size: 0.8em;
+}
+
+.QuoteCTA__trustpilot {
+	@include breakpoint(tablet, below) {
+		padding: 1em;
+		background-color: rgba(255, 255, 255, 0.8);
+	}
+}
+
+.QuoteCTA__rating {
+	svg {
+		width: 73px;
+		height: 15px;
+	}
+}
+
+.QuoteCTA__features {
+	padding-bottom: 40px;
+	@include breakpoint(tablet, up) {
+		padding-bottom: 55px;
+	}
+}
+
+.QuoteCTA__feature {
+	display: block;
+	color: $white;
+	text-align: center;
+	margin: 0 auto 35px;
+
+	@include breakpoint(tablet-landscape, up) {
+		margin-bottom: 0;
+	}
+
+	img {
+		width: $feature-image;
+		height: $feature-image;
+		border-radius: 50%;
+		border: 5px solid white;
+	}
+
+	h2, p {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	h2 {
+		@include normal-weight;
+		font-size: 1.5em;
+		margin: 0.5em 0;
+	}
+
+	p {
+		margin: 0 auto;
+	}
+}

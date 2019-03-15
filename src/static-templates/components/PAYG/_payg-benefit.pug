@@ -1,0 +1,19 @@
+mixin PaygBenefit(benefits)
+	each val in benefits
+		.PAYGBenefit("class"="col-xs-12 col-sm-4 col-lg-4")
+			.PAYGBenefit__inner-wrapper
+				header.PAYGBenefit__header
+					.PAYGBenefit__header-icon(style="background-image: url('/assets/" + val.icon + ".svg');")
+					.PAYGBenefit__header-text-wrapper
+						.PAYGBenefit__header-text #{val.heading}
+						.PAYGBenefit__header-sub-text #{val.subHeading}
+				.PAYGBenefit__body
+					.PAYGBenefit__summary #{val.summary}
+					.PAYGBenefit__bullets
+						each bullet in val.bullets
+							.PAYGBenefit__bullet
+								.PAYGBenefit__bullet-icon
+									include ../../../assets/tick-circle-green.svg
+								.PAYGBenefit__bullet-text #{bullet}
+					a.PAYGBenefit__button.Btn.Btn--chevron-right(href='/breakdown-cover/uk-breakdown') Learn more
+		

@@ -1,0 +1,53 @@
+$tile-breakpoint: 768px;
+$icon-top-value: -36px;
+$icon-width: 75px;
+
+.IconTile {
+	position: relative;
+	border: 2px solid $grey-5;
+	border-radius: 10px;
+	margin: 0 20px;
+
+	&__icon {
+		position: absolute;
+		top: $icon-top-value;
+		left: 50%;
+		transform: translateX(-50%);
+		width: $icon-width;
+		height: auto;
+
+		img {
+			height: 100%;
+		}
+
+		@include breakpoint($tile-breakpoint, down) {
+			position: relative;
+			flex: 0 0 60px;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			transform: translateX(0);
+
+			width: 60px;
+		}
+	}
+
+	&__inner {
+		padding: 70px 30px 20px 30px;
+		text-align: center;
+		color: $grey-8;
+		@include medium-weight;
+
+		@include breakpoint($tile-breakpoint, down) {
+			padding: 10px 10px 10px 20px;
+			text-align: left;
+		}
+	}
+
+	@include breakpoint($tile-breakpoint, down) {
+		display: flex;
+		align-items: center;
+		padding: 20px;
+	}
+}

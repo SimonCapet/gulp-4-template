@@ -1,0 +1,9 @@
+include ./_ProofPoint
+
+mixin ProofPoints(items)
+	link(rel="stylesheet" href="/static/styles/components/ProofPoint.css")
+
+	.ProofPoints.row
+		for item in items
+			.col-xs-12.col-sm-4
+				+ProofPoint(item.imgUrl, item.title, item.description)

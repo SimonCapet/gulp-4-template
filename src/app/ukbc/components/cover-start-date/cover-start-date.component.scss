@@ -1,0 +1,20 @@
+@import '../../../../styles/core-variables-and-helpers';
+
+.CoverStartDate {
+	&__helper {
+		margin-top: 0.25em;
+	}
+
+	&__input-wrapper {
+		@include padding-top;
+	}
+
+	&__label {
+		color: $green;
+	}
+
+	&__values {
+		@include padding-right(5px, 25px);
+	}
+
+}

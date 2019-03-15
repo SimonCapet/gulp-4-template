@@ -1,0 +1,393 @@
+$site-navigation-toggle-outer-size: 40px;
+$site-navigation-toggle-inner-size: 30px;
+$site-navigation-toggle-line-size: 4px;
+$site-navigation-toggle-line-gap: 6px;
+$site-navigation-toggle-line-offset: -($site-navigation-toggle-line-size + $site-navigation-toggle-line-gap);
+$site-navigation-transition-duration: 0.25s;
+$site-navigation-transition-easing: ease;
+
+.SiteNavigation {
+	position: fixed;
+	top: 60px;
+	right: 0%;
+	bottom: 0;
+	z-index: -1;
+
+	display: block;
+	width: 90%;
+	border-left: 1px solid #eee;
+
+	background-color: $white;
+	transform: translateX(100%);
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+	transition-duration: 0.25s;
+
+	&__toggle {
+		width: $site-navigation-toggle-outer-size;
+		height: $site-navigation-toggle-outer-size;
+		margin: -5px -8px -5px auto;
+		padding: 0;
+		border: 0;
+
+		background-color: transparent;
+
+		cursor: pointer;
+	}
+
+	&__toggle-background {
+		position: relative;
+
+		display: inline-block;
+		width: $site-navigation-toggle-inner-size;
+		height: $site-navigation-toggle-line-size;
+		margin: $site-navigation-toggle-line-gap 0;
+
+		background-color: $orange-2;
+		transition: $site-navigation-transition-duration background-color $site-navigation-transition-easing;
+
+		&:before,
+		&:after {
+			position: absolute;
+			left: 0;
+
+			width: $site-navigation-toggle-inner-size;
+			height: $site-navigation-toggle-line-size;
+
+			background-color: $orange-2;
+			transition: $site-navigation-transition-duration all $site-navigation-transition-easing;
+
+			content: '';
+		}
+
+		&:before {
+			top: $site-navigation-toggle-line-offset;
+		}
+
+		&:after {
+			bottom: $site-navigation-toggle-line-offset;
+		}
+
+		.SiteNavigation__toggle--open & {
+			background-color: transparent;
+
+			&:before {
+				top: 0;
+
+				transform: rotate(45deg);
+			}
+
+			&:after {
+				bottom: 0;
+
+				transform: rotate(-45deg);
+			}
+		}
+	}
+
+	&__list {
+		margin: 0;
+		padding-left: 0;
+
+		list-style-type: none;
+	}
+
+	&__item {
+		position: relative;
+		border-bottom: 1px solid #eee;
+
+		font-weight: 500;
+
+		&--content-only {
+			padding: 20px 15px 40px;
+		}
+
+		&:last-child {
+			border-bottom: 0;
+		}
+	}
+
+	&__link {
+		@include medium-weight;
+
+		display: block;
+		margin-right: 55px;
+		padding: 15px;
+
+		color: $dark-grey;
+		text-decoration: none;
+	}
+
+	&__sub-wrapper {
+		height: 0;
+
+		overflow: hidden;
+		transition: $site-navigation-transition-duration height $site-navigation-transition-easing;
+
+		.SiteNavigation__item--open & {
+			display: block;
+		}
+	}
+
+	&__sub-list {
+		padding-left: 0;
+
+		list-style-type: none;
+	}
+
+	&__sub-item {
+		border-top: 1px solid #e1e1e1;
+
+		font-size: 0.95em;
+		font-weight: 500;
+	}
+
+	&__sub-link {
+		display: block;
+		padding: 12px 15px 12px 25px;
+
+		color: $dark-grey;
+		text-decoration: none;
+
+		background-color: #f8f8f8;
+	}
+
+	&__sub-level-toggle {
+		position: absolute;
+		top: 0;
+		right: 0;
+
+		width: 55px;
+		height: 54px;
+		padding: 0;
+		border: 0;
+		border-left: 1px solid #eee;
+
+		background-color: transparent;
+		cursor: pointer;
+
+		.SiteNavigation__item--open & {
+			background-color: #f8f8f8;
+		}
+
+		&:before,
+		&:after {
+			position: absolute;
+			top: 26px;
+			width: 15px;
+			height: 3px;
+
+			background-color: $orange-6;
+			transition: 0.25s all ease;
+
+			content: '';
+		}
+
+		&:before {
+			left: 15px;
+
+			transform: rotate(45deg);
+
+			.SiteNavigation__item--open & {
+				transform: rotate(-45deg);
+			}
+		}
+
+		&:after {
+			right: 15px;
+
+			transform: rotate(-45deg);
+
+			.SiteNavigation__item--open & {
+				transform: rotate(45deg);
+			}
+		}
+	}
+
+	&__feature {
+		display: none;
+	}
+
+	&--open {
+		transform: translateX(0);
+	}
+
+	@include breakpoint(tablet, up) {
+		position: static;
+		z-index: 0;
+
+		display: flex;
+		justify-content: flex-end;
+
+		border-left: 0;
+
+		overflow-y: visible;
+		transform: none;
+
+		&__toggle {
+			display: none;
+		}
+
+		&__list {
+			display: flex;
+			justify-content: flex-end;
+			align-items: stretch;
+
+			list-style-type: none;
+		}
+
+		&__item {
+			position: static;
+
+			display: flex;
+
+			border-bottom: 0;
+
+			font-size: 0.86em;
+			line-height: 1.25;
+			text-align: center;
+
+			&--content-only {
+				display: none;
+			}
+		}
+
+		&__myrac {
+			display: none;
+		}
+
+		&__link {
+			position: relative;
+
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+
+			margin-right: 0;
+			padding: 10px;
+
+			transition: 0.15s background-color ease;
+
+			&:before {
+				position: absolute;
+				top: 0;
+				left: 0;
+
+				width: 100%;
+				height: 0;
+
+				background-color: $orange-2;
+				transition: 0.15s height ease;
+				content: '';
+			}
+
+			&:hover,
+			&:active,
+			.SiteNavigation__item--open & {
+				color: $black;
+
+				&:before {
+					height: 5px;
+				}
+			}
+
+			&:hover,
+			.SiteNavigation__item--open & {
+				background-color: #eee;
+			}
+
+			&:active {
+				background-color: #ddd;
+			}
+		}
+
+		&__sub-level-toggle {
+			display: none;
+		}
+
+		&__sub-wrapper {
+			position: absolute;
+			top: 100%;
+			left: 0;
+
+			display: none;
+
+			width: 100%;
+			height: auto;
+
+			text-align: left;
+
+			background-color: #eee;
+		}
+
+		&__sub-wrapper-inner {
+			display: flex;
+			align-items: stretch;
+
+			max-width: 1190px;
+			margin: 0 auto;
+			padding: 30px 0;
+		}
+
+		&__sub-list {
+			flex-grow: 1;
+			flex-basis: 0;
+
+			padding: 0 15px;
+			border-right: 1px solid #d5d5d5;
+
+			& + & {
+				padding-left: 30px;
+			}
+		}
+
+		&__sub-item {
+			margin-bottom: 10px;
+			border-top: 0;
+		}
+
+		&__sub-link {
+			display: inline;
+			padding: 0;
+
+			background-color: transparent;
+		}
+
+		&__feature {
+			display: block;
+			flex-grow: 1;
+			flex-basis: 0;
+
+			padding: 0 15px 0 35px;
+		}
+
+		&__feature-image {
+			width: 100%;
+			margin-bottom: 20px;
+		}
+
+		&__toggle {
+			display: none;
+		}
+	}
+
+	@include breakpoint(tablet-landscape, up) {
+		&__item {
+			font-size: 1.14em;
+		}
+
+		&__sub-wrapper {
+			@include long-primer;
+		}
+	}
+
+	@include breakpoint(1200px, up) {
+		&__item {
+			font-size: 1.28em;
+		}
+
+		&__link {
+			padding: 10px 15px;
+		}
+	}
+}

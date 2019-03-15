@@ -1,0 +1,50 @@
+.MotorLegal {
+	@include fluid-property(padding-top, 10px, 30px);
+	@include fluid-property(padding-bottom, 10px, 30px);
+
+	max-width: 1270px;
+	margin: 0 auto;
+	padding-top: 40px;
+	padding-bottom: 40px;
+
+	&__heading {
+		@include normal-weight;
+		padding-bottom: 10px;
+	}
+
+	&__bullets {
+		padding: 0;
+		margin: 0;
+	}
+
+	&__bullet {
+		@include fluid-font-size(0.5);
+		line-height: 1.5em;
+		list-style: none;
+		position: relative;
+		padding: 10px 0 10px 50px;
+
+		&:before {
+			background: {
+				image: url('/assets/lcp/green-tick-circle.svg');
+				size: 2em;
+				repeat: no-repeat;
+				position: center center;
+			}
+			border-radius: 50%;
+			content: '';
+
+			position: absolute;
+			top: 5px;
+			right: 0;
+			bottom: 0;
+			left: -5px;
+			height: 50px;
+			width: 50px;
+		}
+	}
+
+	&__bullet-title {
+		@include bold-weight;
+	}
+}

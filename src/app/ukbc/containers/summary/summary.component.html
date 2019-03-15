@@ -1,0 +1,79 @@
+<div class="Summary">
+	<div class="Summary__included-cover">
+		<header class="Summary__header"
+				[ngStyle]="{ 'background-color': (GlobalContent$ | async).HeadersBackgroundColour }">
+			<div class="Summary__title" [ngStyle]="{ 'color': (GlobalContent$ | async).HeadersHeadlineTextColour }">
+				{{StepTitle}}
+			</div>
+			<div class="Summary__strapline"
+				 [ngStyle]="{ 'color': (GlobalContent$ | async).HeadersStraplineTextColour }">
+				{{StepSubtitle}}
+			</div>
+		</header>
+
+		<div class="Summary__selected-products">
+			<div class="Summary__added-animation-wrapper"
+				 *ngFor="let product of IncludedProducts; let i = index;"
+				 [@removeProduct]="animationTriggerObject['remove_' + product.ProductCode] ? animationTriggerObject['remove_' + product.ProductCode] : 'show'">
+				<ukbc-summary-product
+						[product]="product"
+						[productSelected]="true"
+						[setUndoProduct]="checkIsTempProduct(product, false)"
+						[undoTimeout]="UndoTimeout"
+						[productPrices]="ProductPrices$ | async"
+						[comparisonProductPrices]="ComparisonProductPrices$ | async"
+						[isLastProduct]="(IncludedProducts.length - 1) === i"
+						[addProductButtonCostSuffix]="AddProductButtonPriceSuffix$ | async"
+						[availableParentProducts]="AvailableParentProducts$ | async"
+						[journeyContent]="JourneyContent$ | async"
+						[offer]="this.OfferService.GetProductOffer(product.ProductCode, true)"
+						(addProduct)="AddProduct(product)"
+						(removeProduct)="RemoveProduct(product)"
+						(undoProduct)="UndoProduct(product, false)">
+				</ukbc-summary-product>
+			</div>
+		</div>
+	</div>
+
+	<div class="Summary__available-products" *ngIf="AvailableProducts.length">
+		<div class="Summary__available-product-title">
+			Here's what's not included in your cover:
+		</div>
+		<div class="Summary__avail-animation-wrapper"
+			 *ngFor="let product of AvailableProducts"
+			 [@removeProduct]="animationTriggerObject['add_' + product.ProductCode] ? animationTriggerObject['add_' + product.ProductCode] : 'show'">
+			<ukbc-summary-product
+					[product]="product"
+					[setUndoProduct]="checkIsTempProduct(product, true)"
+					[undoTimeout]="UndoTimeout"
+					[productPrices]="ProductPrices$ | async"
+					[comparisonProductPrices]="ComparisonProductPrices$ | async"
+					[addProductButtonCostSuffix]="AddProductButtonPriceSuffix$ | async"
+					[journeyContent]="JourneyContent$ | async"
+					[offer]="this.OfferService.GetProductOffer(product.ProductCode, false)"
+					(addProduct)="AddProduct(product)"
+					(removeProduct)="RemoveProduct(product)"
+					(undoProduct)="UndoProduct(product, true)">
+			</ukbc-summary-product>
+		</div>
+	</div>
+	<ukbc-faqs 
+		class="Summary__faqs"
+		[title]="FaqsTitle"
+		[selectedProducts]="PreviousSelectedProducts"
+		[faqs]="Faqs">
+	</ukbc-faqs>
+	<div class="Summary__terms-conditions" [innerHTML]="(JourneyContent$ | async).TermsAndConditions | safeHTML"></div>
+	<div class="Summary__footer">
+		<button class="Btn Btn--chevron-right" (click)="CompleteStep()" [disabled]="(JourneyContent$ | async).AllowPaymentByEagleEyeTokens && !(EagleEyeState$ | async).tokenValue">
+			{{ (CurrentStep$ | async).data.CompleteStepButton }}
+		</button>
+		<button
+			*ngIf="(JourneyContent$ | async).AllowPaymentByEagleEyeTokens && !(EagleEyeState$ | async).tokenValue && (JourneyContent$ | async).ExchangeEagleEyeTokensModalContent"
+			class="Btn Btn--chevron-right"
+			(click)="OpenExchangeEagleEyeTokensDialog()"
+		>
+			{{ (JourneyContent$ | async).ExchangeEagleEyeTokensButtonText }}
+		</button>
+	</div>
+</div>

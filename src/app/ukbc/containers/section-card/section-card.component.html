@@ -1,0 +1,13 @@
+<div *ngIf="IsCardVisible()" [ngClass]="Classes">
+	<div class="SectionCard__inner">
+		<div class="SectionCard__header" #header>
+			<h2 class="SectionCard__title" *ngIf="!hideTitleOnOpen || !IsCardOpen()" (onOpen)="OpenCard($event)" (onComplete)="OpenCard($event)">{{ title }}</h2>
+		</div>
+		<div class="SectionCard__body">
+			<div class="SectionCard__content" [ngClass]="contentClass ? 'SectionCard__content--' + contentClass : ''">
+				<ng-content></ng-content>
+			</div>
+		</div>
+	</div>
+</div>
+	

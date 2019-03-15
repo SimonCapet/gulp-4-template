@@ -1,0 +1,45 @@
+@import '../sass-helpers/core-variables-and-helpers';
+
+.OfferBanner {
+	$c: &;
+	@include margin-bottom;
+
+	.LandingHeader & {
+		margin-bottom: 0;
+	}
+
+	background: $red;
+	color: $white;
+
+	text-align: center;
+
+	&__inner {
+		@include padding-top($collapse-padding-small - 5px, $collapse-padding-large - 5px);
+		@include padding-bottom;
+	}
+
+	&__free {
+		@include fluid-font-size(3, 4, $output-px: true);
+
+		margin: 0;
+		line-height: 1.2em;
+
+		sup {
+			top: -0.3em;
+		}
+
+		#{$c}--bg & {
+			@include fluid-property(font-size, 18px, 39px);
+		}
+	}
+
+	&__breakdown {
+		display: inline;
+		margin: 0;
+		font-size: 1em;
+	}
+
+	&__asterisk-wrapper {
+		display: inline-block;
+	}
+}

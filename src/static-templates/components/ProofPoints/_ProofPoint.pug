@@ -1,0 +1,7 @@
+mixin ProofPoint(imgUrl, title, description)
+	.ProofPoint
+		.ProofPoint__img-placeholder(data-component="responsive-image" data-img=imgUrl data-alt=title data-min-size="320" data-image-class="ProofPoint__img" data-loaded-class="ProofPoint__img--loaded")
+		if title
+			h3.ProofPoint__title !{title}
+		if description
+			p.ProofPoint__description !{description}

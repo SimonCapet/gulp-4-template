@@ -1,0 +1,110 @@
+@import '../sass-helpers/core-variables-and-helpers';
+
+$tp-logo-width: 96px;
+$tp-logo-height: 24px;
+$stars-height-mobile: 14px;
+$stars-height-desktop: 24px;
+$stars-width-mobile: 78px;
+$stars-width-desktop: 131px;
+
+.TPSkinny,
+.TPSkinny__row,
+.TPSkinny__block {
+  display: flex;
+}
+
+.TPSkinny {
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  background-color: #4c4c4c;
+  padding: 12px 0;
+}
+
+.TPSkinny__block {
+  flex-direction: column;
+
+  @include breakpoint(tablet, up) {
+    margin-right: 32px;
+    flex-direction: row;
+  }
+
+  /*these widths are necessary for flex to work nicely in IE 11*/
+  .TPStars {
+    width: $stars-width-mobile;
+
+    @include breakpoint(tablet, up) {
+      width: $stars-width-desktop;
+    }
+  }
+}
+
+.TPSkinny__row--Big3 > .TPSkinny__block:last-child {
+  margin-right: 0;
+}
+
+.TPSkinny__logo {
+  width: $tp-logo-width;
+  height: $tp-logo-height;
+  background-image: url('/assets/trust-pilot/logo-white.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.TPSkinny__row--TrustPilot,
+.TPSkinny__row--Big3 {
+  width: 100%;
+  @include breakpoint(tablet, up) {
+    width: auto;
+    justify-content: inherit;
+  }
+}
+
+.TPSkinny__row--TrustPilot {
+  height: 24px;
+  align-items: center;
+}
+
+.TPSkinny__row--Big3 {
+  height: 40px;
+
+  @include breakpoint(tablet, up) {
+    height: 24px;
+  }
+}
+
+.TPSkinny__row--TrustPilot {
+  margin-bottom: 6px;
+  justify-content: center;
+
+  @include breakpoint(tablet, up) {
+    margin-bottom: 0;
+  }
+}
+
+.TPSkinny__row--Big3 {
+  justify-content: space-around;
+}
+
+.TPSkinny__text {
+  color: $white;
+  text-align: center;
+
+  @include breakpoint(tablet, up) {
+    margin-right: 8px;
+  }
+}
+
+.TPSkinny__rating {
+  color: $white;
+
+  svg {
+    height: $stars-height-mobile;
+
+    @include breakpoint(tablet, up) {
+      height: $stars-height-desktop;
+    }
+  }
+}
+
+

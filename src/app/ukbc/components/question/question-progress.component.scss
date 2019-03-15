@@ -1,0 +1,92 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+$question-progress-bar-height: 15px;
+$question-progress-bar-height-mobile: 5px;
+
+:host {
+	@include breakpoint(tablet, below) {
+		z-index: 3;
+		display: block;
+		position: sticky;
+		width: 100%;
+	}
+
+	@include breakpoint(tablet, up) {
+		@include margin-top($question-desktop-padding-top-small + $checkout-main-padding-top, $question-desktop-padding-top-large + $checkout-main-padding-top, $vertical: true, $clip-at-start: false);
+		position: fixed;
+		width: $desktop-basket-width;
+	}
+}
+
+.QuestionProgress {
+	@include breakpoint(tablet, below) {
+		background: $white;
+	}
+
+	&--initialised {
+		transition: opacity $transition-slow, transform $transition-slow;
+	}
+
+	&--hide {
+		@include breakpoint(tablet, below) {
+			transform: translateY(-100%);
+		}
+
+		@include breakpoint(tablet, up) {
+			transform: translateY(100%);
+		}
+
+		opacity: 0;
+	}
+
+	&__inner {
+		position: relative;
+	}
+
+	&__text {
+		@include breakpoint(tablet, below) {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			margin: 0 0 0 10px;
+
+			font-size: 12px;
+
+			mix-blend-mode: color-dodge;
+		}
+
+		@include breakpoint(tablet, up) {
+			margin: 0 0 0.5em;
+		}
+
+		color: $grey-2;
+	}
+
+	&__bar {
+		width: 100%;
+		height: $question-progress-bar-height-mobile;
+
+		@include breakpoint(tablet, up) {
+			height: $question-progress-bar-height;
+			border-radius: $question-progress-bar-height / 2;
+		}
+
+		background: #d8d8d8;
+
+		overflow: hidden;
+	}
+
+	&__indicator {
+		width: 0;
+		height: $question-progress-bar-height-mobile;
+		border-radius: $question-progress-bar-height / 2;
+		background: $green;
+
+		transition: width $transition-slow;
+		
+		@include breakpoint(tablet, up) {
+			height: $question-progress-bar-height;
+		}
+	}
+}

@@ -1,0 +1,27 @@
+@import '../../sass-helpers/core-variables-and-helpers';
+
+$countdown-banner-max-width: 1110px;
+
+.CountdownBanner {
+	background: $red;
+
+	&__inner {
+		@include container($countdown-banner-max-width);
+		@include padding-vertical($vertical: false, $clip-high: $countdown-banner-max-width + $collapse-padding-large * 2);
+		@include padding-horizontal($clip-low: 320px, $clip-high: $countdown-banner-max-width + $collapse-padding-large * 2);
+
+		text-align: center;
+
+		&--large-pad {
+			@include padding-vertical($collapse-padding-small * 2, $collapse-padding-large * 2, $vertical: false, $clip-high: $countdown-banner-max-width + $collapse-padding-large * 2);
+		}
+	}
+
+	&__content {
+		color: $white;
+	}
+
+	.Btn {
+		text-shadow: none;
+	}
+}

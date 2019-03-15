@@ -1,0 +1,10 @@
+<div 
+	class="DirectDebitAgreeToTerms" 
+	ngClass="{{ !agreeToDirectDebitTerms && forceShowValidationErrors ? 'DirectDebitAgreeToTerms--error' : '' }}">
+	<div class="DirectDebitAgreeToTerms__accept">
+		<div 
+			class="DirectDebitAgreeToTerms__information" 
+			[innerHTML]="content.DirectDebitAgreeToTermsAndConditionsInformation">
+		</div>
+	</div>
+</div>

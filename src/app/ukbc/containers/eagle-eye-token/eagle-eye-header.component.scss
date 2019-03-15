@@ -1,0 +1,81 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+$contents-height-mobile: 40px;
+$vertical-padding-mobile: 10px;
+$eagle-eye-header-height-mobile: $contents-height-mobile + 2 * $vertical-padding-mobile;
+
+.EagleEyeHeader {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	background: $grey-5;
+	position: relative;
+	z-index: 3;
+
+	@include breakpoint(tablet, up) {
+		height: $eagle-eye-header-height-desktop;
+		padding: 0 1.5em;
+	}
+
+	@include breakpoint(tablet, below) {
+		padding: $vertical-padding-mobile 0.5em;
+	}
+
+	&__company-logo {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+
+		@include breakpoint(tablet, below) {
+			width: 25vw;
+			max-width: 150px;
+			height: $contents-height-mobile;
+		}
+
+		@include breakpoint(tablet, up) {
+			width: 200px;
+		}
+	}
+
+	&__input {
+		@include breakpoint(tablet, up) {
+			margin: 0 2em;
+			width: 300px;
+		}
+
+		@include breakpoint(tablet, below) {
+			margin: 0 0.5em;
+			flex: 1;
+		}
+	}
+
+	@include breakpoint(tablet, below) {
+		.Input__input {
+			height: $contents-height-mobile;
+		}
+
+		.Input__invalid-indicator-image {
+			bottom: 0.7em;
+		}
+	}
+
+	&__activate-button {
+		font-size: 1em;
+		height: $input-height;
+		transition: opacity $transition-normal;
+
+		@include breakpoint(tablet, below) {
+			font-size: 0.8em;
+			height: $contents-height-mobile;
+		}
+
+		&--hidden {
+			opacity: 0;
+		}
+	}
+}

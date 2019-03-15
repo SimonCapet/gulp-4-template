@@ -1,0 +1,19 @@
+@import '../../../../styles/core-variables-and-helpers';
+@import '../../../ukbc-settings';
+
+.PaymentFrequencyDialog {
+	&__print-link {
+		@include margin-top;
+		@include margin-bottom;
+
+		@media print {
+			display: none;
+		}
+	}
+
+	svg {
+		@media print {
+			@include margin-bottom;
+		}
+	}
+}

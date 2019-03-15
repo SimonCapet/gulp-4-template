@@ -1,0 +1,36 @@
+<button 
+	class="Btn Btn--align-left Btn--shadow Payment__button PaymentFrequencyBtn" 
+	type="button" 
+	[ngClass]="ButtonClassMonthly"
+	(click)="ToggleFrequency(EPurchaseType.Monthly)" 
+	(focus)="onFocus.emit($event)" 
+	[disabled]="!(CanChangeFrequency$ | async)">
+	 <span class="PaymentFrequencyBtn__label">{{ MonthlyLabel }}</span>
+	 <span class="PaymentFrequencyBtn__price" *ngIf="!JourneyContent.HidePaymentOptionPrice && !MonthlyDiscountedInstallmentFrequencyText ">
+		{{ MonthlyTotal | toPounds }} 
+		<span class="PaymentFrequencyBtn__frequency">
+			{{ PerMonthLabel }}
+		</span>
+	</span>
+
+	<span class="PaymentFrequencyBtn__price PaymentFrequencyBtn__price--monthlyInstallment" *ngIf="!JourneyContent.HidePaymentOptionPrice && MonthlyDiscountedInstallmentFrequencyText ">
+		{{ MonthlyDiscountedInstallmentFrequencyText }} <b>{{ MonthlyTotal | toPounds }}</b> 
+		<span class="PaymentFrequencyBtn__frequency">
+			{{ PerMonthLabel }}
+		</span>		
+		<span class="PaymentFrequencyBtn__installmentMessage" *ngIf="MonthlyDiscountedInstallmentSuffix" [innerHTML]="MonthlyDiscountedInstallmentSuffix"></span>
+	</span>
+</button>
+<button 
+	class="Btn Btn--align-left Btn--shadow Payment__button PaymentFrequencyBtn" 
+	type="button" 
+	[ngClass]="ButtonClassAnnual"
+	(click)="ToggleFrequency(EPurchaseType.Annual)" 
+	(focus)="onFocus.emit($event)" 
+	[disabled]="!(CanChangeFrequency$ | async)">
+	<span class="PaymentFrequencyBtn__label">{{ AnnualLabel }}</span>
+	<span class="PaymentFrequencyBtn__price" *ngIf="!JourneyContent.HidePaymentOptionPrice">
+		{{ AnnualTotal | toPounds }} 
+		<span class="PaymentFrequencyBtn__frequency">{{ PerYearLabel }}</span>
+	</span>
+</button>

@@ -1,0 +1,23 @@
+- 
+	var personalCoverConfig = {
+		title: 'Personal Breakdown Cover',
+		body: '<span>This cover is ideal if:</span><ul><li>You drive or are a passenger in more than one car</li><li>You want cover in multiple cars</li></ul>',
+		monthlyPrice: '8',
+		annualPrice: '60.97',
+		url: '/breakdown-cover/uk-breakdown-cover/pbm-may-package/pbm-selection',
+		products: [
+			{
+				title: 'Roadside cover',
+			},
+			{
+				title: 'Customise your cover with additional options',
+			},
+			{
+				title: 'Add additional people to your cover',
+			},
+		],
+	}
+
+include ./_breakdown-cover
+
++BreakdownCoverCard(personalCoverConfig, null, ['mobile', 'tablet', 'desktop'])

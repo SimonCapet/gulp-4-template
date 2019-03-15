@@ -1,0 +1,30 @@
+<div class="SectionCard__row" *ngIf="isOpen">
+	<h3 class="Payment__section-title PaymentMethod__title">{{ Content.PaymentMethodLabel }}</h3>
+	<div class="PaymentMethod__buttons">
+		<button 
+			class="Btn Btn--align-left Btn--shadow Payment__button PaymentMethod__button"
+			*ngIf="DebitCardAvailable()" 
+			ngClass="{{ Payment.paymentType === PaymentType.DebitCard ? 'Btn--green Btn--tick' : 'Btn--white Btn--circle' }}"
+			(click)="SetPaymentMethod(PaymentType.DebitCard)">
+			{{ Content.PaymentByDebitCardLabel }}
+		</button>
+		<button 
+			class="Btn Btn--align-left Btn--shadow Payment__button PaymentMethod__button" 
+			*ngIf="CreditCardAvailable()"
+		 	ngClass="{{ Payment.paymentType ===  PaymentType.CreditCard ? 'Btn--green Btn--tick' : 'Btn--white Btn--circle' }}"
+			(click)="SetPaymentMethod(PaymentType.CreditCard)">
+			{{ Content.PaymentByCreditCardLabel }}
+		</button>
+		<button 
+			class="Btn Btn--align-left Btn--shadow Payment__button PaymentMethod__button"
+			*ngIf="DirectDebitAvailable()" 
+			ngClass="{{ Payment.paymentType === PaymentType.DirectDebit ? 'Btn--green Btn--tick' : 'Btn--white Btn--circle' }}"
+			(click)="SetPaymentMethod(PaymentType.DirectDebit)">
+			{{ Content.PaymentByDirectDebitLabel }}
+		</button>
+	</div>
+</div>
+<div class="SectionCard__values" *ngIf="!isOpen && isComplete">
+	<span class="SectionCard__value-label">{{ Content.PaymentMethodLabel }}:</span>
+	<span class="SectionCard__value"> {{ GetPaymentType() }}</span>
+</div>
